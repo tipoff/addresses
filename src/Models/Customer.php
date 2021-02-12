@@ -9,8 +9,6 @@ class Customer extends BaseModel
 {
     use HasPackageFactory;
 
-    protected $guarded = ['id'];
-
     protected $casts = [];
 
     protected $with = [
