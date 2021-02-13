@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tipoff\Addresses;
 
-use Tipoff\Addresses\Models\Addresses;
+use Tipoff\Addresses\Models\Customer;
 use Tipoff\Addresses\Policies\AddressesPolicy;
 use Tipoff\Support\TipoffPackage;
 use Tipoff\Support\TipoffServiceProvider;
