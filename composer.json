@@ -45,10 +45,7 @@
         "laravel": {
             "providers": [
                 "Tipoff\\Addresses\\AddressesServiceProvider"
-            ],
-            "aliases": {
-                "Addresses": "Tipoff\\Addresses\\AddressesFacade"
-            }
+            ]
         }
     },
     "repositories": [
