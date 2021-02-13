@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Tipoff\Addresses\Tests;
 
 use Spatie\Permission\PermissionServiceProvider;
-use Tipoff\Authorization\AuthorizationServiceProvider;
 use Tipoff\Addresses\AddressesServiceProvider;
+use Tipoff\Authorization\AuthorizationServiceProvider;
 use Tipoff\Support\SupportServiceProvider;
 use Tipoff\TestSupport\BaseTestCase;
 
