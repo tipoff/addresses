@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 use Spatie\Permission\Contracts\Permission;
 use Spatie\Permission\PermissionRegistrar;
 
-class AddStatusPermissions extends Migration
+class AddCustomerPermissions extends Migration
 {
     public function up()
     {
@@ -14,9 +14,9 @@ class AddStatusPermissions extends Migration
             app(PermissionRegistrar::class)->forgetCachedPermissions();
 
             foreach ([
-                         'view addresses',
-                         'create addresses',
-                         'update addresses'
+                         'view customers',
+                         'create customers',
+                         'update customers'
                      ] as $name) {
                 app(Permission::class)::findOrCreate($name, null);
             };
