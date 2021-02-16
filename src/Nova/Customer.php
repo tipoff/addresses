@@ -49,9 +49,9 @@ class Customer extends BaseResource
 
     public function fieldsForIndex(NovaRequest $request)
     {
-        return [
+        return array_filter([
             ID::make()->sortable(),
-            BelongsTo::make('User', 'user', nova('user'))->sortable(),
+            nova('user') ? BelongsTo::make('User', 'user', nova('user'))->sortable() : null,
             Text::make('Company')->sortable(),
             Text::make('Address')->sortable(),
             Text::make('City')->sortable(),
@@ -59,13 +59,13 @@ class Customer extends BaseResource
             Number::make('Zip')->sortable(),
             Text::make('Timezone', 'timezone')->sortable(),
             Text::make('Source')->sortable(),
-        ];
+        ]);
     }
 
     public function fields(Request $request)
     {
-        return [
-            BelongsTo::make('User', 'user', nova('user'))->searchable()->withSubtitles()->withoutTrashed(),
+        return array_filter([
+            nova('user') ? BelongsTo::make('User', 'user', nova('user'))->searchable()->withSubtitles()->withoutTrashed() : null,
             Text::make('Company'),
             PhoneNumber::make('Phone', 'phone_number')->format('###-###-####')->disableValidation()->useMaskPlaceholder()->linkOnDetail()->hideWhenUpdating(),
             Email::make('Email', 'user.email')->clickable()->hideWhenUpdating(),
@@ -75,13 +75,13 @@ class Customer extends BaseResource
             Number::make('Zip'),
             Text::make('Timezone', 'timezone'),
             Text::make('Source'),
-            HasMany::make('Invoices', 'invoices', nova('invoice')),
-            HasMany::make('Orders', 'orders', nova('order')),
-            HasMany::make('Payments', 'payments', nova('payment')),
-            HasMany::make('Vouchers', 'vouchers', nova('voucher')),
-            MorphMany::make('Notes', 'notes', nova('note')),
+            nova('invoice') ? HasMany::make('Invoices', 'invoices', nova('invoice')) : null,
+            nova('order') ? HasMany::make('Orders', 'orders', nova('order')) : null,
+            nova('payment') ? HasMany::make('Payments', 'payments', nova('payment')) : null,
+            nova('voucher') ? HasMany::make('Vouchers', 'vouchers', nova('voucher')) : null,
+            nova('note') ? MorphMany::make('Notes', 'notes', nova('note')) : null,
             new Panel('Data Fields', $this->dataFields()),
-        ];
+        ]);
     }
 
     protected function dataFields(): array
@@ -91,25 +91,5 @@ class Customer extends BaseResource
             Date::make('Created At')->exceptOnForms(),
             Date::make('Updated At')->exceptOnForms(),
         ];
-    }
-
-    public function cards(Request $request)
-    {
-        return [];
-    }
-
-    public function filters(Request $request)
-    {
-        return [];
-    }
-
-    public function lenses(Request $request)
-    {
-        return [];
-    }
-
-    public function actions(Request $request)
-    {
-        return [];
     }
 }
