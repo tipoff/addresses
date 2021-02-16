@@ -41,7 +41,7 @@ class Customer extends BaseResource
 
     public static function indexQuery(NovaRequest $request, $query)
     {
-        $query->select('customers.*', 'u.name', 'u.name_last', 'u.email');
+        $query->select(['customers.*', 'u.name', 'u.name_last', 'u.email']);
         $query->join('users as u', 'customers.user_id', '=', 'u.id');
 
         return $query;
