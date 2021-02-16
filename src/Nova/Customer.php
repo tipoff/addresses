@@ -92,24 +92,4 @@ class Customer extends BaseResource
             Date::make('Updated At')->exceptOnForms(),
         ];
     }
-
-    public function cards(Request $request)
-    {
-        return [];
-    }
-
-    public function filters(Request $request)
-    {
-        return [];
-    }
-
-    public function lenses(Request $request)
-    {
-        return [];
-    }
-
-    public function actions(Request $request)
-    {
-        return [];
-    }
 }
