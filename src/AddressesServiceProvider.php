@@ -17,6 +17,9 @@ class AddressesServiceProvider extends TipoffServiceProvider
             ->hasPolicies([
                 Customer::class => CustomerPolicy::class,
             ])
+            ->hasNovaResources([
+                \Tipoff\Addresses\Nova\Customer::class,
+            ])
             ->name('addresses')
             ->hasConfigFile();
     }
