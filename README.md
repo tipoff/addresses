@@ -33,12 +33,14 @@ return [
 ];
 ```
 
-## Usage
+## Models
 
-```php
-$Addresses = new Tipoff\Addresses();
-echo $Addresses->echoPhrase('Hello, Tipoff!');
-```
+We include the following model in this package:
+
+**List of Models**
+
+- Customer
+
 
 ## Testing
 
