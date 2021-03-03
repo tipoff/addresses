@@ -18,7 +18,6 @@ class Country extends BaseModel
         parent::boot();
 
         static::saving(function ($country) {
-
         });
     }
 
