@@ -18,7 +18,15 @@ class Country extends BaseModel
         parent::boot();
 
         static::saving(function ($country) {
-
+            if (empty($country->title)) {
+                throw new \Exception('A country must have a title.');
+            }
+            if (empty($country->abbreviation)) {
+                throw new \Exception('A country must have an abbreviation.');
+            }
+            if (empty($country->slug)) {
+                throw new \Exception('A country must have a slug.');
+            }
         });
     }
 
