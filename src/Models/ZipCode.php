@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tipoff\Addresses\Models;
 
+use Tipoff\Addresses\Models\State;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasPackageFactory;
 
@@ -29,25 +30,11 @@ class ZipCode extends BaseModel
             if (empty($zip_code->state_id)) {
                 throw new \Exception('A zip code must belong to a state.');
             }
-            if (empty($zip_code->city_id)) {
-                throw new \Exception('A zip code must belong to a city.');
-            }
         });
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
     public function state()
     {
-        return $this->belongsTo(app('states'));
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function city()
-    {
-        return $this->belongsTo(app('city'));
+        return $this->belongsTo(State::class);
     }
 }
