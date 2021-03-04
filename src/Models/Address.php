@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Tipoff\Addresses\Models;
 
-use Tipoff\Addresses\Models\City;
-use Tipoff\Addresses\Models\ZipCode;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasPackageFactory;
 
