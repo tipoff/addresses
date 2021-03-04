@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tipoff\Addresses\Models;
 
+use Tipoff\Addresses\Models\City;
+use Tipoff\Addresses\Models\ZipCode;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasPackageFactory;
 
@@ -21,28 +23,22 @@ class Address extends BaseModel
             if (empty($address->address_line_1)) {
                 throw new \Exception('An address must have a street.');
             }
-            if (empty($address->city)) {
+            if (empty($address->city_id)) {
                 throw new \Exception('An address must have a city.');
             }
-            if (empty($address->zip_codes)) {
+            if (empty($address->zip_code_id)) {
                 throw new \Exception('An address must have a zip code.');
             }
         });
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
     public function city()
     {
-        return $this->belongsTo(app('city'));
+        return $this->belongsTo(City::class);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
     public function zip_code()
     {
-        return $this->belongsTo(app('zip_codes'));
+        return $this->belongsTo(ZipCode::class);
     }
 }
