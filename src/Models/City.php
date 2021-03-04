@@ -34,4 +34,11 @@ class City extends BaseModel
     {
         return $this->belongsTo(State::class);
     }
+
+    public function zipCodes()
+    {
+        return $this->belongsToMany(ZipCode::class)
+            ->withPivot('primary')
+            ->withTimestamps();;
+    }
 }

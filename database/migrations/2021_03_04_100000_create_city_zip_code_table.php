@@ -11,6 +11,7 @@ class CreateCityZipCodeTable extends Migration
     public function up()
     {
         Schema::create('city_zip_code', function (Blueprint $table) {
+            $table->id();
             $table->foreignIdFor(City::class);
             $table->foreignIdFor(ZipCode::class);
             $table->boolean('primary')
