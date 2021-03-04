@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tipoff\Addressses\Policies;
+namespace Tipoff\Addresses\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Tipoff\Addresses\Models\Timezone;
