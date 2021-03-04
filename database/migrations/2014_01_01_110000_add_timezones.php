@@ -9,7 +9,8 @@ class AddTimezones extends Migration
 {
     public function up()
     {
-        if (app()->has(Timezone::class)) {
+        
+        if (class_exists(Timezone::class)) {
             foreach ([
                 [
                     'id'                 => 1,
@@ -84,7 +85,7 @@ class AddTimezones extends Migration
                     'standard'           => '-9.00',
                 ]
             ] as $timezone) {
-                Timezone::findOrCreate($timezone);
+                Timezone::firstOrCreate($timezone);
             }
         }
     }
