@@ -11,7 +11,7 @@ class AddCustomerPermissions extends BasePermissionsMigration
         $permissions = [
             'view customers',
             'create customers',
-            'update customers'
+            'update customers',
         ];
 
         $this->createPermissions($permissions);
