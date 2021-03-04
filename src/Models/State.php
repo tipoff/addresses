@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tipoff\Addresses\Models;
 
-use Tipoff\Addresses\Models\Country;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasPackageFactory;
 
