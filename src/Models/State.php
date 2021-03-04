@@ -37,4 +37,9 @@ class State extends BaseModel
     {
         return $this->belongsTo(Country::class);
     }
+
+    public function zipCodes()
+    {
+        return $this->hasMany(ZipCode::class);
+    }
 }
