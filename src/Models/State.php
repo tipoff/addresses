@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tipoff\Addresses\Models;
 
+use Tipoff\Addresses\Models\Country;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasPackageFactory;
 
@@ -32,12 +33,9 @@ class State extends BaseModel
             }
         });
     }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
+    
     public function country()
     {
-        return $this->belongsTo(app('country'));
+        return $this->belongsTo(Country::class);
     }
 }
