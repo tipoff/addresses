@@ -24,15 +24,7 @@ class City extends BaseModel
             if (empty($city->slug)) {
                 throw new \Exception('A city must have a slug.');
             }
-            if (empty($city->state_id)) {
-                throw new \Exception('A city must belong to a state.');
-            }
         });
-    }
-
-    public function state()
-    {
-        return $this->belongsTo(State::class);
     }
 
     public function zipCodes()
