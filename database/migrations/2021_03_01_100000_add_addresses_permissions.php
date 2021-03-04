@@ -12,6 +12,9 @@ class AddAddressesPermissions extends BasePermissionsMigration
             'view customers',
             'create customers',
             'update customers',
+            'view timezones',
+            'create timezones',
+            'update timezones',
         ];
 
         $this->createPermissions($permissions);
