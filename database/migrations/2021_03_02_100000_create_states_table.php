@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Tipoff\Addresses\Models\Country;
 
 class CreateStatesTable extends Migration
 {
@@ -15,7 +16,7 @@ class CreateStatesTable extends Migration
             $table->string('abbreviation', 2)->unique();
             $table->string('description')->nullable();
             $table->string('capital')->nullable();
-            $table->foreignIdFor(app('country'));
+            $table->foreignIdFor(Country::class);
             $table->timestamps();
         });
     }
