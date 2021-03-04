@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Tipoff\Authorization\Permissions\BasePermissionsMigration;
 
-class AddCustomerPermissions extends BasePermissionsMigration
+class AddAddressesPermissions extends BasePermissionsMigration
 {
     public function up()
     {
