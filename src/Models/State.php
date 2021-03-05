@@ -42,4 +42,9 @@ class State extends BaseModel
     {
         return $this->hasMany(ZipCode::class);
     }
+
+    public function cities()
+    {
+        return $this->hasManyThrough(City::class, ZipCode::class);
+    }
 }
