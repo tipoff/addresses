@@ -20,3 +20,8 @@ All notable changes to `addresses` will be documented in this file.
 - register policy
 - customer nova resource
 - register nova resource
+
+## 2.0.0 - 2021-03-05
+
+- address migrations & models
+- address factories
