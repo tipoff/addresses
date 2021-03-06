@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Tipoff\Addresses\Models;
 
 use App\Models\User;
-use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\HasMany;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasPackageFactory;
 
