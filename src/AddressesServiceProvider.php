@@ -22,6 +22,11 @@ class AddressesServiceProvider extends TipoffServiceProvider
             ])
             ->hasNovaResources([
                 \Tipoff\Addresses\Nova\Customer::class,
+                \Tipoff\Addresses\Nova\Address::class,
+                \Tipoff\Addresses\Nova\City::class,
+                \Tipoff\Addresses\Nova\Country::class,
+                \Tipoff\Addresses\Nova\State::class,
+                \Tipoff\Addresses\Nova\ZipCode::class,
             ])
             ->name('addresses')
             ->hasConfigFile();
