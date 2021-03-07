@@ -14,8 +14,7 @@ class CreateCityZipCodeTable extends Migration
             $table->id();
             $table->foreignIdFor(City::class);
             $table->foreignIdFor(ZipCode::class);
-            $table->boolean('primary')
-                ->default(false);
+            $table->boolean('primary')->default(false);
             $table->timestamps();
         });
     }
