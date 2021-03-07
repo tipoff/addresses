@@ -43,4 +43,9 @@ class ZipCode extends BaseModel
             ->withPivot('primary')
             ->withTimestamps();
     }
+
+    public function region()
+    {
+        return $this->belongsTo(Region::class);
+    }
 }
