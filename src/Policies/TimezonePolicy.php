@@ -14,22 +14,22 @@ class TimezonePolicy
 
     public function viewAny(UserInterface $user): bool
     {
-        return $user->hasPermissionTo('view timezones') ? true : false;
+        return $user->hasPermissionTo('view timezones');
     }
 
     public function view(UserInterface $user, Timezone $timezone): bool
     {
-        return $user->hasPermissionTo('view timezones') ? true : false;
+        return $user->hasPermissionTo('view timezones');
     }
 
     public function create(UserInterface $user): bool
     {
-        return $user->hasPermissionTo('create timezones') ? true : false;
+        return $user->hasPermissionTo('create timezones');
     }
 
     public function update(UserInterface $user, Timezone $timezone): bool
     {
-        return $user->hasPermissionTo('update timezones') ? true : false;
+        return $user->hasPermissionTo('update timezones');
     }
 
     public function delete(UserInterface $user, Timezone $timezone): bool
