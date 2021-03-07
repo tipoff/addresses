@@ -18,7 +18,7 @@ class City extends BaseResource
     public static $title = 'id';
 
     public static $search = [
-        'id', 'title'
+        'id', 'title',
     ];
 
     public function fieldsForIndex(NovaRequest $request)

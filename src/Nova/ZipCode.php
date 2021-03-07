@@ -6,10 +6,10 @@ namespace Tipoff\Addresses\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Tipoff\Support\Nova\BaseResource;
 
@@ -21,7 +21,7 @@ class ZipCode extends BaseResource
 
     public static $search = [
         'id',
-        'code'
+        'code',
     ];
 
     public function fieldsForIndex(NovaRequest $request)

@@ -21,7 +21,7 @@ class State extends BaseResource
     public static $search = [
         'id',
         'title',
-        'abbreviation'
+        'abbreviation',
     ];
 
     public function fieldsForIndex(NovaRequest $request)

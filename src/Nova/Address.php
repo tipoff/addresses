@@ -20,7 +20,7 @@ class Address extends BaseResource
 
     public static $search = [
         'id',
-        'address_line_1'
+        'address_line_1',
     ];
 
     public function fieldsForIndex(NovaRequest $request)
