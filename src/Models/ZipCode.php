@@ -44,7 +44,6 @@ class ZipCode extends BaseModel
             ->withTimestamps();
     }
 
-
     public function region()
     {
         return $this->belongsTo(Region::class);
