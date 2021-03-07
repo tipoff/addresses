@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tipoff\Addresses\Models;
 
-use App\Models\User;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasPackageFactory;
 
@@ -36,22 +35,6 @@ class Region extends BaseModel
                 throw new \Exception('A region must have a slug.');
             }
         });
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function creator()
-    {
-        return $this->belongsTo(User::class, 'creator_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function updater()
-    {
-        return $this->belongsTo(User::class, 'updater_id');
     }
 
     /**
