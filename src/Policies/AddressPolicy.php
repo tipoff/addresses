@@ -14,22 +14,22 @@ class AddressPolicy
 
     public function viewAny(UserInterface $user): bool
     {
-        return $user->hasPermissionTo('view addresses') ? true : false;
+        return $user->hasPermissionTo('view addresses');
     }
 
     public function view(UserInterface $user, Address $address): bool
     {
-        return $user->hasPermissionTo('view addresses') ? true : false;
+        return $user->hasPermissionTo('view addresses');
     }
 
     public function create(UserInterface $user): bool
     {
-        return $user->hasPermissionTo('create addresses') ? true : false;
+        return $user->hasPermissionTo('create addresses');
     }
 
     public function update(UserInterface $user, Address $address): bool
     {
-        return $user->hasPermissionTo('update addresses') ? true : false;
+        return $user->hasPermissionTo('update addresses');
     }
 
     public function delete(UserInterface $user, Address $address): bool
