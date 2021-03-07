@@ -25,3 +25,11 @@ All notable changes to `addresses` will be documented in this file.
 
 - address migrations & models
 - address factories
+
+## 2.1.0 - 2021-03-07
+
+- region model
+- add policies
+- register policies
+- add nova resources
+- register nova resources
