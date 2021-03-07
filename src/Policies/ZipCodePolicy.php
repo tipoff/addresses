@@ -14,22 +14,22 @@ class ZipCodePolicy
 
     public function viewAny(UserInterface $user): bool
     {
-        return $user->hasPermissionTo('view zipcodes');
+        return $user->hasPermissionTo('view zip codes');
     }
 
     public function view(UserInterface $user, ZipCode $zipCode): bool
     {
-        return $user->hasPermissionTo('view zipcodes');
+        return $user->hasPermissionTo('view zip codes');
     }
 
     public function create(UserInterface $user): bool
     {
-        return $user->hasPermissionTo('create zipcodes');
+        return $user->hasPermissionTo('create zip codes');
     }
 
     public function update(UserInterface $user, ZipCode $zipCode): bool
     {
-        return $user->hasPermissionTo('update zipcodes');
+        return $user->hasPermissionTo('update zip codes');
     }
 
     public function delete(UserInterface $user, ZipCode $zipCode): bool
