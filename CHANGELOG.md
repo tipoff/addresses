@@ -33,3 +33,8 @@ All notable changes to `addresses` will be documented in this file.
 - register policies
 - add nova resources
 - register nova resources
+
+## 2.2.0 - 2021-03-08
+
+- rename zip model
+- change migrations
