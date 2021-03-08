@@ -657,7 +657,7 @@ class AddStates extends Migration
                     'abbreviation' => 'MP',
                     'description' => null,
                     'capital' => null,
-                    'country' => 1,
+                    'country_id' => 1,
                     'created_at' => '2021-03-03 05:51:45',
                     'updated_at' => '2021-03-03 05:51:45',
                 ]
