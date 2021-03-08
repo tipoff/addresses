@@ -17,8 +17,8 @@ class CreateAddressesTable extends Migration
             $table->foreignIdFor(City::class);
             $table->foreignIdFor(ZipCode::class);
             $table->timestamps();
-            
-            $table->unique(['address_line_1', 'address_line_2', 'city_id', 'zip_code_id']);
+
+            $table->unique(['address_line_1', 'address_line_2', 'city_id', 'zip_code_code'], 'address_unique');
         });
     }
 }

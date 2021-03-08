@@ -5,6 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Tipoff\Addresses\Models\State;
 use Tipoff\Addresses\Models\Region;
+use Tipoff\Addresses\Models\Timezone;
 
 class CreateZipCodesTable extends Migration
 {
@@ -14,7 +15,7 @@ class CreateZipCodesTable extends Migration
             $table->string('code', 5)->unique()->primary(); // Actual ZIP Code. Has to be string because can have leading zeros. Check model to see how it is made Primary Key.
             $table->foreignIdFor(State::class);
             $table->foreignIdFor(Region::class)->nullable();
-            $table->string(app('timezone'))->nullable();
+            $table->foreignIdFor(Timezone::class)->nullable();
             $table->decimal('latitude', 4, 2)->nullable();
             $table->decimal('longitude', 5, 2)->nullable();
             $table->boolean('decommissioned')->default(0)->index(); // 1 if decommissioned
