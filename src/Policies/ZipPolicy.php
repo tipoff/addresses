@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Tipoff\Addresses\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Tipoff\Addresses\Models\ZipCode;
+use Tipoff\Addresses\Models\Zip;
 use Tipoff\Support\Contracts\Models\UserInterface;
 
-class ZipCodePolicy
+class ZipPolicy
 {
     use HandlesAuthorization;
 
@@ -17,7 +17,7 @@ class ZipCodePolicy
         return $user->hasPermissionTo('view zip codes');
     }
 
-    public function view(UserInterface $user, ZipCode $zipCode): bool
+    public function view(UserInterface $user, Zip $zip): bool
     {
         return $user->hasPermissionTo('view zip codes');
     }
@@ -27,22 +27,22 @@ class ZipCodePolicy
         return $user->hasPermissionTo('create zip codes');
     }
 
-    public function update(UserInterface $user, ZipCode $zipCode): bool
+    public function update(UserInterface $user, Zip $zip): bool
     {
         return $user->hasPermissionTo('update zip codes');
     }
 
-    public function delete(UserInterface $user, ZipCode $zipCode): bool
+    public function delete(UserInterface $user, Zip $zip): bool
     {
         return false;
     }
 
-    public function restore(UserInterface $user, ZipCode $zipCode): bool
+    public function restore(UserInterface $user, Zip $zip): bool
     {
         return false;
     }
 
-    public function forceDelete(UserInterface $user, ZipCode $zipCode): bool
+    public function forceDelete(UserInterface $user, Zip $zip): bool
     {
         return false;
     }

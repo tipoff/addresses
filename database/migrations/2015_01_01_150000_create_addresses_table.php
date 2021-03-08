@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Tipoff\Addresses\Models\City;
-use Tipoff\Addresses\Models\ZipCode;
+use Tipoff\Addresses\Models\Zip;
 
 class CreateAddressesTable extends Migration
 {
@@ -15,10 +15,10 @@ class CreateAddressesTable extends Migration
             $table->string('address_line_1');
             $table->string('address_line_2')->nullable();
             $table->foreignIdFor(City::class);
-            $table->foreignIdFor(ZipCode::class);
+            $table->foreignIdFor(Zip::class);
             $table->timestamps();
-            
-            $table->unique(['address_line_1', 'address_line_2', 'city_id', 'zip_code_id']);
+
+            $table->unique(['address_line_1', 'address_line_2', 'city_id', 'zip_code'], 'address_unique');
         });
     }
 }

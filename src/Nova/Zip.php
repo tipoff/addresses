@@ -13,9 +13,9 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Tipoff\Support\Nova\BaseResource;
 
-class ZipCode extends BaseResource
+class Zip extends BaseResource
 {
-    public static $model = \Tipoff\Addresses\Models\ZipCode::class;
+    public static $model = \Tipoff\Addresses\Models\Zip::class;
 
     public static $title = 'id';
 

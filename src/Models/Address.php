@@ -24,7 +24,7 @@ class Address extends BaseModel
             if (empty($address->city_id)) {
                 throw new \Exception('An address must have a city.');
             }
-            if (empty($address->zip_code_id)) {
+            if (empty($address->zip_code)) {
                 throw new \Exception('An address must have a zip code.');
             }
         });
@@ -35,8 +35,8 @@ class Address extends BaseModel
         return $this->belongsTo(City::class);
     }
 
-    public function zip_code()
+    public function zip()
     {
-        return $this->belongsTo(ZipCode::class);
+        return $this->belongsTo(Zip::class);
     }
 }

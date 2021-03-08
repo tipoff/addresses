@@ -42,6 +42,6 @@ class Region extends BaseModel
      */
     public function zipCodes()
     {
-        return $this->hasMany(ZipCode::class);
+        return $this->hasMany(Zip::class);
     }
 }

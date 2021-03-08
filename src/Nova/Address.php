@@ -33,8 +33,8 @@ class Address extends BaseResource
             Text::make('City', 'city.id', function () {
                 return $this->city->title;
             })->sortable(),
-            Text::make('ZipCode', 'zip_code.id', function () {
-                return $this->zipcode->code;
+            Text::make('Zip', 'zip.code', function () {
+                return $this->zip->code;
             })->sortable(),
         ]);
     }
@@ -45,7 +45,7 @@ class Address extends BaseResource
             Text::make('Address Line 1'),
             Text::make('Address Line 2'),
             nova('city') ? BelongsTo::make('City', 'city', nova('city'))->searchable() : null,
-            nova('zipcode') ? BelongsTo::make('ZipCode', 'zipcode', nova('zipcode'))->searchable() : null,
+            nova('zip') ? BelongsTo::make('Zip', 'zip', nova('zip'))->searchable() : null,
         ]);
     }
 
