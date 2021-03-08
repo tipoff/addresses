@@ -6,7 +6,6 @@ namespace Tipoff\Addresses\Tests\Unit\Models;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tipoff\Addresses\Models\Address;
-use Tipoff\Addresses\Models\Timezone;
 use Tipoff\Addresses\Tests\TestCase;
 
 class AddressModelTest extends TestCase
