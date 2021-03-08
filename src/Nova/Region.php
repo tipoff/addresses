@@ -34,7 +34,7 @@ class Region extends BaseResource
     {
         return array_filter([
             Text::make('Slug'),
-            Text::make('Name')
+            Text::make('Name'),
         ]);
     }
 
