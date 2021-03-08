@@ -15,12 +15,13 @@ class StateFactory extends Factory
 
     public function definition()
     {
-        $title = $this->faker->unique()->state;
+        // Can't use state since they are already migrated in database
+        $title = $this->faker->unique()->city;
 
         return [
             'title' => $title,
             'slug' => Str::slug($title),
-            'abbreviation' => $this->faker->unique()->lexify('??'),
+            'abbreviation' => 'X' . $this->faker->unique()->lexify('?'),
             'country_id' => randomOrCreate(Country::class),
         ];
     }
