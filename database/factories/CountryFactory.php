@@ -6,9 +6,7 @@ namespace Tipoff\Addresses\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use Tipoff\Addresses\Models\Address;
 use Tipoff\Addresses\Models\Country;
-use Tipoff\Addresses\Models\Timezone;
 
 class CountryFactory extends Factory
 {

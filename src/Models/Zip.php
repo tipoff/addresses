@@ -7,7 +7,7 @@ namespace Tipoff\Addresses\Models;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasPackageFactory;
 
-class ZipCode extends BaseModel
+class Zip extends BaseModel
 {
     use HasPackageFactory;
 
@@ -22,12 +22,12 @@ class ZipCode extends BaseModel
     {
         parent::boot();
 
-        static::saving(function ($zip_code) {
-            if (empty($zip_code->code)) {
-                throw new \Exception('A zip code must have a code.');
+        static::saving(function ($zip) {
+            if (empty($zip->code)) {
+                throw new \Exception('A ZIP must have a code.');
             }
-            if (empty($zip_code->state_id)) {
-                throw new \Exception('A zip code must belong to a state.');
+            if (empty($zip->state_id)) {
+                throw new \Exception('A ZIP Code must belong to a state.');
             }
         });
     }

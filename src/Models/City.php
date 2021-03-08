@@ -29,7 +29,7 @@ class City extends BaseModel
 
     public function zipCodes()
     {
-        return $this->belongsToMany(ZipCode::class)
+        return $this->belongsToMany(Zip::class)
             ->withPivot('primary')
             ->withTimestamps();
         ;

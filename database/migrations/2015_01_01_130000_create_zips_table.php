@@ -7,11 +7,11 @@ use Tipoff\Addresses\Models\State;
 use Tipoff\Addresses\Models\Region;
 use Tipoff\Addresses\Models\Timezone;
 
-class CreateZipCodesTable extends Migration
+class CreateZipsTable extends Migration
 {
     public function up()
     {
-        Schema::create('zip_codes', function (Blueprint $table) {
+        Schema::create('zips', function (Blueprint $table) {
             $table->string('code', 5)->unique()->primary(); // Actual ZIP Code. Has to be string because can have leading zeros. Check model to see how it is made Primary Key.
             $table->foreignIdFor(State::class);
             $table->foreignIdFor(Region::class)->nullable();
