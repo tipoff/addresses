@@ -13,10 +13,12 @@ class TimezoneFactory extends Factory
 
     public function definition()
     {
+        $timezone = $this->faker->unique()->timezone;
+
         return [
-            'name' => $this->faker->timezone,
-            'title' => $this->faker->timezone,
-            'php' => $this->faker->timezone,
+            'name' => $timezone,
+            'title' => $timezone,
+            'php' => $timezone,
             'is_daylight_saving' => $this->faker->boolean
         ];
     }
