@@ -21,7 +21,7 @@ class StateFactory extends Factory
         return [
             'title' => $title,
             'slug' => Str::slug($title),
-            'abbreviation' => 'X' . $this->faker->unique()->lexify('?'),
+            'abbreviation' => $this->faker->unique()->lexify('X?'),
             'country_id' => randomOrCreate(Country::class),
         ];
     }
