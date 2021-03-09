@@ -17,8 +17,8 @@ class DomesticAddressFactory extends Factory
     {
         return [
             'address_line_1' => $this->faker->streetAddress,
-            'city_id' => randomOrCreate(City::class),
-            'zip_id' => randomOrCreate(Zip::class),
+            'city_id' => randomOrCreate(City::class)->id,
+            'zip_id' => randomOrCreate(Zip::class)->id,
         ];
     }
 }
