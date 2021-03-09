@@ -11,32 +11,18 @@ class Address extends BaseModel
 {
     use HasPackageFactory;
 
-    protected $casts = [];
-
-    protected static function boot()
+    public function domesticAddress()
     {
-        parent::boot();
-
-        static::saving(function ($address) {
-            if (empty($address->address_line_1)) {
-                throw new \Exception('An address must have a street.');
-            }
-            if (empty($address->city_id)) {
-                throw new \Exception('An address must have a city.');
-            }
-            if (empty($address->zip_code)) {
-                throw new \Exception('An address must have a zip code.');
-            }
-        });
+        return $this->belongsTo(DomesticAddress::class);
     }
 
-    public function city()
+    public function createdBy()
     {
-        return $this->belongsTo(City::class);
+        return $this->belongsTo(app('user'), 'creator_id');
     }
 
-    public function zip()
+    public function updatedBy()
     {
-        return $this->belongsTo(Zip::class);
+        return $this->belongsTo(app('user'), 'updater_id');
     }
 }

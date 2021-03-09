@@ -5,18 +5,17 @@ declare(strict_types=1);
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Tipoff\Addresses\Models\Address;
+use Tipoff\Addresses\Models\DomesticAddress;
 
-class CreateAddressablesTable extends Migration
+class CreateAddressesTable extends Migration
 {
     public function up()
     {
-        Schema::create('addressables', function (Blueprint $table) {
+        Schema::create('addresses', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Address::class)->index();
+            $table->foreignIdFor(DomesticAddress::class)->index();
             $table->morphs('addressable');
-            $table->string('primary_billing')->nullable();
-            $table->string('primary_shipping')->nullable();
+            $table->string('type');     // Shipping, Billing enums
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('care_of')->nullable();
@@ -27,7 +26,7 @@ class CreateAddressablesTable extends Migration
             $table->foreignIdFor(app('user'), 'updater_id');
             $table->timestamps();
 
-            $table->unique(['address_id', 'addressable_id', 'addressable_type']);
+            $table->unique(['domestic_address_id','addressable_id', 'addressable_type', 'type']);
         });
     }
 }

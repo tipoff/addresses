@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tipoff\Addresses;
 
-use Tipoff\Addresses\Models\Address;
+use Tipoff\Addresses\Models\DomesticAddress;
 use Tipoff\Addresses\Models\City;
 use Tipoff\Addresses\Models\Country;
 use Tipoff\Addresses\Models\Region;
@@ -27,7 +27,7 @@ class AddressesServiceProvider extends TipoffServiceProvider
     {
         $package
             ->hasPolicies([
-                Address::class => AddressPolicy::class,
+                DomesticAddress::class => AddressPolicy::class,
                 City::class => CityPolicy::class,
                 Country::class => CountryPolicy::class,
                 Region::class => RegionPolicy::class,

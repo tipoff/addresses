@@ -14,7 +14,7 @@ use Tipoff\Support\Nova\BaseResource;
 
 class Address extends BaseResource
 {
-    public static $model = \Tipoff\Addresses\Models\Address::class;
+    public static $model = \Tipoff\Addresses\Models\DomesticAddress::class;
 
     public static $title = 'id';
 

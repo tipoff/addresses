@@ -1,0 +1,18 @@
+- bump dependency of tipoff/authorization to 2.5.0
+- Verify all permissions in the policies are included in the package permissions migration
+- Add arrays after every permission in that migration except delete to include the ‘Owner’ role
+- Also add the ‘Staff’ role to the array for every view permission
+
+example from the Fees package:
+```
+    public function up()
+    {
+        $permissions = [
+             'view fees' => ['Owner', 'Staff'],
+             'create fees' => ['Owner'],
+             'update fees' => ['Owner'],
+             'delete fees' => [],   // Admin only
+        ];
+
+        $this->createPermissions($permissions);
+    }

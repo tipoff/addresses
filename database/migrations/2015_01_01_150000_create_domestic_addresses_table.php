@@ -6,11 +6,11 @@ use Illuminate\Support\Facades\Schema;
 use Tipoff\Addresses\Models\City;
 use Tipoff\Addresses\Models\Zip;
 
-class CreateAddressesTable extends Migration
+class CreateDomesticAddressesTable extends Migration
 {
     public function up()
     {
-        Schema::create('addresses', function (Blueprint $table) {
+        Schema::create('domestic_addresses', function (Blueprint $table) {
             $table->id();
             $table->string('address_line_1');
             $table->string('address_line_2')->nullable();
@@ -18,7 +18,7 @@ class CreateAddressesTable extends Migration
             $table->foreignIdFor(Zip::class);
             $table->timestamps();
 
-            $table->unique(['address_line_1', 'address_line_2', 'city_id', 'zip_code'], 'address_unique');
+            $table->unique(['address_line_1', 'address_line_2', 'city_id', 'zip_id'], 'address_unique');
         });
     }
 }
