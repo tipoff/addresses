@@ -14,11 +14,11 @@ class CreateDomesticAddressesTable extends Migration
             $table->id();
             $table->string('address_line_1');
             $table->string('address_line_2')->nullable();
-            $table->foreignIdFor(City::class, 'city_id');
-            $table->foreignIdFor(Zip::class, 'zip_id');
+            $table->foreignIdFor(City::class);
+            $table->foreignIdFor(Zip::class);
             $table->timestamps();
 
-            $table->unique(['address_line_1', 'address_line_2', 'city_id', 'zip_id'], 'address_unique');
+            $table->unique(['address_line_1', 'address_line_2', 'city_id', 'zip_code'], 'address_unique');
         });
     }
 }

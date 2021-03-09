@@ -24,7 +24,7 @@ class DomesticAddress extends BaseModel
             if (empty($address->city_id)) {
                 throw new \Exception('An address must have a city.');
             }
-            if (empty($address->zip_id)) {
+            if (empty($address->zip_code)) {
                 throw new \Exception('An address must have a zip code.');
             }
         });
