@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tipoff\Addresses;
 
-use Tipoff\Addresses\Models\DomesticAddress;
 use Tipoff\Addresses\Models\City;
 use Tipoff\Addresses\Models\Country;
+use Tipoff\Addresses\Models\DomesticAddress;
 use Tipoff\Addresses\Models\Region;
 use Tipoff\Addresses\Models\State;
 use Tipoff\Addresses\Models\Timezone;
