@@ -42,6 +42,7 @@ We include the following model in this package:
 - Address
 - City
 - Country
+- Domestic Address
 - Region
 - State
 - Timezone
