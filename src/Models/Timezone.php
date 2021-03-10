@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tipoff\Addresses\Models;
 
+use Tipoff\Addresses\Transformers\TimezoneTransformer;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasCreator;
 use Tipoff\Support\Traits\HasPackageFactory;
@@ -16,6 +17,11 @@ class Timezone extends BaseModel
     use HasUpdater;
 
     public $timestamps = false;
+
+    public function getTransformer($context = null)
+    {
+        return new TimezoneTransformer();
+    }
 
     public function markets()
     {

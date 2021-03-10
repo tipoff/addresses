@@ -6,6 +6,7 @@ namespace Tipoff\Addresses\Models;
 
 use Assert\Assert;
 use Carbon\Carbon;
+use Tipoff\Addresses\Transformers\ZipTransformer;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasPackageFactory;
 
@@ -54,6 +55,11 @@ class Zip extends BaseModel
         });
     }
 
+    public function getTransformer($context = null)
+    {
+        return new ZipTransformer();
+    }
+
     public function state()
     {
         return $this->belongsTo(State::class);
@@ -69,5 +75,10 @@ class Zip extends BaseModel
     public function region()
     {
         return $this->belongsTo(Region::class);
+    }
+
+    public function timezone()
+    {
+        return $this->belongsTo(Timezone::class);
     }
 }

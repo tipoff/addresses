@@ -4,9 +4,24 @@ declare(strict_types=1);
 
 namespace Tipoff\Addresses\Models;
 
+use Carbon\Carbon;
+use Tipoff\Addresses\Transformers\StateTransformer;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasPackageFactory;
 
+/**
+ * @property int id
+ * @property string slug
+ * @property string title
+ * @property string abbreviation
+ * @property string description
+ * @property string capital
+ * @property Country country
+ * @property Carbon created_at
+ * @property Carbon updated_at
+ * // Raw relations
+ * @property int country_id
+ */
 class State extends BaseModel
 {
     use HasPackageFactory;
@@ -32,7 +47,12 @@ class State extends BaseModel
             }
         });
     }
-    
+
+    public function getTransformer($context = null)
+    {
+        return new StateTransformer();
+    }
+
     public function country()
     {
         return $this->belongsTo(Country::class);

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tipoff\Addresses\Models;
 
+use Tipoff\Addresses\Transformers\CountryTransformer;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasPackageFactory;
 
@@ -28,6 +29,11 @@ class Country extends BaseModel
                 throw new \Exception('A country must have a slug.');
             }
         });
+    }
+
+    public function getTransformer($context = null)
+    {
+        return new CountryTransformer();
     }
 
     /**

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tipoff\Addresses\Models;
 
+use Tipoff\Addresses\Transformers\RegionTransformer;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasPackageFactory;
 
@@ -35,6 +36,11 @@ class Region extends BaseModel
                 throw new \Exception('A region must have a slug.');
             }
         });
+    }
+
+    public function getTransformer($context = null)
+    {
+        return new RegionTransformer();
     }
 
     /**

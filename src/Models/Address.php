@@ -7,6 +7,7 @@ namespace Tipoff\Addresses\Models;
 use Assert\Assert;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Tipoff\Addresses\Transformers\AddressTransformer;
 use Tipoff\Authorization\Models\User;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasCreator;
@@ -50,6 +51,11 @@ class Address extends BaseModel
                 ->that($address->domestic_address_id)->notEmpty('An address must have a US domestic postal address.')
                 ->verifyNow();
         });
+    }
+
+    public function getTransformer($context = null)
+    {
+        return new AddressTransformer();
     }
 
     public function domesticAddress()

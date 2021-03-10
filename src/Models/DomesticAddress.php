@@ -6,6 +6,7 @@ namespace Tipoff\Addresses\Models;
 
 use Assert\Assert;
 use Carbon\Carbon;
+use Tipoff\Addresses\Transformers\DomesticAddressTransformer;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasPackageFactory;
 
@@ -71,6 +72,11 @@ class DomesticAddress extends BaseModel
                 ->that($address->zip_code)->notEmpty('US domestic addresses must have zip code.')
                 ->verifyNow();
         });
+    }
+
+    public function getTransformer($context = null)
+    {
+        return new DomesticAddressTransformer();
     }
 
     public function city()
