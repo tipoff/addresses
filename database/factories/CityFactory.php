@@ -14,11 +14,10 @@ class CityFactory extends Factory
 
     public function definition()
     {
-        $title = $this->faker->unique()->state;
+        $title = $this->faker->unique()->city;
 
         return [
             'title' => $title,
-            'slug' => Str::slug($title),
         ];
     }
 }

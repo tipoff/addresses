@@ -4,9 +4,27 @@ declare(strict_types=1);
 
 namespace Tipoff\Addresses\Models;
 
+use Assert\Assert;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasPackageFactory;
 
+/**
+ * @property string code
+ * @property State state
+ * @property Region|null region
+ * @property Timezone|null timezone
+ * @property float|null latitude
+ * @property float|null longitude
+ * @property bool decommissioned
+ * @property Carbon created_at
+ * @property Carbon updated_at
+ * // raw relations
+ * @property int state_id
+ * @property int region_id
+ * @property int timezone_id
+ */
 class Zip extends BaseModel
 {
     use HasPackageFactory;
@@ -16,19 +34,24 @@ class Zip extends BaseModel
     public $incrementing = false;
     public $keyType = 'string';
 
-    protected $casts = [];
+    protected $casts = [
+        'latitude' => 'float',
+        'longitude' => 'float',
+        'decommissioned' => 'bool',
+        'state_id' => 'integer',
+        'region_id' => 'integer',
+        'timezone_id' => 'integer',
+    ];
 
     protected static function boot()
     {
         parent::boot();
 
-        static::saving(function ($zip) {
-            if (empty($zip->code)) {
-                throw new \Exception('A ZIP must have a code.');
-            }
-            if (empty($zip->state_id)) {
-                throw new \Exception('A ZIP Code must belong to a state.');
-            }
+        static::saving(function (Zip $zip) {
+            Assert::lazy()
+                ->that($zip->code)->notEmpty('A ZIP must have a code.')
+                ->that($zip->state_id)->notEmpty('A ZIP Code must belong to a state.')
+                ->verifyNow();
         });
     }
 
