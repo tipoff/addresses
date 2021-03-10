@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Tipoff\Addresses\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Tipoff\Addresses\Models\Address;
+use Tipoff\Addresses\Models\DomesticAddress;
 use Tipoff\Support\Contracts\Models\UserInterface;
 
-class AddressPolicy
+class DomesticAddressPolicy
 {
     use HandlesAuthorization;
 
@@ -17,7 +17,7 @@ class AddressPolicy
         return $user->hasPermissionTo('view addresses');
     }
 
-    public function view(UserInterface $user, Address $address): bool
+    public function view(UserInterface $user, DomesticAddress $address): bool
     {
         return $user->hasPermissionTo('view addresses');
     }
@@ -27,22 +27,22 @@ class AddressPolicy
         return $user->hasPermissionTo('create addresses');
     }
 
-    public function update(UserInterface $user, Address $address): bool
+    public function update(UserInterface $user, DomesticAddress $address): bool
     {
         return $user->hasPermissionTo('update addresses');
     }
 
-    public function delete(UserInterface $user, Address $address): bool
+    public function delete(UserInterface $user, DomesticAddress $address): bool
     {
         return false;
     }
 
-    public function restore(UserInterface $user, Address $address): bool
+    public function restore(UserInterface $user, DomesticAddress $address): bool
     {
         return false;
     }
 
-    public function forceDelete(UserInterface $user, Address $address): bool
+    public function forceDelete(UserInterface $user, DomesticAddress $address): bool
     {
         return false;
     }
