@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tipoff\Addresses\Transformers;
 
 use Tipoff\Addresses\Models\DomesticAddress;
-use Tipoff\Support\Contracts\Sellable\Sellable;
 use Tipoff\Support\Transformers\BaseTransformer;
 
 class DomesticAddressTransformer extends BaseTransformer
@@ -14,7 +13,7 @@ class DomesticAddressTransformer extends BaseTransformer
     ];
 
     protected $availableIncludes = [
-        'zip'
+        'zip',
     ];
 
     public function transform(DomesticAddress $domesticAddress)

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tipoff\Addresses\Transformers;
 
-use Tipoff\Addresses\Models\Region;
 use Tipoff\Addresses\Models\Timezone;
 use Tipoff\Support\Transformers\BaseTransformer;
 

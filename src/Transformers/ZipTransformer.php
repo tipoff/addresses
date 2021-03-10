@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Tipoff\Addresses\Transformers;
 
-use Tipoff\Addresses\Models\DomesticAddress;
 use Tipoff\Addresses\Models\Zip;
-use Tipoff\Support\Contracts\Sellable\Sellable;
 use Tipoff\Support\Transformers\BaseTransformer;
 
 class ZipTransformer extends BaseTransformer

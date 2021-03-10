@@ -4,13 +4,9 @@ declare(strict_types=1);
 
 namespace Tipoff\Addresses\Tests\Unit\Transformers;
 
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Arr;
-use Tipoff\Addresses\Models\Address;
-use Tipoff\Addresses\Models\City;
 use Tipoff\Addresses\Models\DomesticAddress;
-use Tipoff\Addresses\Models\Zip;
 use Tipoff\Addresses\Tests\TestCase;
 
 class DomesticAddressTransformerTest extends TestCase

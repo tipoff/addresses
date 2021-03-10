@@ -13,7 +13,7 @@ class StateTransformer extends BaseTransformer
     ];
 
     protected $availableIncludes = [
-        'country'
+        'country',
     ];
 
     public function transform(State $state)

@@ -10,7 +10,6 @@ use Tipoff\Addresses\Models\Region;
 use Tipoff\Addresses\Models\Timezone;
 use Tipoff\Addresses\Models\Zip;
 use Tipoff\Addresses\Tests\TestCase;
-use Tipoff\Addresses\Transformers\ZipTransformer;
 
 class ZipTransformerTest extends TestCase
 {
