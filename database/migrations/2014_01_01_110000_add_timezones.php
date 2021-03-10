@@ -9,11 +9,10 @@ class AddTimezones extends Migration
 {
     public function up()
     {
-        
+
         if (class_exists(Timezone::class)) {
-            foreach ([
+            Timezone::query()->insertOrIgnore([
                 [
-                    'id'                 => 1,
                     'name'               => 'EST',
                     'title'              => 'Eastern',
                     'php'                => 'America/New_York',
@@ -22,7 +21,6 @@ class AddTimezones extends Migration
                     'standard'           => '-5.00',
                 ],
                 [
-                    'id'                 => 2,
                     'name'               => 'CST',
                     'title'              => 'Central',
                     'php'                => 'America/Chicago',
@@ -31,7 +29,6 @@ class AddTimezones extends Migration
                     'standard'           => '-6.00',
                 ],
                 [
-                    'id'                 => 3,
                     'name'               => 'MST',
                     'title'              => 'Mountain',
                     'php'                => 'America/Denver',
@@ -40,7 +37,6 @@ class AddTimezones extends Migration
                     'standard'           => '-7.00',
                 ],
                 [
-                    'id'                 => 4,
                     'name'               => 'MDT',
                     'title'              => 'Mountain no DST',
                     'php'                => 'America/Phoenix',
@@ -49,7 +45,6 @@ class AddTimezones extends Migration
                     'standard'           => '-8.00',
                 ],
                 [
-                    'id'                 => 5,
                     'name'               => 'PST',
                     'title'              => 'Pacific',
                     'php'                => 'America/Los_Angeles',
@@ -58,7 +53,6 @@ class AddTimezones extends Migration
                     'standard'           => '-8.00',
                 ],
                 [
-                    'id'                 => 6,
                     'name'               => 'AKST',
                     'title'              => 'Alaska',
                     'php'                => 'America/Anchorage',
@@ -67,7 +61,6 @@ class AddTimezones extends Migration
                     'standard'           => '-9.00',
                 ],
                 [
-                    'id'                 => 7,
                     'name'               => 'HAST',
                     'title'              => 'Hawaii–Aleutian',
                     'php'                => 'America/Adak',
@@ -76,7 +69,6 @@ class AddTimezones extends Migration
                     'standard'           => '-10.00',
                 ],
                 [
-                    'id'                 => 8,
                     'name'               => 'HADT',
                     'title'              => 'Hawaii no DST',
                     'php'                => 'Pacific/Honolulu',
@@ -84,9 +76,7 @@ class AddTimezones extends Migration
                     'dst'                => '-9.00',
                     'standard'           => '-9.00',
                 ]
-            ] as $timezone) {
-                Timezone::firstOrCreate($timezone);
-            }
+            ]);
         }
     }
 }

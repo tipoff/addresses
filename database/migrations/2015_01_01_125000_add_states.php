@@ -11,9 +11,8 @@ class AddStates extends Migration
     {
 
         if (class_exists(State::class)) {
-            foreach ([
+            State::query()->insertOrIgnore([
                 [
-                    'id' => 1,
                     'slug' => 'florida',
                     'title' => 'Florida',
                     'abbreviation' => 'FL',
@@ -24,7 +23,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 2,
                     'slug' => 'kentucky',
                     'title' => 'Kentucky',
                     'abbreviation' => 'KY',
@@ -35,7 +33,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 3,
                     'slug' => 'alabama',
                     'title' => 'Alabama',
                     'abbreviation' => 'AL',
@@ -46,7 +43,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 4,
                     'slug' => 'alaska',
                     'title' => 'Alaska',
                     'abbreviation' => 'AK',
@@ -57,7 +53,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 5,
                     'slug' => 'arizona',
                     'title' => 'Arizona',
                     'abbreviation' => 'AZ',
@@ -68,7 +63,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 6,
                     'slug' => 'arkansas',
                     'title' => 'Arkansas',
                     'abbreviation' => 'AR',
@@ -79,7 +73,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 7,
                     'slug' => 'california',
                     'title' => 'California',
                     'abbreviation' => 'CA',
@@ -90,7 +83,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 8,
                     'slug' => 'colorado',
                     'title' => 'Colorado',
                     'abbreviation' => 'CO',
@@ -101,7 +93,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 9,
                     'slug' => 'connecticut',
                     'title' => 'Connecticut',
                     'abbreviation' => 'CT',
@@ -112,7 +103,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 10,
                     'slug' => 'delaware',
                     'title' => 'Delaware',
                     'abbreviation' => 'DE',
@@ -123,7 +113,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 11,
                     'slug' => 'georgia',
                     'title' => 'Georgia',
                     'abbreviation' => 'GA',
@@ -134,7 +123,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 12,
                     'slug' => 'hawaii',
                     'title' => 'Hawaii',
                     'abbreviation' => 'HI',
@@ -145,7 +133,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 13,
                     'slug' => 'idaho',
                     'title' => 'Idaho',
                     'abbreviation' => 'ID',
@@ -156,7 +143,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 14,
                     'slug' => 'illinois',
                     'title' => 'Illinois',
                     'abbreviation' => 'IL',
@@ -167,7 +153,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 15,
                     'slug' => 'indiana',
                     'title' => 'Indiana',
                     'abbreviation' => 'IN',
@@ -178,7 +163,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 16,
                     'slug' => 'iowa',
                     'title' => 'Iowa',
                     'abbreviation' => 'IA',
@@ -189,7 +173,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 17,
                     'slug' => 'kansas',
                     'title' => 'Kansas',
                     'abbreviation' => 'KS',
@@ -200,7 +183,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 18,
                     'slug' => 'louisiana',
                     'title' => 'Louisiana',
                     'abbreviation' => 'LA',
@@ -211,7 +193,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 19,
                     'slug' => 'maine',
                     'title' => 'Maine',
                     'abbreviation' => 'ME',
@@ -222,7 +203,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 20,
                     'slug' => 'maryland',
                     'title' => 'Maryland',
                     'abbreviation' => 'MD',
@@ -233,7 +213,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 21,
                     'slug' => 'massachusetts',
                     'title' => 'Massachusetts',
                     'abbreviation' => 'MA',
@@ -244,7 +223,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 22,
                     'slug' => 'michigan',
                     'title' => 'Michigan',
                     'abbreviation' => 'MI',
@@ -255,7 +233,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 23,
                     'slug' => 'minnesota',
                     'title' => 'Minnesota',
                     'abbreviation' => 'MN',
@@ -266,7 +243,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 24,
                     'slug' => 'mississippi',
                     'title' => 'Mississippi',
                     'abbreviation' => 'MS',
@@ -277,7 +253,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 25,
                     'slug' => 'missouri',
                     'title' => 'Missouri',
                     'abbreviation' => 'MO',
@@ -288,7 +263,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 26,
                     'slug' => 'montana',
                     'title' => 'Montana',
                     'abbreviation' => 'MT',
@@ -299,7 +273,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 27,
                     'slug' => 'nebraska',
                     'title' => 'Nebraska',
                     'abbreviation' => 'NE',
@@ -310,7 +283,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 28,
                     'slug' => 'nevada',
                     'title' => 'Nevada',
                     'abbreviation' => 'NV',
@@ -321,7 +293,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 29,
                     'slug' => 'new-hampshire',
                     'title' => 'New Hampshire',
                     'abbreviation' => 'NH',
@@ -332,7 +303,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 30,
                     'slug' => 'new-jersey',
                     'title' => 'New Jersey',
                     'abbreviation' => 'NJ',
@@ -343,7 +313,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 31,
                     'slug' => 'new-mexico',
                     'title' => 'New Mexico',
                     'abbreviation' => 'NM',
@@ -354,7 +323,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 32,
                     'slug' => 'new-york',
                     'title' => 'New York',
                     'abbreviation' => 'NY',
@@ -365,7 +333,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 33,
                     'slug' => 'north-carolina',
                     'title' => 'North Carolina',
                     'abbreviation' => 'NC',
@@ -376,7 +343,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 34,
                     'slug' => 'north-dakota',
                     'title' => 'North Dakota',
                     'abbreviation' => 'ND',
@@ -387,7 +353,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 35,
                     'slug' => 'ohio',
                     'title' => 'Ohio',
                     'abbreviation' => 'OH',
@@ -398,7 +363,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 36,
                     'slug' => 'oklahoma',
                     'title' => 'Oklahoma',
                     'abbreviation' => 'OK',
@@ -409,7 +373,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 37,
                     'slug' => 'oregon',
                     'title' => 'Oregon',
                     'abbreviation' => 'OR',
@@ -420,7 +383,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 38,
                     'slug' => 'pennsylvania',
                     'title' => 'Pennsylvania',
                     'abbreviation' => 'PA',
@@ -431,7 +393,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 39,
                     'slug' => 'rhode-island',
                     'title' => 'Rhode Island',
                     'abbreviation' => 'RI',
@@ -442,7 +403,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 40,
                     'slug' => 'south-carolina',
                     'title' => 'South Carolina',
                     'abbreviation' => 'SC',
@@ -453,7 +413,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 41,
                     'slug' => 'south-dakota',
                     'title' => 'South Dakota',
                     'abbreviation' => 'SD',
@@ -464,7 +423,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 42,
                     'slug' => 'tennessee',
                     'title' => 'Tennessee',
                     'abbreviation' => 'TN',
@@ -475,7 +433,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 43,
                     'slug' => 'texas',
                     'title' => 'Texas',
                     'abbreviation' => 'TX',
@@ -486,7 +443,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 44,
                     'slug' => 'utah',
                     'title' => 'Utah',
                     'abbreviation' => 'UT',
@@ -497,7 +453,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 45,
                     'slug' => 'vermont',
                     'title' => 'Vermont',
                     'abbreviation' => 'VT',
@@ -508,7 +463,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 46,
                     'slug' => 'virginia',
                     'title' => 'Virginia',
                     'abbreviation' => 'VA',
@@ -519,7 +473,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 47,
                     'slug' => 'washington',
                     'title' => 'Washington',
                     'abbreviation' => 'WA',
@@ -530,7 +483,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 48,
                     'slug' => 'west-virginia',
                     'title' => 'West Virginia',
                     'abbreviation' => 'WV',
@@ -541,7 +493,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 49,
                     'slug' => 'wisconsin',
                     'title' => 'Wisconsin',
                     'abbreviation' => 'WI',
@@ -552,7 +503,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 50,
                     'slug' => 'wyoming',
                     'title' => 'Wyoming',
                     'abbreviation' => 'WY',
@@ -563,7 +513,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 51,
                     'slug' => 'dc',
                     'title' => 'District of Columbia',
                     'abbreviation' => 'DC',
@@ -574,7 +523,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 52,
                     'slug' => 'puerto-rico',
                     'title' => 'Puerto Rico',
                     'abbreviation' => 'PR',
@@ -585,7 +533,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 53,
                     'slug' => 'virgin-islands',
                     'title' => 'Virgin Islands',
                     'abbreviation' => 'VI',
@@ -596,7 +543,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 54,
                     'slug' => 'guam',
                     'title' => 'Guam',
                     'abbreviation' => 'GU',
@@ -607,7 +553,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 55,
                     'slug' => 'us-armed-forces-americas',
                     'title' => 'US Armed Forces – Americas',
                     'abbreviation' => 'AA',
@@ -618,7 +563,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 56,
                     'slug' => 'us-armed-forces-europe',
                     'title' => 'US Armed Forces – Europe',
                     'abbreviation' => 'AE',
@@ -629,7 +573,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 57,
                     'slug' => 'us-armed-forces-pacific',
                     'title' => 'US Armed Forces – Pacific',
                     'abbreviation' => 'AP',
@@ -640,7 +583,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 58,
                     'slug' => 'samoa',
                     'title' => 'American Samoa',
                     'abbreviation' => 'AS',
@@ -651,7 +593,6 @@ class AddStates extends Migration
                     'updated_at' => '2021-03-03 05:51:45',
                 ],
                 [
-                    'id' => 59,
                     'slug' => 'mariana-islands',
                     'title' => 'Mariana Islands',
                     'abbreviation' => 'MP',
@@ -661,9 +602,7 @@ class AddStates extends Migration
                     'created_at' => '2021-03-03 05:51:45',
                     'updated_at' => '2021-03-03 05:51:45',
                 ]
-            ] as $state) {
-                State::firstOrCreate($state);
-            }
+            ]);
         }
     }
 }
