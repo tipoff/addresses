@@ -6,7 +6,6 @@ namespace Tipoff\Addresses\Models;
 
 use Assert\Assert;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Builder;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasPackageFactory;
 

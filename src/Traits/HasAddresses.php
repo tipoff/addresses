@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tipoff\Addresses\Traits;
 
-
 use Illuminate\Support\Collection;
 use Tipoff\Addresses\Models\Address;
 use Tipoff\Addresses\Models\City;
@@ -40,7 +39,7 @@ trait HasAddresses
     public function setAddressByType(string $type, DomesticAddress $domesticAddress): Address
     {
         $address = $this->getAddressByType($type);
-        if (!$address) {
+        if (! $address) {
             $address = new Address();
             $address->type = $type;
             $address->addressable()->associate($this);
