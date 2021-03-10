@@ -47,7 +47,7 @@ class DomesticAddress extends BaseModel
     public static function createDomesticAddress(string $line1, ?string $line2, $city, $zip): self
     {
         $zip = ($zip instanceof Zip) ? $zip : Zip::query()->findOrFail(trim($zip));
-        $city = ($city instanceof City) ? $city : City::query()->byTitle($city)->firstOrFail();
+        $city = ($city instanceof City) ? $city : City::query()->byTitle($city)->firstOrCreate();
 
         /** @var DomesticAddress $domesticAddress */
         $domesticAddress = static::query()->firstOrCreate([
