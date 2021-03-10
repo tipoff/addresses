@@ -43,3 +43,7 @@ All notable changes to `addresses` will be documented in this file.
 
 - domestic addresses
 - polymorhic addresses
+
+## 2.3.1 - 2021-03-10
+
+- hasaddresses trait
