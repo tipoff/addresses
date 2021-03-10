@@ -10,6 +10,18 @@ use Tipoff\Support\Traits\HasPackageFactory;
 class Address extends BaseModel
 {
     use HasPackageFactory;
+    
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($address) {
+            if (empty($address->domestic_address_id)) {
+                throw new \Exception('An address must have a US domestic postal address.');
+            }
+        });
+    }
+
 
     public function domesticAddress()
     {
