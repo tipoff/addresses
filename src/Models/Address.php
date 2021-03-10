@@ -5,11 +5,15 @@ declare(strict_types=1);
 namespace Tipoff\Addresses\Models;
 
 use Tipoff\Support\Models\BaseModel;
+use Tipoff\Support\Traits\HasCreator;
 use Tipoff\Support\Traits\HasPackageFactory;
+use Tipoff\Support\Traits\HasUpdater;
 
 class Address extends BaseModel
 {
+    use HasCreator;
     use HasPackageFactory;
+    use HasUpdater;
     
     protected static function boot()
     {
@@ -25,15 +29,5 @@ class Address extends BaseModel
     public function domesticAddress()
     {
         return $this->belongsTo(DomesticAddress::class);
-    }
-
-    public function createdBy()
-    {
-        return $this->belongsTo(app('user'), 'creator_id');
-    }
-
-    public function updatedBy()
-    {
-        return $this->belongsTo(app('user'), 'updater_id');
     }
 }
