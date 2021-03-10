@@ -53,14 +53,12 @@ class DomesticAddressModelTest extends TestCase
     }
 
     /** @test */
-    public function create_address_invalid_city()
+    public function create_address_unknown_city()
     {
         /** @var Zip $zip */
         $zip = Zip::factory()->create();
 
-        $this->expectException(ModelNotFoundException::class);
-        $this->expectExceptionMessage('No query results for model [Tipoff\Addresses\Models\City]');
-
-        DomesticAddress::createDomesticAddress('line1', null, 'Boston', $zip->code);
+        $address = DomesticAddress::createDomesticAddress('line1', null, 'Boston', $zip->code);
+        $this->assertEquals('Boston', $address->city->title);
     }
 }
