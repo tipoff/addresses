@@ -38,3 +38,8 @@ All notable changes to `addresses` will be documented in this file.
 
 - rename zip model
 - change migrations
+
+## 2.3.0 - 2021-03-10
+
+- domestic addresses
+- polymorhic addresses
