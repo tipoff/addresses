@@ -5,38 +5,29 @@ declare(strict_types=1);
 namespace Tipoff\Addresses\Models;
 
 use Tipoff\Support\Models\BaseModel;
+use Tipoff\Support\Traits\HasCreator;
 use Tipoff\Support\Traits\HasPackageFactory;
+use Tipoff\Support\Traits\HasUpdater;
 
 class Address extends BaseModel
 {
+    use HasCreator;
     use HasPackageFactory;
-
-    protected $casts = [];
-
+    use HasUpdater;
+    
     protected static function boot()
     {
         parent::boot();
 
         static::saving(function ($address) {
-            if (empty($address->address_line_1)) {
-                throw new \Exception('An address must have a street.');
-            }
-            if (empty($address->city_id)) {
-                throw new \Exception('An address must have a city.');
-            }
-            if (empty($address->zip_code)) {
-                throw new \Exception('An address must have a zip code.');
+            if (empty($address->domestic_address_id)) {
+                throw new \Exception('An address must have a US domestic postal address.');
             }
         });
     }
 
-    public function city()
+    public function domesticAddress()
     {
-        return $this->belongsTo(City::class);
-    }
-
-    public function zip()
-    {
-        return $this->belongsTo(Zip::class);
+        return $this->belongsTo(DomesticAddress::class);
     }
 }

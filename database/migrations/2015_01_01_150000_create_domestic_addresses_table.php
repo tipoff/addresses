@@ -6,11 +6,11 @@ use Illuminate\Support\Facades\Schema;
 use Tipoff\Addresses\Models\City;
 use Tipoff\Addresses\Models\Zip;
 
-class CreateAddressesTable extends Migration
+class CreateDomesticAddressesTable extends Migration
 {
     public function up()
     {
-        Schema::create('addresses', function (Blueprint $table) {
+        Schema::create('domestic_addresses', function (Blueprint $table) {
             $table->id();
             $table->string('address_line_1');
             $table->string('address_line_2')->nullable();

@@ -1,0 +1,42 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Tipoff\Addresses\Models;
+
+use Tipoff\Support\Models\BaseModel;
+use Tipoff\Support\Traits\HasPackageFactory;
+
+class DomesticAddress extends BaseModel
+{
+    use HasPackageFactory;
+
+    protected $casts = [];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($address) {
+            if (empty($address->address_line_1)) {
+                throw new \Exception('US domestic addresses must have a street.');
+            }
+            if (empty($address->city_id)) {
+                throw new \Exception('US domestic addresses must have a city.');
+            }
+            if (empty($address->zip_code)) {
+                throw new \Exception('US domestic addresses must have a zip code.');
+            }
+        });
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
+    public function zip()
+    {
+        return $this->belongsTo(Zip::class);
+    }
+}

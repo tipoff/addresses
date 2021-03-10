@@ -15,7 +15,7 @@ class TimezoneModelTest extends TestCase
     /** @test */
     public function create()
     {
-        $model = Timezone::factory()->create();
+        $model = Timezone::all()->random()->first(); // use this instead of faker; table is already seeded
         $this->assertNotNull($model);
     }
 }

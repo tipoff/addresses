@@ -16,8 +16,8 @@ class CreateZipsTable extends Migration
             $table->foreignIdFor(State::class);
             $table->foreignIdFor(Region::class)->nullable();
             $table->foreignIdFor(Timezone::class)->nullable();
-            $table->decimal('latitude', 4, 2)->nullable();
-            $table->decimal('longitude', 5, 2)->nullable();
+            $table->decimal('latitude', 9, 6)->nullable();
+            $table->decimal('longitude', 8, 6)->nullable();
             $table->boolean('decommissioned')->default(0)->index(); // 1 if decommissioned
             $table->timestamps();
         });
