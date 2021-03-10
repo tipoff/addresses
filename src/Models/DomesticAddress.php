@@ -19,13 +19,13 @@ class DomesticAddress extends BaseModel
 
         static::saving(function ($address) {
             if (empty($address->address_line_1)) {
-                throw new \Exception('An address must have a street.');
+                throw new \Exception('US domestic addresses must have a street.');
             }
             if (empty($address->city_id)) {
-                throw new \Exception('An address must have a city.');
+                throw new \Exception('US domestic addresses must have a city.');
             }
             if (empty($address->zip_code)) {
-                throw new \Exception('An address must have a zip code.');
+                throw new \Exception('US domestic addresses must have a zip code.');
             }
         });
     }
