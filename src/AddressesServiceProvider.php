@@ -43,7 +43,9 @@ class AddressesServiceProvider extends TipoffServiceProvider
                 \Tipoff\Addresses\Nova\City::class,
                 \Tipoff\Addresses\Nova\Country::class,
                 \Tipoff\Addresses\Nova\DomesticAddress::class,
+                \Tipoff\Addresses\Nova\Region::class,
                 \Tipoff\Addresses\Nova\State::class,
+                \Tipoff\Addresses\Nova\Timezone::class,
                 \Tipoff\Addresses\Nova\Zip::class,
             ])
             ->name('addresses')
