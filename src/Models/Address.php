@@ -22,7 +22,6 @@ class Address extends BaseModel
         });
     }
 
-
     public function domesticAddress()
     {
         return $this->belongsTo(DomesticAddress::class);
