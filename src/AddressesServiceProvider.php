@@ -39,7 +39,7 @@ class AddressesServiceProvider extends TipoffServiceProvider
                 Zip::class => ZipPolicy::class,
             ])
             ->hasNovaResources([
-                // \Tipoff\Addresses\Nova\Address::class,
+                \Tipoff\Addresses\Nova\Address::class,
                 \Tipoff\Addresses\Nova\City::class,
                 \Tipoff\Addresses\Nova\Country::class,
                 \Tipoff\Addresses\Nova\DomesticAddress::class,
