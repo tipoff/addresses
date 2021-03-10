@@ -6,8 +6,6 @@ namespace Tipoff\Addresses\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Tipoff\Addresses\Models\DomesticAddress;
-use Tipoff\Addresses\Models\City;
-use Tipoff\Addresses\Models\Zip;
 
 class DomesticAddressFactory extends Factory
 {
@@ -17,10 +15,8 @@ class DomesticAddressFactory extends Factory
     {
         return [
             'address_line_1' => $this->faker->streetAddress,
-            'city_id' => City::factory(),
-            'zip_code' => Zip::factory(),
-//            'city_id' => randomOrCreate(City::class)->id,
-//            'zip_id' => randomOrCreate(Zip::class)->id,
+            'city_id' => randomOrCreate(app('city')),
+            'zip_code' => randomOrCreate(app('zip')),
         ];
     }
 }
