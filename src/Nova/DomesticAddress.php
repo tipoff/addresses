@@ -12,7 +12,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Tipoff\Support\Nova\BaseResource;
 
-class Address extends BaseResource
+class DomesticAddress extends BaseResource
 {
     public static $model = \Tipoff\Addresses\Models\DomesticAddress::class;
 
