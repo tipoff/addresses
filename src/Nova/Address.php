@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tipoff\Addresses\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -18,7 +17,7 @@ class Address extends BaseResource
     public static $title = 'id';
 
     public static $search = [
-        'id', 'first_name', 'last_name', 'type','care_of', 'company', 'extended_zip', 'phone'
+        'id', 'first_name', 'last_name', 'type','care_of', 'company', 'extended_zip', 'phone',
     ];
 
     public function fieldsForIndex(NovaRequest $request)
