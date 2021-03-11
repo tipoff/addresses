@@ -26,7 +26,7 @@ class CreateAddressesTable extends Migration
             $table->foreignIdFor(app('user'), 'updater_id');
             $table->timestamps();
 
-            $table->unique(['domestic_address_id','addressable_id', 'addressable_type', 'type']);
+            $table->unique(['domestic_address_id','addressable_id', 'addressable_type', 'type'], 'address_unique_key');
         });
     }
 }
