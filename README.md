@@ -14,13 +14,6 @@ You can install the package via composer:
 composer require tipoff/addresses
 ```
 
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --provider="Tipoff\Addresses\AddressesServiceProvider" --tag="migrations"
-php artisan migrate
-```
-
 You can publish the config file with:
 ```bash
 php artisan vendor:publish --provider="Tipoff\Addresses\AddressesServiceProvider" --tag="config"
