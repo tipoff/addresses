@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tipoff\Addresses\Tests\Unit\Traits;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Tipoff\Addresses\Models\Address;
 use Tipoff\Addresses\Models\City;
 use Tipoff\Addresses\Models\Zip;
 use Tipoff\Addresses\Tests\TestCase;
@@ -140,6 +141,76 @@ class HasAddressesTest extends TestCase
         $this->assertEquals(TestModel::class, $address->type);
         $this->assertEquals('New Line1', $address->domesticAddress->address_line_1);
         $this->assertEquals('New Line2', $address->domesticAddress->address_line_2);
+    }
+
+    /** @test */
+    public function copy_address_to_target()
+    {
+        TestModel::createTable();
+
+        $source = new TestModel();
+        $source->save();
+
+        $this->actingAs(User::factory()->create());
+
+        $city = City::factory()->create();
+        $zip = Zip::factory()->create();
+
+        $source->setAddressByType('shipping', TestModel::createDomesticAddress('Ship1', null, $city, $zip));
+        $source->setAddressByType('billing', TestModel::createDomesticAddress('Bill1', null, $city, $zip));
+
+        $target = new TestModel();
+        $target->save();
+
+        $source->copyAddressesToTarget($target);
+
+        $foundAddress = $source->getAddressByType('shipping');
+        $this->assertEquals('Ship1', $foundAddress->domesticAddress->address_line_1);
+        $foundAddress = $source->getAddressByType('billing');
+        $this->assertEquals('Bill1', $foundAddress->domesticAddress->address_line_1);
+
+        $foundAddress = $target->getAddressByType('shipping');
+        $this->assertEquals('Ship1', $foundAddress->domesticAddress->address_line_1);
+        $foundAddress = $target->getAddressByType('billing');
+        $this->assertEquals('Bill1', $foundAddress->domesticAddress->address_line_1);
+
+        $this->assertDatabaseCount('addresses', 4);
+    }
+
+    /** @test */
+    public function copy_address_to_target_with_filter()
+    {
+        TestModel::createTable();
+
+        $source = new TestModel();
+        $source->save();
+
+        $this->actingAs(User::factory()->create());
+
+        $city = City::factory()->create();
+        $zip = Zip::factory()->create();
+
+        $source->setAddressByType('shipping', TestModel::createDomesticAddress('Ship1', null, $city, $zip));
+        $source->setAddressByType('billing', TestModel::createDomesticAddress('Bill1', null, $city, $zip));
+
+        $target = new TestModel();
+        $target->save();
+
+        $source->copyAddressesToTarget($target, function (Address $address) {
+            return $address->type === 'billing';
+        });
+
+        $foundAddress = $source->getAddressByType('shipping');
+        $this->assertEquals('Ship1', $foundAddress->domesticAddress->address_line_1);
+        $foundAddress = $source->getAddressByType('billing');
+        $this->assertEquals('Bill1', $foundAddress->domesticAddress->address_line_1);
+
+        $foundAddress = $target->getAddressByType('shipping');
+        $this->assertNull($foundAddress);
+        $foundAddress = $target->getAddressByType('billing');
+        $this->assertEquals('Bill1', $foundAddress->domesticAddress->address_line_1);
+
+        $this->assertDatabaseCount('addresses', 3);
     }
 }
 
