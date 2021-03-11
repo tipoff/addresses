@@ -34,7 +34,7 @@ class Country extends BaseModel
     public static function fromAbbreviation(string $abbreviation): self
     {
         /** @var Country $result */
-        $result = static::query()->where('abbreviation','=', $abbreviation)->firstOrFail();
+        $result = static::query()->where('abbreviation', '=', $abbreviation)->firstOrFail();
 
         return $result;
     }
