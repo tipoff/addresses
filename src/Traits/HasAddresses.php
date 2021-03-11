@@ -62,6 +62,21 @@ trait HasAddresses
         return $this->setAddressByType(get_class($this), $domesticAddress);
     }
 
+    public function copyAddressesToTarget($target, ?\Closure $filter = null): self
+    {
+        $this->addresses
+            ->filter(function (Address $sourceAddress) use ($filter) {
+                return empty($filter) || ($filter)($sourceAddress);
+            })
+            ->each(function (Address $souceAddress) use ($target) {
+                // Create a copy, replacing the addressable with the target before saving
+                $targetAddress = $souceAddress->replicate();
+                $targetAddress->addressable()->associate($target)->save();
+            });
+
+        return $this;
+    }
+
     public function addresses()
     {
         return $this->morphMany(Address::class, 'addressable');
