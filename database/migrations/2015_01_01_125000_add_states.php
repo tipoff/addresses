@@ -373,10 +373,7 @@ class AddStates extends Migration
         $stateRecords = collect($stateData)
             ->map(function (array $record) use ($now, $countryId) {
                 return array_merge($record, [
-                    'description' => null,
                     'country_id' => $countryId,
-                    'created_at' => $now,
-                    'updated_at' => $now,
                 ]);
             })
             ->toArray();
