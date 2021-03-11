@@ -57,3 +57,7 @@ All notable changes to `addresses` will be documented in this file.
 - improve speed of data migration
 - fix unique timezone issue
 - migration changes
+
+## 2.4.2 - 2021-03-11
+
+- facilitate copying addresses between models
