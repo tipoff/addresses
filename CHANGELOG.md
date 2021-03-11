@@ -51,3 +51,9 @@ All notable changes to `addresses` will be documented in this file.
 ## 2.4.0 - 2021-03-10
 
 - transformers
+
+## 2.4.1 - 2021-03-11
+
+- improve speed of data migration
+- fix unique timezone issue
+- migration changes
