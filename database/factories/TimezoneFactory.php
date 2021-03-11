@@ -13,7 +13,7 @@ class TimezoneFactory extends Factory
 
     public function definition()
     {
-        $timezone = $this->faker->unique()->timezone;
+        $timezone = $this->faker->unique()->word;
 
         return [
             'name' => $timezone,
