@@ -68,9 +68,9 @@ trait HasAddresses
             ->filter(function (Address $sourceAddress) use ($filter) {
                 return empty($filter) || ($filter)($sourceAddress);
             })
-            ->each(function (Address $souceAddress) use ($target) {
+            ->each(function (Address $sourceAddress) use ($target) {
                 // Create a copy, replacing the addressable with the target before saving
-                $targetAddress = $souceAddress->replicate();
+                $targetAddress = $sourceAddress->replicate();
                 $targetAddress->addressable()->associate($target)->save();
             });
 
