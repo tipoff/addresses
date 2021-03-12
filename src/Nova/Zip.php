@@ -23,6 +23,8 @@ class Zip extends BaseResource
         'id',
         'code',
     ];
+    
+    public static $group = 'Resources';
 
     public function fieldsForIndex(NovaRequest $request)
     {
