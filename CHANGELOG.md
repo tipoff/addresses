@@ -61,3 +61,9 @@ All notable changes to `addresses` will be documented in this file.
 ## 2.4.2 - 2021-03-11
 
 - facilitate copying addresses between models
+
+## 2.4.3 - 2021-03-12
+
+- nova resource group
+- migrate permissions
+- grant permissions to roles
