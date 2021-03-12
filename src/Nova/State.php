@@ -23,6 +23,8 @@ class State extends BaseResource
         'title',
         'abbreviation',
     ];
+    
+    public static $group = 'Resources';
 
     public function fieldsForIndex(NovaRequest $request)
     {
