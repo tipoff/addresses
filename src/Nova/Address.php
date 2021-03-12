@@ -21,6 +21,8 @@ class Address extends BaseResource
     public static $search = [
         'id', 'first_name', 'last_name', 'type','care_of', 'company', 'extended_zip', 'phone',
     ];
+    
+    public static $group = 'Resources';
 
     public function fieldsForIndex(NovaRequest $request)
     {
