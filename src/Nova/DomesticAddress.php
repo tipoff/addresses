@@ -22,6 +22,8 @@ class DomesticAddress extends BaseResource
         'id',
         'address_line_1',
     ];
+    
+    public static $group = 'Resources';
 
     public function fieldsForIndex(NovaRequest $request)
     {
