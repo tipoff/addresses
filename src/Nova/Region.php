@@ -21,6 +21,8 @@ class Region extends BaseResource
     public static $search = [
         'id', 'name',
     ];
+    
+    public static $group = 'Resources';
 
     public function fieldsForIndex(NovaRequest $request)
     {
