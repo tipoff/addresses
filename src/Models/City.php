@@ -50,4 +50,9 @@ class City extends BaseModel
             ->withTimestamps();
         ;
     }
+
+    public function domesticAddresses()
+    {
+        return $this->hasMany(DomesticAddress::class);
+    }
 }
