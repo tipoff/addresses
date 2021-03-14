@@ -12,10 +12,16 @@ class CreatePhonesTable extends Migration
     {
         Schema::create('phones', function (Blueprint $table) {
             $table->id();
-            $table->string('phone', 15);
+            $table->foreignIdFor(app('country')); // The country table will have the country calling code - https://en.wikipedia.org/wiki/List_of_country_calling_codes
+            $table->string('full_number', 15);
             
-            $table->foreignIdFor(app('user'), 'creator_id');
-            $table->foreignIdFor(app('user'), 'updater_id');
+            // Nullable fields required for US numbers - https://en.wikipedia.org/wiki/North_American_Numbering_Plan
+            $table->string('area_code', 3)->nullable(); // May break out into separate table
+            $table->string('exchange_code', 3)->nullable();
+            $table->string('line_number', 4)->nullable();
+            
+            $table->foreignIdFor(app('user'), 'creator_id')->nullable();
+            $table->foreignIdFor(app('user'), 'updater_id')->nullable();
             $table->timestamps();
         });
     }
