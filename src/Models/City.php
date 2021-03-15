@@ -43,11 +43,16 @@ class City extends BaseModel
         return $query->where('title', '=', trim($title));
     }
 
-    public function zipCodes()
+    public function zips()
     {
         return $this->belongsToMany(Zip::class)
             ->withPivot('primary')
             ->withTimestamps();
         ;
+    }
+
+    public function domesticAddresses()
+    {
+        return $this->hasMany(DomesticAddress::class);
     }
 }

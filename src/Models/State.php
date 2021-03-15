@@ -58,7 +58,7 @@ class State extends BaseModel
         return $this->belongsTo(Country::class);
     }
 
-    public function zipCodes()
+    public function zips()
     {
         return $this->hasMany(Zip::class);
     }

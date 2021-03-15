@@ -81,4 +81,9 @@ class Zip extends BaseModel
     {
         return $this->belongsTo(Timezone::class);
     }
+
+    public function domesticAddresses()
+    {
+        return $this->hasMany(DomesticAddress::class);
+    }
 }

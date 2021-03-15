@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Tipoff\Addresses\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -27,6 +29,7 @@ class City extends BaseResource
     {
         return array_filter([
             ID::make()->sortable(),
+            Text::make('Slug')->sortable(),
             Text::make('Title')->sortable(),
         ]);
     }
@@ -36,7 +39,14 @@ class City extends BaseResource
         return array_filter([
             Text::make('Slug'),
             Text::make('Title'),
-            Text::make('Description'),
+            Text::make('Description')->nullable(),
+            nova('domestic_address') ? HasMany::make('Domestic Addresses', 'domestic addresses', nova('domestic_address'))->searchable() : null,
+            nova('zip') ? BelongsToMany::make('Zips', 'zips', nova('zip'))
+                ->fields(function () {
+                    return [
+                        Text::make('Primary')->default(false),
+                    ];
+                }) : null,
         ]);
     }
 

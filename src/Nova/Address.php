@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\MorphTo;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Tipoff\Support\Nova\BaseResource;
@@ -28,25 +29,23 @@ class Address extends BaseResource
     {
         return array_filter([
             ID::make()->sortable(),
-            Text::make('first_name')->sortable(),
-            Text::make('last_name')->sortable(),
-            Text::make('type')->sortable(),
-            Text::make('care_of')->sortable(),
-            Text::make('company')->sortable(),
-            Text::make('extended_zip')->sortable(),
-            Text::make('phone')->sortable(),
         ]);
     }
 
     public function fields(Request $request)
     {
         return array_filter([
-            Text::make('first_name'),
-            Text::make('last_name'),
-            Text::make('care_of'),
-            Text::make('company'),
-            Text::make('extended_zip'),
-            Text::make('phone'),
+            Text::make('Type'),
+            Text::make('First Name')->nullable(),
+            Text::make('Last Name')->nullable(),
+            Text::make('Care Of')->nullable(),
+            Text::make('Company')->nullable(),
+            Text::make('Extended Zip')->nullable(),
+            Text::make('Phone')->nullable(),
+            nova('domestic_address') && nova('foreign_address') ? MorphTo::make('Addressable')->types([
+                nova('domestic_address'),
+                nova('foreign_address'),
+            ]) : null,
         ]);
     }
 

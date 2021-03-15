@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\MorphOne;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Tipoff\Support\Nova\BaseResource;
@@ -45,9 +46,10 @@ class DomesticAddress extends BaseResource
     {
         return array_filter([
             Text::make('Address Line 1'),
-            Text::make('Address Line 2'),
+            Text::make('Address Line 2')->nullable(),
             nova('city') ? BelongsTo::make('City', 'city', nova('city'))->searchable() : null,
             nova('zip') ? BelongsTo::make('Zip', 'zip', nova('zip'))->searchable() : null,
+            nova('address') ? MorphOne::make('Address', 'address', nova('address'))->searchable() : null,
         ]);
     }
 

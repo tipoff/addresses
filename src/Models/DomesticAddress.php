@@ -79,6 +79,11 @@ class DomesticAddress extends BaseModel
         return new DomesticAddressTransformer();
     }
 
+    public function address()
+    {
+        return $this->morphOne(Address::class, 'addressable');
+    }
+
     public function city()
     {
         return $this->belongsTo(City::class);

@@ -46,7 +46,7 @@ class Region extends BaseModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function zipCodes()
+    public function zips()
     {
         return $this->hasMany(Zip::class);
     }
