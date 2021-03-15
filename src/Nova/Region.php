@@ -7,6 +7,7 @@ namespace Tipoff\Addresses\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -37,6 +38,7 @@ class Region extends BaseResource
         return array_filter([
             Text::make('Slug'),
             Text::make('Name'),
+            nova('zip') ? HasMany::make('Zips', 'zips', nova('zip'))->searchable() : null,
         ]);
     }
 
