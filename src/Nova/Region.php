@@ -29,6 +29,7 @@ class Region extends BaseResource
     {
         return array_filter([
             ID::make()->sortable(),
+            Text::make('Slug')->sortable(),
             Text::make('Name')->sortable(),
         ]);
     }
