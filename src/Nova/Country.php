@@ -6,6 +6,7 @@ namespace Tipoff\Addresses\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -41,6 +42,7 @@ class Country extends BaseResource
             Text::make('Title'),
             Text::make('Abbreviation'),
             Text::make('Capital'),
+            nova('state') ? HasMany::make('States', 'states', nova('state'))->searchable() : null,
         ]);
     }
 
