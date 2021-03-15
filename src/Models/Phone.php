@@ -23,4 +23,14 @@ class Phone extends BaseModel
             }
         });
     }
+
+    public function countryCallingcode()
+    {
+        return $this->belongsTo(CountryCallingcode::class);
+    }
+
+    public function phoneArea()
+    {
+        return $this->belongsTo(PhoneArea::class, 'phone_area_code');
+    }
 }
