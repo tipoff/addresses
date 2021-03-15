@@ -36,9 +36,9 @@ class Timezone extends BaseResource
     public function fields(Request $request)
     {
         return array_filter([
-            Text::make('Name')->required()->creationRules('unique:timezones,name'),
-            Text::make('Title')->required()->creationRules('unique:timezones,title'),
-            Text::make('Php')->required()->creationRules('unique:timezones,php'),
+            Text::make('Name')->required()->creationRules('unique:timezones,name')->sortable(),
+            Text::make('Title')->required()->creationRules('unique:timezones,title')->sortable(),
+            Text::make('Php')->required()->creationRules('unique:timezones,php')->sortable(),
             Boolean::make('Is daylight saving')->required()->default(1),
             Number::make('Dst')->min(-9999.99)->max(9999.99)->step(0.01)->nullable(),
             Number::make('Standard')->min(-9999.99)->max(9999.99)->step(0.01)->nullable(),
