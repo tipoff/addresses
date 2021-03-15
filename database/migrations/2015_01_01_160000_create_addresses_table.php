@@ -13,6 +13,7 @@ class CreateAddressesTable extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(DomesticAddress::class)->index();
             $table->morphs('addressable');
             $table->string('type');     // Shipping, Billing enums
             $table->string('first_name')->nullable();
@@ -25,7 +26,7 @@ class CreateAddressesTable extends Migration
             $table->foreignIdFor(app('user'), 'updater_id');
             $table->timestamps();
 
-            $table->unique(['addressable_id', 'addressable_type', 'type'], 'address_unique_key');
+            $table->unique(['domestic_address_id','addressable_id', 'addressable_type', 'type'], 'address_unique_key');
         });
     }
 }
