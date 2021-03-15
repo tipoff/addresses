@@ -6,6 +6,7 @@ namespace Tipoff\Addresses\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
@@ -41,6 +42,8 @@ class Timezone extends BaseResource
             Boolean::make('Is daylight saving')->required()->default(1),
             Number::make('Dst')->min(-9999.99)->max(9999.99)->step(0.01)->nullable(),
             Number::make('Standard')->min(-9999.99)->max(9999.99)->step(0.01)->nullable(),
+
+            nova('zip') ? HasMany::make('Zips', 'zips', nova('zip'))->searchable() : null,
 
             new Panel('Data Fields', $this->dataFields()),
         ]);
