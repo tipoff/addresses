@@ -29,6 +29,7 @@ class City extends BaseResource
     {
         return array_filter([
             ID::make()->sortable(),
+            Text::make('Slug')->sortable(),
             Text::make('Title')->sortable(),
         ]);
     }
@@ -38,7 +39,7 @@ class City extends BaseResource
         return array_filter([
             Text::make('Slug'),
             Text::make('Title'),
-            Text::make('Description'),
+            Text::make('Description')->nullable(),
             nova('domestic_address') ? HasMany::make('Domestic Addresses', 'domestic addresses', nova('domestic_address'))->searchable() : null,
             nova('zip') ? BelongsToMany::make('Zips', 'zips', nova('zip'))
                 ->fields(function () {
