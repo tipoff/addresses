@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Tipoff\Addresses\Models\CountryCallingcode;
 
 class CreateCountriesTable extends Migration
 {
@@ -14,6 +15,7 @@ class CreateCountriesTable extends Migration
             $table->string('title')->unique();
             $table->string('abbreviation', 2)->unique();
             $table->string('capital')->nullable();
+            $table->foreignIdFor(CountryCallingcode::class);
             $table->timestamps();
         });
     }
