@@ -44,7 +44,7 @@ class Address extends BaseResource
             Text::make('Phone')->nullable(),
             nova('domestic_address') && nova('foreign_address') ? MorphTo::make('Addressable')->types([
                 nova('domestic_address'),
-                nova('foreign_address')
+                nova('foreign_address'),
             ]) : null,
         ]);
     }
