@@ -30,6 +30,7 @@ class Country extends BaseResource
     {
         return array_filter([
             ID::make()->sortable(),
+            Text::make('Slug')->sortable(),
             Text::make('Title')->sortable(),
             Text::make('Abbreviation')->sortable(),
         ]);
@@ -41,7 +42,7 @@ class Country extends BaseResource
             Text::make('Slug'),
             Text::make('Title'),
             Text::make('Abbreviation'),
-            Text::make('Capital'),
+            Text::make('Capital')->nullable(),
             nova('state') ? HasMany::make('States', 'states', nova('state'))->searchable() : null,
         ]);
     }
