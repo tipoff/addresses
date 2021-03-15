@@ -51,4 +51,9 @@ class Country extends BaseModel
     {
         return $this->hasMany(State::class);
     }
+
+    public function countryCallingCode()
+    {
+        return $this->belongsTo(CountryCallingcode::class);
+    }
 }
