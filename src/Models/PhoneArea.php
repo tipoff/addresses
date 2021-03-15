@@ -28,4 +28,9 @@ class PhoneArea extends BaseModel
     {
         return $this->belongsTo(State::class, 'state_id', 'phone_area_code');
     }
+
+    public function phones()
+    {
+        return $this->hasMany(Phone::class, 'phone_id', 'phone_area_code');
+    }
 }
