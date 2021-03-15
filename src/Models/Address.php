@@ -58,11 +58,6 @@ class Address extends BaseModel
         return new AddressTransformer();
     }
 
-    public function domesticAddress()
-    {
-        return $this->belongsTo(DomesticAddress::class);
-    }
-
     public function addressable()
     {
         return $this->morphTo();
