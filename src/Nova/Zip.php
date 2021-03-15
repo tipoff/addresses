@@ -43,7 +43,6 @@ class Zip extends BaseResource
     {
         return array_filter([
             Text::make('Code'),
-            Text::make('Timezone'),
             Text::make('Latitude'),
             Text::make('Latitude'),
             Boolean::make('Decommissioned'),
