@@ -18,8 +18,8 @@ class Phone extends BaseModel
         parent::boot();
 
         static::saving(function ($phone) {
-            if (empty($phone->phone)) {
-                throw new \Exception('A phone must have a phone number.');
+            if (empty($phone->full_number)) {
+                throw new \Exception('A phone must have a full number.');
             }
         });
     }

@@ -28,4 +28,9 @@ class CountryCallingcode extends BaseModel
     {
         return $this->hasMany(Country::class);
     }
+
+    public function phones()
+    {
+        return $this->hasMany(Phone::class);
+    }
 }
