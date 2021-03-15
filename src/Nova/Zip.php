@@ -6,8 +6,10 @@ namespace Tipoff\Addresses\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -41,11 +43,20 @@ class Zip extends BaseResource
     {
         return array_filter([
             Text::make('Code'),
-            nova('state') ? BelongsTo::make('State', 'state', nova('state'))->searchable() : null,
             Text::make('Timezone'),
             Text::make('Latitude'),
             Text::make('Latitude'),
             Boolean::make('Decommissioned'),
+            nova('state') ? BelongsTo::make('State', 'state', nova('state'))->searchable() : null,
+            nova('region') ? BelongsTo::make('Region', 'region', nova('region'))->searchable() : null,
+            nova('timezone') ? BelongsTo::make('Timezone', 'timezone', nova('timezone'))->searchable() : null,
+            nova('domestic_address') ? HasMany::make('Domestic Address', 'domestic address', nova('domestic_address'))->searchable() : null,
+            nova('city') ? BelongsToMany::make('Cities', 'cities', nova('city'))
+                ->fields(function () {
+                    return [
+                        Text::make('Primary')->default(false),
+                    ];
+                }) : null,
         ]);
     }
 
