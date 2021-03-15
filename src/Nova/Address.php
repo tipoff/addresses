@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\MorphTo;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Tipoff\Support\Nova\BaseResource;
@@ -47,6 +48,10 @@ class Address extends BaseResource
             Text::make('company'),
             Text::make('extended_zip'),
             Text::make('phone'),
+            nova('domestic_address') && nova('foreign_address') ? MorphTo::make('Addressable')->types([
+                nova('domestic_address'),
+                nova('foreign_address')
+            ]) : null,
         ]);
     }
 
