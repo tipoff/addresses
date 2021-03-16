@@ -15,7 +15,6 @@ class CreateCountriesTable extends Migration
             $table->string('title')->unique();
             $table->string('abbreviation', 2)->unique();
             $table->string('capital')->nullable();
-            $table->foreignIdFor(CountryCallingcode::class);
             $table->timestamps();
         });
     }
