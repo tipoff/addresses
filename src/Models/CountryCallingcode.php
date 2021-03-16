@@ -18,19 +18,19 @@ class CountryCallingcode extends BaseModel
         parent::boot();
 
         static::saving(function ($countryCallingcode) {
-            if (empty($countryCallingcode->title)) {
+            if (empty($countryCallingcode->code)) {
                 throw new \Exception('A country calling code must have a code.');
             }
         });
     }
 
-    public function countries()
+    public function country()
     {
-        return $this->hasMany(Country::class);
+        return $this->belongsTo(app('country'));
     }
 
     public function phones()
     {
-        return $this->hasMany(Phone::class);
+        return $this->hasMany(app('phone'));
     }
 }
