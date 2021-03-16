@@ -67,3 +67,7 @@ All notable changes to `addresses` will be documented in this file.
 - nova resource group
 - migrate permissions
 - grant permissions to roles
+
+## 2.5.0 - 2021-03-15
+
+- phone numbers
