@@ -5,7 +5,6 @@ declare(strict_types=1);
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Tipoff\Addresses\Models\PhoneArea;
 
 class CreatePhonesTable extends Migration
 {
@@ -17,7 +16,7 @@ class CreatePhonesTable extends Migration
             $table->string('full_number', 15);
 
             // Nullable fields required for US numbers - https://en.wikipedia.org/wiki/North_American_Numbering_Plan
-            $table->foreignIdFor(PhoneArea::class)->nullable(); // Does not use ID, field is 'phone_area_code'
+            $table->foreignIdFor(app('phone_area'))->nullable(); // Does not use ID, field is 'phone_area_code'
             $table->string('exchange_code', 3)->nullable();
             $table->string('line_number', 4)->nullable();
 
