@@ -44,16 +44,13 @@ class Country extends BaseModel
         return new CountryTransformer();
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
     public function states()
     {
-        return $this->hasMany(State::class);
+        return $this->hasMany(app('state'));
     }
 
-    public function countryCallingcode()
+    public function callingCodes()
     {
-        return $this->belongsTo(CountryCallingcode::class);
+        return $this->hasMany(app('country_callingcode'));
     }
 }
