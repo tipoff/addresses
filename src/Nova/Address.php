@@ -48,10 +48,13 @@ class Address extends BaseResource
             ]) : null,
         ]);
     }
-
-    return array_merge(
+    
+    protected function dataFields(): array
+    {
+        return array_merge(
             parent::dataFields(),
             $this->creatorDataFields(),
             $this->updaterDataFields(),
         );
+    }
 }
