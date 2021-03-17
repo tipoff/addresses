@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Tipoff\Addresses\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\MorphTo;
 use Laravel\Nova\Fields\Text;
@@ -48,15 +46,13 @@ class Address extends BaseResource
             ]) : null,
         ]);
     }
-
+    
     protected function dataFields(): array
     {
-        return [
-            ID::make(),
-            DateTime::make('Created At')->exceptOnForms(),
-            nova('user') ? BelongsTo::make('Creator', 'creator', nova('user'))->exceptOnForms() : null,
-            nova('user') ? BelongsTo::make('Updated By', 'updater', nova('user'))->exceptOnForms() : null,
-            DateTime::make('Updated At')->exceptOnForms(),
-        ];
+        return array_merge(
+            parent::dataFields(),
+            $this->creatorDataFields(),
+            $this->updaterDataFields(),
+        );
     }
 }
