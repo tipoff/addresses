@@ -49,14 +49,9 @@ class Address extends BaseResource
         ]);
     }
 
-    protected function dataFields(): array
-    {
-        return [
-            ID::make(),
-            DateTime::make('Created At')->exceptOnForms(),
-            nova('user') ? BelongsTo::make('Creator', 'creator', nova('user'))->exceptOnForms() : null,
-            nova('user') ? BelongsTo::make('Updated By', 'updater', nova('user'))->exceptOnForms() : null,
-            DateTime::make('Updated At')->exceptOnForms(),
-        ];
-    }
+    return array_merge(
+            parent::dataFields(),
+            $this->creatorDataFields(),
+            $this->updaterDataFields(),
+        );
 }
