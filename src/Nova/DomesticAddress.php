@@ -55,10 +55,10 @@ class DomesticAddress extends BaseResource
 
     protected function dataFields(): array
     {
-        return [
-            ID::make(),
-            Date::make('Created At')->exceptOnForms(),
-            Date::make('Updated At')->exceptOnForms(),
-        ];
+        return array_merge(
+            parent::dataFields(),
+            $this->creatorDataFields(),
+            $this->updaterDataFields(),
+        );
     }
 }
