@@ -16,6 +16,8 @@ class CreateZipsTable extends Migration
             $table->decimal('latitude', 9, 6)->nullable();
             $table->decimal('longitude', 8, 6)->nullable();
             $table->boolean('decommissioned')->default(0)->index(); // 1 if decommissioned
+            $table->foreignIdFor(app('user'), 'creator_id')->nullable();
+            $table->foreignIdFor(app('user'), 'updater_id')->nullable();
             $table->timestamps();
         });
     }

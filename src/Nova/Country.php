@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tipoff\Addresses\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
@@ -49,10 +48,10 @@ class Country extends BaseResource
 
     protected function dataFields(): array
     {
-        return [
-            ID::make(),
-            Date::make('Created At')->exceptOnForms(),
-            Date::make('Updated At')->exceptOnForms(),
-        ];
+        return array_merge(
+            parent::dataFields(),
+            $this->creatorDataFields(),
+            $this->updaterDataFields(),
+        );
     }
 }

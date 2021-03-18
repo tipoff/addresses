@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Tipoff\Addresses\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
@@ -45,12 +43,10 @@ class Region extends BaseResource
 
     protected function dataFields(): array
     {
-        return [
-            ID::make(),
-            nova('user') ? BelongsTo::make('Updated By', 'updater', nova('user'))->exceptOnForms() : null,
-            nova('user') ? BelongsTo::make('Created By', 'creator', nova('user'))->exceptOnForms() : null,
-            Date::make('Created At')->exceptOnForms(),
-            Date::make('Updated At')->exceptOnForms(),
-        ];
+        return array_merge(
+            parent::dataFields(),
+            $this->creatorDataFields(),
+            $this->updaterDataFields(),
+        );
     }
 }
