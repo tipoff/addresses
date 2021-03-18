@@ -39,14 +39,13 @@ class City extends BaseResource
         return array_filter([
             Text::make('Slug'),
             Text::make('Title'),
-            Text::make('Description')->nullable(),
-            nova('domestic_address') ? HasMany::make('Domestic Addresses', 'domestic addresses', nova('domestic_address'))->searchable() : null,
             nova('zip') ? BelongsToMany::make('Zips', 'zips', nova('zip'))
                 ->fields(function () {
                     return [
                         Text::make('Primary')->default(false),
                     ];
                 }) : null,
+            nova('domestic_address') ? HasMany::make('Domestic Addresses', 'domestic addresses', nova('domestic_address'))->searchable() : null,
         ]);
     }
 
@@ -54,8 +53,6 @@ class City extends BaseResource
     {
         return [
             ID::make(),
-            Date::make('Created At')->exceptOnForms(),
-            Date::make('Updated At')->exceptOnForms(),
         ];
     }
 }
