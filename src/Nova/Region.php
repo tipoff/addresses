@@ -45,12 +45,10 @@ class Region extends BaseResource
 
     protected function dataFields(): array
     {
-        return [
-            ID::make(),
-            nova('user') ? BelongsTo::make('Updated By', 'updater', nova('user'))->exceptOnForms() : null,
-            nova('user') ? BelongsTo::make('Created By', 'creator', nova('user'))->exceptOnForms() : null,
-            Date::make('Created At')->exceptOnForms(),
-            Date::make('Updated At')->exceptOnForms(),
-        ];
+        return array_merge(
+            parent::dataFields(),
+            $this->creatorDataFields(),
+            $this->updaterDataFields(),
+        );
     }
 }
