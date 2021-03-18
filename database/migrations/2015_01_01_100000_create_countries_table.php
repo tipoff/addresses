@@ -15,6 +15,8 @@ class CreateCountriesTable extends Migration
             $table->string('title')->unique();
             $table->string('abbreviation', 2)->unique();
             $table->string('capital')->nullable();
+            $table->foreignIdFor(app('user'), 'creator_id')->nullable();
+            $table->foreignIdFor(app('user'), 'updater_id')->nullable();
             $table->timestamps();
         });
     }
