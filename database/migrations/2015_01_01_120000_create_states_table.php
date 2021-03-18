@@ -13,9 +13,10 @@ class CreateStatesTable extends Migration
             $table->string('slug')->unique()->index();
             $table->string('title')->unique();
             $table->string('abbreviation', 2)->unique();
-            $table->string('description')->nullable();
             $table->string('capital')->nullable();
             $table->foreignIdFor(app('country'));
+            $table->foreignIdFor(app('user'), 'creator_id')->nullable();
+            $table->foreignIdFor(app('user'), 'updater_id')->nullable();
             $table->timestamps();
         });
     }
