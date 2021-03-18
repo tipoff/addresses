@@ -6,7 +6,6 @@ namespace Tipoff\Addresses\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\HasManyThrough;
 use Laravel\Nova\Fields\ID;
