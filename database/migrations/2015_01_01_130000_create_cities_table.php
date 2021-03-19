@@ -18,8 +18,8 @@ class CreateCitiesTable extends Migration
             $table->boolean('military')->default(false);
             $table->boolean('township')->default(false);
             $table->foreignIdFor(app('timezone'))->nullable();
-            $table->decimal('latitude', 9, 6)->nullable();
-            $table->decimal('longitude', 8, 6)->nullable();
+            $table->float('latitude', 10, 6)->nullable();
+            $table->float('longitude', 10, 6)->nullable();
             $table->tinyInteger('importance')->nullable(); // Ranking of 1-5 to sort cities by importance
             $table->integer('population')->nullable(); // 2019 census data for urban population
             $table->integer('population_proper')->nullable(); // 2019 census data for municipal population
