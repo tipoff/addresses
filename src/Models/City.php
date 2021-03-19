@@ -22,8 +22,6 @@ use Tipoff\Support\Traits\HasPackageFactory;
 class City extends BaseModel
 {
     use HasPackageFactory;
-    
-    public $timestamps = false;
 
     protected $casts = [];
 
