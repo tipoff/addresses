@@ -28,6 +28,15 @@ class PermissionsMigrationTest extends TestCase
             'view countries',
             'create countries',
             'update countries',
+            'view country calling codes',
+            'create country calling codes',
+            'update country calling codes',
+            'view phone areas',
+            'create phone areas',
+            'update phone areas',
+            'view phones',
+            'create phones',
+            'update phones',
             'view regions',
             'create regions',
             'update regions',
@@ -42,6 +51,6 @@ class PermissionsMigrationTest extends TestCase
             'update zip codes',
         ])->pluck('name');
 
-        $this->assertCount(21, $seededPermissions);
+        $this->assertCount(30, $seededPermissions);
     }
 }
