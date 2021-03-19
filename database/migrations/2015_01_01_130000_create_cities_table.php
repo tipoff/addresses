@@ -10,8 +10,15 @@ class CreateCitiesTable extends Migration
     {
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
-            $table->string('slug')->unique()->index();
-            $table->string('title')->unique();
+            $table->foreignIdFor(app('state'))->index();
+            $table->string('slug')->index();
+            $table->string('title');
+            
+            $table->foreignIdFor(app('user'), 'creator_id')->nullable();
+            $table->foreignIdFor(app('user'), 'updater_id')->nullable();
+            $table->timestamps();
+            
+            $table->unique(['state_id', 'slug'], 'city_unique');
         });
     }
 }
