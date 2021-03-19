@@ -51,14 +51,4 @@ class DomesticAddressModelTest extends TestCase
 
         DomesticAddress::createDomesticAddress('line1', null, $city->title, '12345');
     }
-
-    /** @test */
-    public function create_address_unknown_city()
-    {
-        /** @var Zip $zip */
-        $zip = Zip::factory()->create();
-
-        $address = DomesticAddress::createDomesticAddress('line1', null, 'Boston', $zip->code);
-        $this->assertEquals('Boston', $address->city->title);
-    }
 }

@@ -17,6 +17,7 @@ class CityFactory extends Factory
         $title = $this->faker->unique()->city;
 
         return [
+            'state_id' => randomOrCreate(app('state')),
             'title' => $title,
         ];
     }
