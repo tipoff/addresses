@@ -72,7 +72,7 @@ All notable changes to `addresses` will be documented in this file.
 
 - phone numbers
 
-## 2.6.0 - 2021-03-15
+## 2.6.0 - 2021-03-19
 
 - breaking migration changes
 - new city model
