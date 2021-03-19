@@ -71,3 +71,8 @@ All notable changes to `addresses` will be documented in this file.
 ## 2.5.0 - 2021-03-15
 
 - phone numbers
+
+## 2.6.0 - 2021-03-15
+
+- breaking migration changes
+- new city model
