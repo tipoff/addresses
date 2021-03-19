@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tipoff\Addresses\Http\Livewire;
 
-use SKAgarwal\GoogleApi\PlacesApi;
 use Livewire\Component;
+use SKAgarwal\GoogleApi\PlacesApi;
 
 class DomesticAddressSearchBar extends Component
 {
@@ -22,7 +22,7 @@ class DomesticAddressSearchBar extends Component
         $this->query = '';
         $this->contacts = [];
         $this->placesApi = $placesApi;
-        // restrict contacts to 'address' type only 
+        // restrict contacts to 'address' type only
         $this->params = [
             'types' => 'address',
         ];
