@@ -6,7 +6,6 @@ namespace Tipoff\Addresses\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use Tipoff\Addresses\Models\Country;
 use Tipoff\Addresses\Models\State;
 
 class StateFactory extends Factory
@@ -22,7 +21,7 @@ class StateFactory extends Factory
             'title' => $title,
             'slug' => Str::slug($title),
             'abbreviation' => $this->faker->unique()->lexify('X?'),
-            'country_id' => randomOrCreate(Country::class),
+            'country_id' => randomOrCreate(app('country')),
         ];
     }
 }

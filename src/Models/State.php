@@ -55,21 +55,21 @@ class State extends BaseModel
 
     public function country()
     {
-        return $this->belongsTo(Country::class);
+        return $this->belongsTo(app('country'));
     }
 
     public function zips()
     {
-        return $this->hasMany(Zip::class);
+        return $this->hasMany(app('zip'));
     }
 
     public function cities()
     {
-        return $this->hasManyThrough(City::class, Zip::class);
+        return $this->hasManyThrough(app('city'), app('zip'));
     }
 
     public function phoneAreas()
     {
-        return $this->hasMany(PhoneArea::class, 'phone_area_code');
+        return $this->hasMany(app('phone_area'), 'phone_area_code');
     }
 }

@@ -26,11 +26,11 @@ class PhoneArea extends BaseModel
 
     public function state()
     {
-        return $this->belongsTo(State::class, 'state_id', 'phone_area_code');
+        return $this->belongsTo(app('state'), 'state_id', 'phone_area_code');
     }
 
     public function phones()
     {
-        return $this->hasMany(Phone::class, 'phone_id', 'phone_area_code');
+        return $this->hasMany(app('phone'), 'phone_id', 'phone_area_code');
     }
 }
