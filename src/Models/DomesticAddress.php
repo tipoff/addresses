@@ -81,16 +81,16 @@ class DomesticAddress extends BaseModel
 
     public function address()
     {
-        return $this->morphOne(Address::class, 'addressable');
+        return $this->morphOne(app('address'), 'addressable');
     }
 
     public function city()
     {
-        return $this->belongsTo(City::class);
+        return $this->belongsTo(app('city'));
     }
 
     public function zip()
     {
-        return $this->belongsTo(Zip::class);
+        return $this->belongsTo(app('zip'));
     }
 }

@@ -35,6 +35,6 @@ class Timezone extends BaseModel
 
     public function zip()
     {
-        return $this->hasMany(Zip::class);
+        return $this->hasMany(app('zip'));
     }
 }

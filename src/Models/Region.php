@@ -48,6 +48,6 @@ class Region extends BaseModel
      */
     public function zips()
     {
-        return $this->hasMany(Zip::class);
+        return $this->hasMany(app('zip'));
     }
 }
