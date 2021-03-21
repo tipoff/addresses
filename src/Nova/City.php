@@ -5,9 +5,13 @@ declare(strict_types=1);
 namespace Tipoff\Addresses\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Tipoff\Support\Nova\BaseResource;
@@ -21,23 +25,51 @@ class City extends BaseResource
     public static $search = [
         'id', 'title',
     ];
-    
+
     public static $group = 'Resources';
 
     public function fieldsForIndex(NovaRequest $request)
     {
         return array_filter([
             ID::make()->sortable(),
-            Text::make('Slug')->sortable(),
             Text::make('Title')->sortable(),
+            Text::make('State', 'state.id', function () {
+                return $this->state->title;
+            })->sortable(),
+            Text::make('Timezone', 'timezone.id', function () {
+                return $this->timezone->title;
+            })->sortable(),
         ]);
     }
 
     public function fields(Request $request)
     {
         return array_filter([
-            Text::make('Slug'),
             Text::make('Title'),
+            Text::make('Slug'),
+            nova('state') ? BelongsTo::make('State', 'state', nova('state'))->searchable() : null,
+            nova('timezone') ? BelongsTo::make('Timezone', 'timezone', nova('timezone'))->searchable() : null,
+            Select::make('Importance')->options([
+                1 => '1',
+                2 => '2',
+                3 => '3',
+                4 => '4',
+                5 => '5',
+            ])->displayUsingLabels()->sortable(),
+            
+            // Create more panels with the fields below
+
+            Boolean::make('Incorporated')->required()->default(true),
+            Boolean::make('Military')->required()->default(true),
+            Boolean::make('Township')->required()->default(true),
+            
+            Text::make('Latitude')->nullable(),
+            Text::make('Longitude')->nullable(),
+            
+            Number::make('Population')->nullable(),
+            Number::make('Population Proper')->nullable(),
+            Number::make('density')->nullable(),
+
             nova('zip') ? BelongsToMany::make('Zips', 'zips', nova('zip'))
                 ->fields(function () {
                     return [
@@ -50,8 +82,10 @@ class City extends BaseResource
 
     protected function dataFields(): array
     {
-        return [
-            ID::make(),
-        ];
+        return array_merge(
+            parent::dataFields(),
+            $this->creatorDataFields(),
+            $this->updaterDataFields(),
+        );
     }
 }
