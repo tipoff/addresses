@@ -62,28 +62,28 @@ class Zip extends BaseModel
 
     public function state()
     {
-        return $this->belongsTo(State::class);
+        return $this->belongsTo(app('state'));
     }
 
     public function cities()
     {
-        return $this->belongsToMany(City::class)
+        return $this->belongsToMany(app('city'))
             ->withPivot('primary')
             ->withTimestamps();
     }
 
     public function region()
     {
-        return $this->belongsTo(Region::class);
+        return $this->belongsTo(app('region'));
     }
 
     public function timezone()
     {
-        return $this->belongsTo(Timezone::class);
+        return $this->belongsTo(app('timezone'));
     }
 
     public function domesticAddresses()
     {
-        return $this->hasMany(DomesticAddress::class);
+        return $this->hasMany(app('domestic_address'));
     }
 }

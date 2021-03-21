@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Tipoff\Addresses\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Tipoff\Addresses\Models\State;
-use Tipoff\Addresses\Models\Timezone;
 use Tipoff\Addresses\Models\Zip;
 
 class ZipFactory extends Factory
@@ -17,8 +15,8 @@ class ZipFactory extends Factory
     {
         return [
             'code' => $this->faker->unique()->numerify('#####'),
-            'state_id' => randomOrCreate(State::class),
-            'timezone_id' => randomOrCreate(Timezone::class),
+            'state_id' => randomOrCreate(app('state')),
+            'timezone_id' => randomOrCreate(app('timezone')),
         ];
     }
 }

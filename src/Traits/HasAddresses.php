@@ -79,6 +79,6 @@ trait HasAddresses
 
     public function addresses()
     {
-        return $this->morphMany(Address::class, 'addressable');
+        return $this->morphMany(app('address'), 'addressable');
     }
 }

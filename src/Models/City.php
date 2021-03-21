@@ -22,8 +22,6 @@ use Tipoff\Support\Traits\HasPackageFactory;
 class City extends BaseModel
 {
     use HasPackageFactory;
-    
-    public $timestamps = false;
 
     protected $casts = [];
 
@@ -44,10 +42,15 @@ class City extends BaseModel
     {
         return $query->where('title', '=', trim($title));
     }
+    
+    public function state()
+    {
+        return $this->belongsTo(app('state'));
+    }
 
     public function zips()
     {
-        return $this->belongsToMany(Zip::class)
+        return $this->belongsToMany(app('zip'))
             ->withPivot('primary')
             ->withTimestamps();
         ;
@@ -55,6 +58,6 @@ class City extends BaseModel
 
     public function domesticAddresses()
     {
-        return $this->hasMany(DomesticAddress::class);
+        return $this->hasMany(app('domestic_address'));
     }
 }

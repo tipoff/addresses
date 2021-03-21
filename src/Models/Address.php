@@ -60,7 +60,7 @@ class Address extends BaseModel
 
     public function domesticAddress()
     {
-        return $this->belongsTo(DomesticAddress::class);
+        return $this->belongsTo(app('domestic_address'));
     }
 
     public function addressable()

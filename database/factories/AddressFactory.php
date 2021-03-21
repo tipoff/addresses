@@ -6,7 +6,6 @@ namespace Tipoff\Addresses\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Tipoff\Addresses\Models\Address;
-use Tipoff\Addresses\Models\DomesticAddress;
 use Tipoff\Authorization\Models\User;
 
 class AddressFactory extends Factory
@@ -18,7 +17,7 @@ class AddressFactory extends Factory
         $user = User::factory()->create();
 
         return [
-            'domestic_address_id' => randomOrCreate(DomesticAddress::class),
+            'domestic_address_id' => randomOrCreate(app('domestic_address')),
             'addressable_type' => get_class($user),
             'addressable_id' => $user->id,
             'type' => $this->faker->randomElement(['shipping', 'billing']),

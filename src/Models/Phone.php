@@ -26,11 +26,11 @@ class Phone extends BaseModel
 
     public function countryCallingcode()
     {
-        return $this->belongsTo(CountryCallingcode::class);
+        return $this->belongsTo(app('country_callingcode'));
     }
 
     public function phoneArea()
     {
-        return $this->belongsTo(PhoneArea::class, 'phone_area_code');
+        return $this->belongsTo(app('phone_area'), 'phone_area_code');
     }
 }
