@@ -42,7 +42,12 @@ class City extends BaseModel
     {
         return $query->where('title', '=', trim($title));
     }
-    
+
+    public function timezone()
+    {
+        return $this->belongsTo(app('timezone'));
+    }
+
     public function state()
     {
         return $this->belongsTo(app('state'));

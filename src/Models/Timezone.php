@@ -33,6 +33,11 @@ class Timezone extends BaseModel
         return $this->belongsToMany(app('location'));
     }
 
+    public function cities()
+    {
+        return $this->hasMany(app('city'));
+    }
+
     public function zip()
     {
         return $this->hasMany(app('zip'));

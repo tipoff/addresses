@@ -65,7 +65,7 @@ class State extends BaseModel
 
     public function cities()
     {
-        return $this->hasManyThrough(app('city'), app('zip'));
+        return $this->hasMany(app('city'));
     }
 
     public function phoneAreas()
