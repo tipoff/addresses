@@ -32,34 +32,23 @@ class City extends BaseResource
     {
         return array_filter([
             ID::make()->sortable(),
+            Text::make('Title')->sortable(),
             Text::make('State', 'state.id', function () {
                 return $this->state->title;
             })->sortable(),
-            Text::make('Slug')->sortable(),
-            Text::make('Title')->sortable(),
-            Boolean::make('Incorporated')->default(true)->sortable(),
-            Boolean::make('Military')->default(true)->sortable(),
-            Boolean::make('Township')->default(true)->sortable(),
             Text::make('Timezone', 'timezone.id', function () {
                 return $this->timezone->title;
             })->sortable(),
-            Number::make('Population')->sortable(),
         ]);
     }
 
     public function fields(Request $request)
     {
         return array_filter([
-            nova('state') ? BelongsTo::make('State', 'state', nova('state'))->searchable() : null,
-            Text::make('Slug'),
             Text::make('Title'),
-
-            Boolean::make('Incorporated')->required()->default(true),
-            Boolean::make('Military')->required()->default(true),
-            Boolean::make('Township')->required()->default(true),
+            Text::make('Slug'),
+            nova('state') ? BelongsTo::make('State', 'state', nova('state'))->searchable() : null,
             nova('timezone') ? BelongsTo::make('Timezone', 'timezone', nova('timezone'))->searchable() : null,
-            Text::make('Latitude')->nullable(),
-            Text::make('Longitude')->nullable(),
             Select::make('Importance')->options([
                 1 => '1',
                 2 => '2',
@@ -67,6 +56,16 @@ class City extends BaseResource
                 4 => '4',
                 5 => '5',
             ])->displayUsingLabels()->sortable(),
+            
+            // Create more panels with the fields below
+
+            Boolean::make('Incorporated')->required()->default(true),
+            Boolean::make('Military')->required()->default(true),
+            Boolean::make('Township')->required()->default(true),
+            
+            Text::make('Latitude')->nullable(),
+            Text::make('Longitude')->nullable(),
+            
             Number::make('Population')->nullable(),
             Number::make('Population Proper')->nullable(),
             Number::make('density')->nullable(),
