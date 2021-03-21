@@ -65,7 +65,7 @@ class City extends BaseResource
                 2 => '2',
                 3 => '3',
                 4 => '4',
-                5 => '5'
+                5 => '5',
             ])->displayUsingLabels()->sortable(),
             Number::make('Population')->nullable(),
             Number::make('Population Proper')->nullable(),
