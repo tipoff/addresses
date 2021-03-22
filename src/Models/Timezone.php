@@ -23,8 +23,7 @@ class Timezone extends BaseModel
         try {
             /** @var Timezone $result */
             $result = static::query()->where('php', '=', $timezone_php)->firstOrFail();
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             return null;
         }
 
