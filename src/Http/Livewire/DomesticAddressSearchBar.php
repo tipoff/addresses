@@ -13,7 +13,7 @@ class DomesticAddressSearchBar extends Component
 
     public $contacts;
 
-    public $placesApi;
+    private $placesApi;
 
     public $params;
 
