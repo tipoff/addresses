@@ -20,14 +20,8 @@ class Timezone extends BaseModel
 
     public static function fromAbbreviation(string $timezone_php): ?self
     {
-        try {
-            /** @var Timezone $result */
-            $result = static::query()->where('php', '=', $timezone_php)->firstOrFail();
-        }
-        catch (\Exception $e) {
-            return null;
-        }
-
+        /** @var Timezone $result */
+        $result = static::query()->where('php', '=', $timezone_php)->first();
         return $result;
     }
 
