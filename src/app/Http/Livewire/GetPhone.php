@@ -19,6 +19,5 @@ class GetPhone extends Component
     public function submit()
     {
         Log::info("Phone number submitted: $this->phone");
-
     }
 }
