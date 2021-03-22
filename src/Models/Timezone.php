@@ -18,10 +18,15 @@ class Timezone extends BaseModel
 
     public $timestamps = false;
 
-    public static function fromAbbreviation(string $timezone_php): self
+    public static function fromAbbreviation(string $timezone_php): ?self
     {
-        /** @var Timezone $result */
-        $result = static::query()->where('timezone_php', '=', $timezone_php)->firstOrFail();
+        try {
+            /** @var Timezone $result */
+            $result = static::query()->where('php', '=', $timezone_php)->firstOrFail();
+        }
+        catch (\Exception $e) {
+            return null;
+        }
 
         return $result;
     }
