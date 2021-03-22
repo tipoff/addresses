@@ -22,6 +22,7 @@ class Timezone extends BaseModel
     {
         /** @var Timezone $result */
         $result = static::query()->where('php', '=', $timezone_php)->first();
+
         return $result;
     }
 
