@@ -29,12 +29,13 @@ class Timezone extends BaseModel
     public static function getNameFromPHP(string $php_timezone): string
     {
         $dateTime = new \DateTime();
-	$dateTime->setTimeZone(new \DateTimeZone($php_timezone));
-	$timezone = $dateTime->format('T');
-	if ($timezone == 'HDT' || 'HST') {
-	    return 'HAST';
-	}
-	return $timezone;
+        $dateTime->setTimeZone(new \DateTimeZone($php_timezone));
+        $timezone = $dateTime->format('T');
+        if ($timezone == 'HDT' || 'HST') {
+            return 'HAST';
+        }
+
+        return $timezone;
     }
 
     public function getTransformer($context = null)
