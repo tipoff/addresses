@@ -76,7 +76,8 @@ class City extends BaseResource
                         Text::make('Primary')->default(false),
                     ];
                 }) : null,
-            nova('domestic_address') ? HasMany::make('Domestic Addresses', 'domestic addresses', nova('domestic_address'))->searchable() : null,
+            /* @todo HasMany::searchable does not exist  */
+            /*nova('domestic_address') ? HasMany::make('Domestic Addresses', 'domestic addresses', nova('domestic_address'))->searchable() : null,*/
         ]);
     }
 

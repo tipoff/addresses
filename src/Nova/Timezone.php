@@ -43,7 +43,8 @@ class Timezone extends BaseResource
             Number::make('Dst')->min(-9999.99)->max(9999.99)->step(0.01)->nullable(),
             Number::make('Standard')->min(-9999.99)->max(9999.99)->step(0.01)->nullable(),
 
-            nova('zip') ? HasMany::make('Zips', 'zips', nova('zip'))->searchable() : null,
+            /* @todo HasMany::searchable does not exist  */
+            /*nova('zip') ? HasMany::make('Zips', 'zips', nova('zip'))->searchable() : null,*/
 
             new Panel('Data Fields', $this->dataFields()),
         ]);

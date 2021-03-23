@@ -49,7 +49,8 @@ class State extends BaseResource
             Text::make('Description')->nullable(),
             Text::make('Capital')->nullable(),
             nova('country') ? BelongsTo::make('Country', 'country', nova('country'))->searchable() : null,
-            nova('zip') ? HasMany::make('Zips', 'zips', nova('zip'))->searchable() : null,
+            /* @todo HasMany::searchable does not exist  */
+            /*nova('zip') ? HasMany::make('Zips', 'zips', nova('zip'))->searchable() : null,*/
             nova('city') ? HasManyThrough::make('Cities', 'cities', nova('city')) : null,
         ]);
     }
