@@ -51,6 +51,6 @@ class Country extends BaseModel
 
     public function callingCodes()
     {
-        return $this->hasMany(app('country_callingcode'));
+        return $this->hasMany(app('country_callingcode'), 'country_callingcode_id');
     }
 }
