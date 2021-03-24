@@ -14,10 +14,14 @@ class CountryCallingcodeFactory extends Factory
 
     public function definition()
     {
+        $code = $this->faker->numerify('######');
 
         return [
             'country_id' => randomOrCreate(app('country')),
-            'code' => $this->faker->areaCode
+            'code' => $code,
+            'display' => $code,
+            'creator_id' => randomOrCreate(app('user')),
+            'updater_id' => randomOrCreate(app('user'))
         ];
     }
 }
