@@ -19,6 +19,7 @@ class CityFactory extends Factory
         return [
             'state_id' => randomOrCreate(app('state')),
             'title' => $title,
+            'timezone_id' => randomOrCreate(app('timezone')),
         ];
     }
 }

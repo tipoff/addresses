@@ -44,7 +44,8 @@ class Zip extends BaseResource
             nova('state') ? BelongsTo::make('State', 'state', nova('state'))->searchable() : null,
             nova('region') ? BelongsTo::make('Region', 'region', nova('region'))->searchable() : null,
             nova('timezone') ? BelongsTo::make('Timezone', 'timezone', nova('timezone'))->searchable() : null,
-            nova('domestic_address') ? HasMany::make('Domestic Address', 'domestic address', nova('domestic_address'))->searchable() : null,
+            /* @todo HasMany::searchable does not exist  */
+            /*nova('domestic_address') ? HasMany::make('Domestic Address', 'domestic address', nova('domestic_address'))->searchable() : null,*/
             nova('city') ? BelongsToMany::make('Cities', 'cities', nova('city'))
                 ->fields(function () {
                     return [

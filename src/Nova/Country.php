@@ -42,7 +42,8 @@ class Country extends BaseResource
             Text::make('Title'),
             Text::make('Abbreviation'),
             Text::make('Capital')->nullable(),
-            nova('state') ? HasMany::make('States', 'states', nova('state'))->searchable() : null,
+            /* @todo HasMany::searchable does not exist  */
+            /*nova('state') ? HasMany::make('States', 'states', nova('state'))->searchable() : null,*/
         ]);
     }
 
