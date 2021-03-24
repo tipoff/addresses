@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace Tipoff\Addresses\Tests\Feature\Nova;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Spatie\Permission\Models\Role;
-use Tipoff\Authorization\Models\User;
 use Tipoff\Addresses\Models\DomesticAddress;
 use Tipoff\Addresses\Tests\TestCase;
+use Tipoff\Authorization\Models\User;
 
 class DomesticAddressResourceTest extends TestCase
 {
