@@ -18,10 +18,10 @@
     const searchBar = document.getElementById('search-bar');
     let query = '';
     const autocompleteResults = document.getElementById('results');
-    const filter = 'types=address';
+    const filter = 'address';
     // need to create session tokens for billing https://developers.google.com/maps/documentation/places/web-service/session-tokens
     const sessiontoken;
-    const placesApiUrl = `https://maps.googleapis.com/maps/api/place/autocomplete/json?${filter}&sessiontoken=${sessiontoken}&key=`;
+    const placesApiUrl = `https://maps.googleapis.com/maps/api/place/autocomplete/json?types=${filter}&sessiontoken=${sessiontoken}&key=`;
 
     searchBar.addEventListener('input', updateQueryAndAutocomplete);
 
