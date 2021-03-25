@@ -9,7 +9,7 @@ class AddWorldCountries extends Migration
 {
     public function up()
     {
-        $now = \Carbon\Carbon::now();
+        $now = '2021-03-25 01:01:01';
         if (class_exists(Country::class)) {
             foreach ([
                          [
