@@ -26,7 +26,11 @@
     searchBar.addEventListener('input', updateQueryAndAutocomplete);
 
     async function updateQueryAndAutocomplete(e) {
-        query = e.target.value;
+        if (e.target.id === 'search-bar') {
+            query = e.target.value;
+        } else {    // dynamically created newResult divs
+            query = e.target.innerText;
+        }
         // clear previous results
         autocompleteResults.innerHTML = '';
         // TODO: add loading animation before API call
