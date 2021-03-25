@@ -10,7 +10,7 @@ use Tipoff\Support\Traits\HasPackageFactory;
 
 class Country extends BaseModel
 {
-//    use HasPackageFactory;
+    use HasPackageFactory;
 
     protected $casts = [];
 
