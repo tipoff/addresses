@@ -32,8 +32,11 @@
         // TODO: add loading animation before API call
         // call API, calls on every change on 'search bar', uses Laravel Mix env var
         const response = await fetch(placesApiUrl + {{ process.env.MIX_GOOGLE_API_KEY }});
-        const resultsJson = await response.json();
-        resultsJson.forEach(result => {
+        const json = await response.json();
+        // use status codes
+        // https://developers.google.com/maps/documentation/places/web-service/autocomplete#place_autocomplete_status_codes
+        // if (json['status'] === 'OK')
+        json['predictions'].forEach(result => {
             // create new div with innerText of each returned result
             let newResult = document.createElement('div');
             newResult.innerText = result['description'];
