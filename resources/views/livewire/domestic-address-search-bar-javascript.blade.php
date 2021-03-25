@@ -21,7 +21,6 @@
     const filter = 'address';
     // need to create session tokens for billing https://developers.google.com/maps/documentation/places/web-service/session-tokens
     const sessiontoken;
-    const placesApiUrl = `https://maps.googleapis.com/maps/api/place/autocomplete/json?types=${filter}&sessiontoken=${sessiontoken}&key=`;
 
     searchBar.addEventListener('input', updateQueryAndAutocomplete);
 
@@ -35,6 +34,7 @@
         } else {    // dynamically created newResult divs
             query = e.target.innerText;
         }
+        let placesApiUrl = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${query}&types=${filter}&sessiontoken=${sessiontoken}&key=`;
         // call API, calls on every change on 'search bar', uses Laravel Mix env var
         const response = await fetch(placesApiUrl + {{ process.env.MIX_GOOGLE_API_KEY }});
         const json = await response.json();
