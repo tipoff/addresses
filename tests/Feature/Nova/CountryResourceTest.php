@@ -21,8 +21,9 @@ class CountryResourceTest extends TestCase
      */
     public function index_by_role(?string $role, bool $hasAccess, bool $canIndex)
     {
-//        Country::factory()->count(4)->create();
+        Country::factory()->count(4)->create();
         $user = User::factory()->create();
+
         if ($role) {
             $user->assignRole($role);
         }
@@ -55,8 +56,7 @@ class CountryResourceTest extends TestCase
      */
     public function show_by_role(?string $role, bool $hasAccess, bool $canView)
     {
-        $model = Country::inRandomOrder()->first();
-//        $model = Country::factory()->create();
+        $model = Country::factory()->create();
 
         $user = User::factory()->create();
         if ($role) {
@@ -91,9 +91,7 @@ class CountryResourceTest extends TestCase
      */
     public function delete_by_role(?string $role, bool $hasAccess, bool $canDelete)
     {
-//        $model = Country::factory()->create();
-        $model = Country::inRandomOrder()->first();
-
+        $model = Country::factory()->create();
 
         $user = User::factory()->create();
         if ($role) {
