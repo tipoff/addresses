@@ -26,14 +26,15 @@
     searchBar.addEventListener('input', updateQueryAndAutocomplete);
 
     async function updateQueryAndAutocomplete(e) {
+        // clear previous results
+        autocompleteResults.innerHTML = '';
+        // TODO: add loading animation before API call
+
         if (e.target.id === 'search-bar') {
             query = e.target.value;
         } else {    // dynamically created newResult divs
             query = e.target.innerText;
         }
-        // clear previous results
-        autocompleteResults.innerHTML = '';
-        // TODO: add loading animation before API call
         // call API, calls on every change on 'search bar', uses Laravel Mix env var
         const response = await fetch(placesApiUrl + {{ process.env.MIX_GOOGLE_API_KEY }});
         const json = await response.json();
