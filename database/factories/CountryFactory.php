@@ -17,9 +17,10 @@ class CountryFactory extends Factory
         $title = $this->faker->unique()->state;
 
         return [
+            'slug' => Str::slug($abbreviation),
             'title' => $title,
-            'slug' => Str::slug($title),
-            'abbreviation' => $this->faker->unique()->lexify('??'),
+            'official' => $title,
+            'abbreviation' => $this->faker->unique()->lexify('???'),
         ];
     }
 }
