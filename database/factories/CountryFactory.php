@@ -15,12 +15,13 @@ class CountryFactory extends Factory
     public function definition()
     {
         $title = $this->faker->unique()->state;
+        $abbreviation = $this->faker->unique()->lexify('???');
 
         return [
             'slug' => Str::slug($abbreviation),
             'title' => $title,
             'official' => $title,
-            'abbreviation' => $this->faker->unique()->lexify('???'),
+            'abbreviation' => $abbreviation,
         ];
     }
 }
