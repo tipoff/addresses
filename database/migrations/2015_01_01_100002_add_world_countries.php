@@ -2255,7 +2255,7 @@ class AddWorldCountries extends Migration
                              'capital' => 'Pristina',
                              'world_region' => 'Europe',
                              'world_subregion' => 'Eastern Europe',
-                             'independent' => NULL,
+                             'independent' => true,
                              'un_member' => false,
                              'landlocked' => true,
                              'flag' => '🇽🇰',
