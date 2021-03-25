@@ -60,8 +60,8 @@ class AddressesServiceProvider extends TipoffServiceProvider
                 \Tipoff\Addresses\Nova\Timezone::class,
                 \Tipoff\Addresses\Nova\Zip::class,
             ])
-            ->name('addresses')
             ->hasDataMigrations()
+            ->name('addresses')
             ->hasConfigFile();
     }
 }
