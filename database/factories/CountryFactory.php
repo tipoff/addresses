@@ -14,7 +14,7 @@ class CountryFactory extends Factory
 
     public function definition()
     {
-        $title = $this->faker->unique()->country;
+        $title = 'My ' . $this->faker->unique()->country; // Adjust country name because randomly will get USA which already exists in DB
         $abbreviation = $this->faker->unique()->lexify('???');
 
         return [
