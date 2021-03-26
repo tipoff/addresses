@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Illuminate\Database\Migrations\Migration;
 use Tipoff\Addresses\Models\Timezone;
 
-class AddTimezones extends Migration
+class AddUsaTimezones extends Migration
 {
     public function up()
     {
