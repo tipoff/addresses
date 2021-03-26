@@ -15,11 +15,16 @@ class CountryCallingcodeFactory extends Factory
     public function definition()
     {
         $code = $this->faker->numerify('######');
+        $display = '+'.substr($code, 0, 3).substr($code, 3, 0);
+        $root = '+'.substr($code, 0, 1);
+        $suffix = substr($code, 1, 0);
 
         return [
             'country_id' => randomOrCreate(app('country')),
             'code' => $code,
-            'display' => $code,
+            'display' => $display,
+            'root' => $root,
+            'suffix' => $suffix,
             'creator_id' => randomOrCreate(app('user')),
             'updater_id' => randomOrCreate(app('user'))
         ];
