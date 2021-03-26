@@ -18,6 +18,26 @@ class Timezone extends BaseModel
 
     public $timestamps = false;
 
+    public static function fromAbbreviation(string $timezone_name): self
+    {
+        /** @var Timezone $result */
+        $result = static::query()->where('name', '=', $timezone_name)->firstOrFail();
+
+        return $result;
+    }
+
+    public static function getNameFromPHP(string $php_timezone): string
+    {
+        $dateTime = new \DateTime();
+        $dateTime->setTimeZone(new \DateTimeZone($php_timezone));
+        $timezone = $dateTime->format('T');
+        if ($timezone == 'HDT' || 'HST') {
+            return 'HAST';
+        }
+
+        return $timezone;
+    }
+
     public function getTransformer($context = null)
     {
         return new TimezoneTransformer();

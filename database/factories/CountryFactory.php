@@ -14,12 +14,17 @@ class CountryFactory extends Factory
 
     public function definition()
     {
-        $title = $this->faker->unique()->state;
+        $title = 'My ' . $this->faker->unique()->country; // Adjust country name because randomly will get USA which already exists in DB
+        $abbreviation = $this->faker->unique()->lexify('???');
 
         return [
+            'slug' => Str::slug($abbreviation),
             'title' => $title,
-            'slug' => Str::slug($title),
-            'abbreviation' => $this->faker->unique()->lexify('??'),
+            'official' => $title,
+            'abbreviation' => $abbreviation,
+            'independent' => $this->faker->boolean,
+            'un_member' => $this->faker->boolean,
+            'landlocked' => $this->faker->boolean,
         ];
     }
 }

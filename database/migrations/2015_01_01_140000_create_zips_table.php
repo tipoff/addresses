@@ -13,9 +13,15 @@ class CreateZipsTable extends Migration
             $table->foreignIdFor(app('state'));
             $table->foreignIdFor(app('region'))->nullable();
             $table->foreignIdFor(app('timezone'))->nullable();
+
+            $table->integer('population')->nullable(); // 2019 census data for zip population
+            $table->integer('density')->nullable(); // 2019 census population per square kilometer
             $table->float('latitude', 10, 6)->nullable();
             $table->float('longitude', 10, 6)->nullable();
-            $table->boolean('decommissioned')->default(0)->index(); // 1 if decommissioned
+            $table->boolean('military')->default(false);
+            $table->boolean('ztca')->default(true);
+            $table->foreignIdFor(app('zip'), 'parent_id')->nullable(); // Parent ztca zip code
+
             $table->foreignIdFor(app('user'), 'creator_id')->nullable();
             $table->foreignIdFor(app('user'), 'updater_id')->nullable();
             $table->timestamps();

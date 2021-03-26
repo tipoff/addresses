@@ -21,6 +21,7 @@ class CountryTransformer extends BaseTransformer
             'id' => $country->id,
             'slug' => $country->slug,
             'title' => $country->title,
+            'official' => $country->official,
             'abbreviation' => $country->abbreviation,
             'capital' => $country->capital,
             'created_at' => (string) $country->created_at,

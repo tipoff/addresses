@@ -19,14 +19,17 @@ class Country extends BaseModel
         parent::boot();
 
         static::saving(function ($country) {
-            if (empty($country->title)) {
-                throw new \Exception('A country must have a title.');
-            }
-            if (empty($country->abbreviation)) {
-                throw new \Exception('A country must have an abbreviation.');
-            }
             if (empty($country->slug)) {
                 throw new \Exception('A country must have a slug.');
+            }
+            if (empty($country->title)) {
+                throw new \Exception('A country must have a common name for a title.');
+            }
+            if (empty($country->official)) {
+                throw new \Exception('A country must have an official name.');
+            }
+            if (empty($country->abbreviation)) {
+                throw new \Exception('A country must have a 3 digit ISO 3166-1 abbreviation.');
             }
         });
     }
@@ -51,6 +54,6 @@ class Country extends BaseModel
 
     public function callingCodes()
     {
-        return $this->hasMany(app('country_callingcode'));
+        return $this->hasMany(app('country_callingcode'), 'country_callingcode_id');
     }
 }
