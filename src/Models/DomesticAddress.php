@@ -50,7 +50,7 @@ class DomesticAddress extends BaseModel
         $zip = ($zip instanceof Zip) ? $zip : Zip::query()->findOrFail(trim($zip));
         $city = ($city instanceof City) ? $city : City::query()->byTitle($city)->byZip($zip)->firstOrCreate([
             'title' => $city,
-            'state_id' => $zip->state_id
+            'state_id' => $zip->state_id,
         ]);
 
         /** @var DomesticAddress $domesticAddress */
