@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Illuminate\Database\Migrations\Migration;
 use Tipoff\Addresses\Models\Country;
 
-class AddUsCountry extends Migration
+class AddUsaCountry extends Migration
 {
     public function up()
     {
