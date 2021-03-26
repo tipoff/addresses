@@ -14,7 +14,7 @@ class CountryFactory extends Factory
 
     public function definition()
     {
-        $title = $this->faker->unique()->country;
+        $title = 'Mumbai';
         $abbreviation = $this->faker->unique()->lexify('???');
 
         return [
