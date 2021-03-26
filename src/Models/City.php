@@ -43,6 +43,11 @@ class City extends BaseModel
         return $query->where('title', '=', trim($title));
     }
 
+    public function scopeByZip(Builder $query, Zip $zip): Builder
+    {
+        return $query->where('state_id', '=', $zip->state_id);
+    }
+
     public function timezone()
     {
         return $this->belongsTo(app('timezone'));

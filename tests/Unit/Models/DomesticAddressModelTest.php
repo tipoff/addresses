@@ -25,10 +25,12 @@ class DomesticAddressModelTest extends TestCase
     /** @test */
     public function create_address_valid_city_and_zip()
     {
-        /** @var City $city */
-        $city = City::factory()->create();
         /** @var Zip $zip */
         $zip = Zip::factory()->create();
+        /** @var City $city */
+        $city = City::factory()->create([
+            'state_id' => $zip->state_id,
+        ]);
 
         $address = DomesticAddress::createDomesticAddress('line1', null, $city->title, $zip->code);
         $this->assertEquals('line1', $address->address_line_1);
@@ -38,6 +40,16 @@ class DomesticAddressModelTest extends TestCase
 
         $sameAddress = DomesticAddress::createDomesticAddress('line1', null, $city, $zip);
         $this->assertEquals($address->id, $sameAddress->id);
+    }
+
+    /** @test */
+    public function create_address_unknown_city()
+    {
+        /** @var Zip $zip */
+        $zip = Zip::factory()->create();
+
+        $address = DomesticAddress::createDomesticAddress('line1', null, 'Boston', $zip->code);
+        $this->assertEquals('Boston', $address->city->title);
     }
 
     /** @test */
