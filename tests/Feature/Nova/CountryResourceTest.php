@@ -21,7 +21,8 @@ class CountryResourceTest extends TestCase
      */
     public function index_by_role(?string $role, bool $hasAccess, bool $canIndex)
     {
-        Country::factory()->count(4)->create();
+        $count = 4;
+        Country::factory()->count($count)->create();
         $user = User::factory()->create();
 
         if ($role) {
@@ -33,7 +34,7 @@ class CountryResourceTest extends TestCase
             ->assertStatus($hasAccess ? 200 : 403);
 
         if ($hasAccess) {
-            $this->assertCount($canIndex ? 5 : 0, $response->json('resources'));
+            $this->assertCount($canIndex ? $count : 0, $response->json('resources'));
         }
     }
 
