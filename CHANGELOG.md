@@ -76,3 +76,8 @@ All notable changes to `addresses` will be documented in this file.
 
 - breaking migration changes
 - new city model
+
+## 2.7.0 - 2021-03-26
+
+- update migrations
+- add data migrations
