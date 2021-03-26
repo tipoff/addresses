@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 use Tipoff\Addresses\Models\PhoneArea;
 use Tipoff\Addresses\Models\State;
 
-class AddPhoneAreas01 extends Migration {
+class AddFirstPhoneAreas extends Migration {
 
     public function up() {
 

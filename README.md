@@ -35,7 +35,10 @@ We include the following model in this package:
 - Address
 - City
 - Country
+- Country Calling Code
 - Domestic Address
+- Phone
+- Phone Area
 - Region
 - State
 - Timezone
