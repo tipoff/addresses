@@ -23,6 +23,7 @@ class CountryResourceTest extends TestCase
     {
         Country::factory()->count(4)->create();
         $user = User::factory()->create();
+
         if ($role) {
             $user->assignRole($role);
         }
@@ -32,6 +33,7 @@ class CountryResourceTest extends TestCase
             ->assertStatus($hasAccess ? 200 : 403);
 
         if ($hasAccess) {
+            // Number is 5 since USA is being migrated already
             $this->assertCount($canIndex ? 5 : 0, $response->json('resources'));
         }
     }
@@ -103,6 +105,7 @@ class CountryResourceTest extends TestCase
             ->assertStatus($hasAccess ? 200 : 403);
 
         // But deletion will only occur if user has permissions
+        // Number is 2 since USA is being migrated already
         $this->assertDatabaseCount('countries', $canDelete ? 0 : 2);
     }
 

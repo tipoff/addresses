@@ -377,7 +377,7 @@ class AddStates extends Migration
                 ]);
             })
             ->toArray();
-        
+
         State::query()->insertOrIgnore($stateRecords);
     }
 }
