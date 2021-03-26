@@ -32,7 +32,8 @@ class CountryCallingcodeResourceTest extends TestCase
             ->assertStatus($hasAccess ? 200 : 403);
 
         if ($hasAccess) {
-            $this->assertCount($canIndex ? 1 : 0, $response->json('resources'));
+            // Number is 2 since USA calling code is being migrated already
+            $this->assertCount($canIndex ? 2 : 0, $response->json('resources'));
         }
     }
 
@@ -103,7 +104,8 @@ class CountryCallingcodeResourceTest extends TestCase
             ->assertStatus($hasAccess ? 200 : 403);
 
         // But deletion will only occur if user has permissions
-        $this->assertDatabaseCount('country_callingcodes', $canDelete ? 0 : 1);
+        // Number is 1 / 2 since USA calling code is being migrated already
+        $this->assertDatabaseCount('country_callingcodes', $canDelete ? 1 : 2);
     }
 
     public function dataProviderForDeleteByRole()
