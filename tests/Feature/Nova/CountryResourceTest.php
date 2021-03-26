@@ -33,7 +33,7 @@ class CountryResourceTest extends TestCase
             ->assertStatus($hasAccess ? 200 : 403);
 
         if ($hasAccess) {
-            // NUmber is 5 since USA is being migrated already
+            // Number is 5 since USA is being migrated already
             $this->assertCount($canIndex ? 5 : 0, $response->json('resources'));
         }
     }
