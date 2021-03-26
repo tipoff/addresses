@@ -105,7 +105,7 @@ class CountryResourceTest extends TestCase
             ->assertStatus($hasAccess ? 200 : 403);
 
         // But deletion will only occur if user has permissions
-        $this->assertDatabaseCount('countries', $canDelete ? 0 : 2);
+        $this->assertDatabaseCount('countries', $canDelete ? 0 : 1);
     }
 
     public function dataProviderForDeleteByRole()
