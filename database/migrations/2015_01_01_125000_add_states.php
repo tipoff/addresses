@@ -369,7 +369,7 @@ class AddStates extends Migration
         ];
 
         $now = Carbon::now()->format('Y-m-d H:i:s');
-        $countryId = Country::fromAbbreviation('USA')->getId();
+        $countryId = 1;
         $stateRecords = collect($stateData)
             ->map(function (array $record) use ($now, $countryId) {
                 return array_merge($record, [
@@ -377,7 +377,7 @@ class AddStates extends Migration
                 ]);
             })
             ->toArray();
-        
+
         State::query()->insertOrIgnore($stateRecords);
     }
 }
