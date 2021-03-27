@@ -15,7 +15,7 @@ class PhoneFactory extends Factory
     public function definition()
     {
         $phone_area = randomOrCreate(app('phone_area'));
-        $phone_area_code = $phone_area->getCode();
+        $phone_area_code = $phone_area->code;
         $exchange_code = $this->faker->exchangeCode;
         $line_number = $this->faker->numerify('####');
         $full_number = $phone_area_code . $exchange_code . $line_number;
@@ -23,7 +23,7 @@ class PhoneFactory extends Factory
         return [
             'country_callingcode_id' => randomOrCreate(app('country_callingcode')),
             'full_number' => $full_number,
-            'phone_area_id' => $phone_area->getId(),
+            'phone_area_code' => $phone_area_code,
             'exchange_code' => $exchange_code,
             'line_number' => $line_number,
             'creator_id' => randomOrCreate(app('user')),
