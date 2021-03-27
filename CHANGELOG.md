@@ -85,3 +85,7 @@ All notable changes to `addresses` will be documented in this file.
 ## 2.7.1 - 2021-03-27
 
 - update factories
+
+## 2.7.2 - 2021-03-27
+
+- primary key of code for phone area
