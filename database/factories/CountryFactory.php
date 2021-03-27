@@ -15,10 +15,10 @@ class CountryFactory extends Factory
     public function definition()
     {
         $title = 'My ' . $this->faker->unique()->country; // Adjust country name because randomly will get USA which already exists in DB
-        $abbreviation = $this->faker->unique()->lexify('???');
+        $abbreviation = $this->faker->unique()->randomElement(['MEX','ALB','CAN','ZMB','TUN','SSD','SLV']); // this needs to NOT be 'usa'
 
         return [
-            'slug' => Str::slug($abbreviation),
+            'slug' => strtolower($abbreviation),
             'title' => $title,
             'official' => $title,
             'abbreviation' => $abbreviation,
