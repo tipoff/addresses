@@ -45,8 +45,8 @@ class Phone extends BaseResource
             Text::make('Full Number'),
 
             nova('phone_area') ? BelongsTo::make('Phone Area', 'phone_area', nova('phone_area'))->searchable() : null,
-            Text::make('Line Number')->nullable(),
             Text::make('Exchange Code')->nullable(),
+            Text::make('Line Number')->nullable(),
         ]);
     }
 
