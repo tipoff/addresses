@@ -81,3 +81,7 @@ All notable changes to `addresses` will be documented in this file.
 
 - update migrations
 - add data migrations
+
+## 2.7.1 - 2021-03-27
+
+- update factories
