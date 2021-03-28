@@ -36,7 +36,7 @@ class AddWorldCallingcode extends Migration
                 ],
                 [
                     'country_id' => Country::fromAbbreviation('AIA')->getId(),
-                    'code' => '1 264',
+                    'code' => '1264',
                     'display' => '+1 264',
                     'root' => '+1',
                     'suffix' => '264',
@@ -85,7 +85,7 @@ class AddWorldCallingcode extends Migration
                 ],
                 [
                     'country_id' => Country::fromAbbreviation('ASM')->getId(),
-                    'code' => '1 684',
+                    'code' => '1684',
                     'display' => '+1 684',
                     'root' => '+1',
                     'suffix' => '684',
@@ -99,7 +99,7 @@ class AddWorldCallingcode extends Migration
                 ],
                 [
                     'country_id' => Country::fromAbbreviation('ATG')->getId(),
-                    'code' => '1 268',
+                    'code' => '1268',
                     'display' => '+1 268',
                     'root' => '+1',
                     'suffix' => '268',
@@ -176,7 +176,7 @@ class AddWorldCallingcode extends Migration
                 ],
                 [
                     'country_id' => Country::fromAbbreviation('BHS')->getId(),
-                    'code' => '1 242',
+                    'code' => '1242',
                     'display' => '+1 242',
                     'root' => '+1',
                     'suffix' => '242',
@@ -218,7 +218,7 @@ class AddWorldCallingcode extends Migration
                 ],
                 [
                     'country_id' => Country::fromAbbreviation('BMU')->getId(),
-                    'code' => '1 441',
+                    'code' => '1441',
                     'display' => '+1 441',
                     'root' => '+1',
                     'suffix' => '441',
@@ -246,7 +246,7 @@ class AddWorldCallingcode extends Migration
                 ],
                 [
                     'country_id' => Country::fromAbbreviation('BRB')->getId(),
-                    'code' => '1 246',
+                    'code' => '1246',
                     'display' => '+1 246',
                     'root' => '+1',
                     'suffix' => '246',
@@ -288,7 +288,7 @@ class AddWorldCallingcode extends Migration
                 ],
                 [
                     'country_id' => Country::fromAbbreviation('CAN')->getId(),
-                    'code' => '1 ',
+                    'code' => '1',
                     'display' => '+1 ',
                     'root' => '+1',
                     'suffix' => '',
@@ -407,7 +407,7 @@ class AddWorldCallingcode extends Migration
                 ],
                 [
                     'country_id' => Country::fromAbbreviation('CYM')->getId(),
-                    'code' => '1 345',
+                    'code' => '1345',
                     'display' => '+1 345',
                     'root' => '+1',
                     'suffix' => '345',
@@ -442,7 +442,7 @@ class AddWorldCallingcode extends Migration
                 ],
                 [
                     'country_id' => Country::fromAbbreviation('DMA')->getId(),
-                    'code' => '1 767',
+                    'code' => '1767',
                     'display' => '+1 767',
                     'root' => '+1',
                     'suffix' => '767',
@@ -456,7 +456,7 @@ class AddWorldCallingcode extends Migration
                 ],
                 [
                     'country_id' => Country::fromAbbreviation('DOM')->getId(),
-                    'code' => '1 809',
+                    'code' => '1809',
                     'display' => '+1 809',
                     'root' => '+1',
                     'suffix' => '809',
@@ -645,7 +645,7 @@ class AddWorldCallingcode extends Migration
                 ],
                 [
                     'country_id' => Country::fromAbbreviation('GRD')->getId(),
-                    'code' => '1 473',
+                    'code' => '1473',
                     'display' => '+1 473',
                     'root' => '+1',
                     'suffix' => '473',
@@ -673,7 +673,7 @@ class AddWorldCallingcode extends Migration
                 ],
                 [
                     'country_id' => Country::fromAbbreviation('GUM')->getId(),
-                    'code' => '1 671',
+                    'code' => '1671',
                     'display' => '+1 671',
                     'root' => '+1',
                     'suffix' => '671',
@@ -792,7 +792,7 @@ class AddWorldCallingcode extends Migration
                 ],
                 [
                     'country_id' => Country::fromAbbreviation('JAM')->getId(),
-                    'code' => '1 876',
+                    'code' => '1876',
                     'display' => '+1 876',
                     'root' => '+1',
                     'suffix' => '876',
@@ -855,7 +855,7 @@ class AddWorldCallingcode extends Migration
                 ],
                 [
                     'country_id' => Country::fromAbbreviation('KNA')->getId(),
-                    'code' => '1 869',
+                    'code' => '1869',
                     'display' => '+1 869',
                     'root' => '+1',
                     'suffix' => '869',
@@ -911,7 +911,7 @@ class AddWorldCallingcode extends Migration
                 ],
                 [
                     'country_id' => Country::fromAbbreviation('LCA')->getId(),
-                    'code' => '1 758',
+                    'code' => '1758',
                     'display' => '+1 758',
                     'root' => '+1',
                     'suffix' => '758',
@@ -1065,7 +1065,7 @@ class AddWorldCallingcode extends Migration
                 ],
                 [
                     'country_id' => Country::fromAbbreviation('MNP')->getId(),
-                    'code' => '1 670',
+                    'code' => '1670',
                     'display' => '+1 670',
                     'root' => '+1',
                     'suffix' => '670',
@@ -1086,7 +1086,7 @@ class AddWorldCallingcode extends Migration
                 ],
                 [
                     'country_id' => Country::fromAbbreviation('MSR')->getId(),
-                    'code' => '1 664',
+                    'code' => '1664',
                     'display' => '+1 664',
                     'root' => '+1',
                     'suffix' => '664',
@@ -1275,7 +1275,7 @@ class AddWorldCallingcode extends Migration
                 ],
                 [
                     'country_id' => Country::fromAbbreviation('PRI')->getId(),
-                    'code' => '1 787',
+                    'code' => '1787',
                     'display' => '+1 787',
                     'root' => '+1',
                     'suffix' => '787',
@@ -1492,7 +1492,7 @@ class AddWorldCallingcode extends Migration
                 ],
                 [
                     'country_id' => Country::fromAbbreviation('SXM')->getId(),
-                    'code' => '1 721',
+                    'code' => '1721',
                     'display' => '+1 721',
                     'root' => '+1',
                     'suffix' => '721',
@@ -1513,7 +1513,7 @@ class AddWorldCallingcode extends Migration
                 ],
                 [
                     'country_id' => Country::fromAbbreviation('TCA')->getId(),
-                    'code' => '1 649',
+                    'code' => '1649',
                     'display' => '+1 649',
                     'root' => '+1',
                     'suffix' => '649',
@@ -1576,7 +1576,7 @@ class AddWorldCallingcode extends Migration
                 ],
                 [
                     'country_id' => Country::fromAbbreviation('TTO')->getId(),
-                    'code' => '1 868',
+                    'code' => '1868',
                     'display' => '+1 868',
                     'root' => '+1',
                     'suffix' => '868',
@@ -1660,7 +1660,7 @@ class AddWorldCallingcode extends Migration
                 ],
                 [
                     'country_id' => Country::fromAbbreviation('VCT')->getId(),
-                    'code' => '1 784',
+                    'code' => '1784',
                     'display' => '+1 784',
                     'root' => '+1',
                     'suffix' => '784',
@@ -1674,14 +1674,14 @@ class AddWorldCallingcode extends Migration
                 ],
                 [
                     'country_id' => Country::fromAbbreviation('VGB')->getId(),
-                    'code' => '1 284',
+                    'code' => '1284',
                     'display' => '+1 284',
                     'root' => '+1',
                     'suffix' => '284',
                 ],
                 [
                     'country_id' => Country::fromAbbreviation('VIR')->getId(),
-                    'code' => '1 340',
+                    'code' => '1340',
                     'display' => '+1 340',
                     'root' => '+1',
                     'suffix' => '340',
