@@ -93,3 +93,7 @@ All notable changes to `addresses` will be documented in this file.
 ## 2.7.3 - 2021-03-29
 
 - fix zip code data migration
+
+## 2.7.4 - 2021-03-29
+
+- update first city data migration
