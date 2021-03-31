@@ -5,15 +5,15 @@
         type="text"
         placeholder="Enter your address"
     >
-    <!-- List of contacts -->
+    <!-- List of results -->
     <ul
         class="absolute z-10"
     >
-        @foreach ($contacts as $contact)
+        @foreach ($results as $result)
         <li
-            wire:click="setQuery({{ $contact }})"
+            wire:click="setQuery({{ $result }})"
         >
-            {{ $contact }}
+            {{ $result }}
         </li>
         @endforeach
     </ul>

@@ -11,7 +11,7 @@ class DomesticAddressSearchBar extends Component
 {
     public $query;
 
-    public $contacts;
+    public $results;
 
     public $placesApi;
 
@@ -20,9 +20,9 @@ class DomesticAddressSearchBar extends Component
     public function mount(PlacesApi $placesApi)
     {
         $this->query = '';
-        $this->contacts = [];
+        $this->results = [];
         $this->placesApi = $placesApi;
-        // restrict contacts to 'address' type only
+        // restrict results to 'address' type only
         $this->params = [
             'types' => 'address',
         ];
@@ -35,7 +35,7 @@ class DomesticAddressSearchBar extends Component
 
     public function updatedQuery()
     {
-        $this->contacts = $this->placesApi->placeAutocomplete($this->query, $this->params);
+        $this->results = $this->placesApi->placeAutocomplete($this->query, $this->params);
     }
 
     public function render()
