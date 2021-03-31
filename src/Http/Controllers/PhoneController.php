@@ -21,5 +21,7 @@ class PhoneController extends Controller
             'full_number' => $request->phone_number,
             'country_callingcode_id' => $country_callingcode_id,
         ]);
+
+        return response()->json(['status' => 'success']);
     }
 }

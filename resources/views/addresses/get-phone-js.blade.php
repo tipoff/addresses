@@ -44,7 +44,7 @@
             </form>
         </x-jet-authentication-card>
     </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.10/js/intlTelInput.min.js" integrity="sha512-WLRxTYYWjmQXqpP4+ubqmluKUgXV/1hI3Nv8n1t0xCKSMBoZ+NnqL5/wcXYWGlTkkDGUazDbttW6i+EjPwpGQA==" crossorigin="anonymous"></script>
     <script>
         const formElem = document.querySelector('#phone_form');
         const phoneInputField = document.querySelector("#phone"),
@@ -92,7 +92,7 @@
             e.preventDefault();
             const data = new FormData( formElem );
             const request = new XMLHttpRequest();
-            request.open("POST", "http://127.0.0.1:8000/phone");
+            request.open("POST", "/phone");
             request.send(data);
             console.log("data returned: "+ e.target.data)
         });
