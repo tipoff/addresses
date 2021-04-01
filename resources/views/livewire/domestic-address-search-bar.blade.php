@@ -1,7 +1,7 @@
 <div class="relative">
     <input
         class=""
-        wire:model="query"
+        wire:model.debounce.400ms="query"
         type="text"
         placeholder="Enter your address"
     >
