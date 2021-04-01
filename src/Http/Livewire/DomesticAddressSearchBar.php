@@ -6,6 +6,7 @@ namespace Tipoff\Addresses\Http\Livewire;
 
 use Livewire\Component;
 use SKAgarwal\GoogleApi\PlacesApi;
+use Illuminate\Support\Collection;
 
 class DomesticAddressSearchBar extends Component
 {
@@ -15,7 +16,9 @@ class DomesticAddressSearchBar extends Component
 
     private $placesApi;
 
-    public $params;
+    public $autocompleteParams;
+
+    public $placeDetailsParams;
 
     private $sessionToken;
 
@@ -26,21 +29,35 @@ class DomesticAddressSearchBar extends Component
         $this->placesApi = $placesApi;
         $this->sessionToken = (string) Str::uuid();
         // restrict results to 'address' type only in US
-        $this->params = [
+        $this->autocompleteParams = [
             'sessiontoken' => $this->sessionToken,
             'components' => 'country:us',
             'types' => 'address',
         ];
+        $this->placeDetailsParams = [
+            'sessiontoken' => $this->sessionToken,
+            // can retrieve more fields if needed for data consistency e.g. timezone
+            'fields' => 'address_component',
+        ];
     }
 
-    public function setQuery(string $query)
+    public function getPlaceDetails(string $placeId)
     {
-        $this->query = $query;
+        $placeDetails = $this->placesApi->placeDetails($placeId, $this->placeDetailsParams);
+        // Billing session ends when placeDetails request is made, reset Session Token
+        $this->sessionToken = (string) Str::uuid();
+        $this->emit('returnPlaceDetails', $placeDetails);
+    }
+
+    public function selectResult(Collection $result)
+    {
+        $placeId = $result->place_id;
+        $this->getPlaceDetails($placeId);
     }
 
     public function updatedQuery()
     {
-        $this->results = $this->placesApi->placeAutocomplete($this->query, $this->params);
+        $this->results = $this->placesApi->placeAutocomplete($this->query, $this->autocompleteParams);
     }
 
     public function render()

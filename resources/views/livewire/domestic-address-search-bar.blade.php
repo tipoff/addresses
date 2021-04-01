@@ -11,9 +11,9 @@
     >
         @foreach ($results as $result)
         <div
-            wire:click="setQuery({{ $result }})"
+            wire:click="selectResult({{ $result }})"
         >
-            {{ $result }}
+            {{ $result->description }}
         </div>
         @endforeach
     </div>
