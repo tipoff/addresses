@@ -22,8 +22,11 @@ class DomesticAddressSearchBar extends Component
         $this->query = '';
         $this->results = [];
         $this->placesApi = $placesApi;
-        // restrict results to 'address' type only
+        // restrict results to 'address' type only in US
         $this->params = [
+            'components' => [
+                'country' => 'us',
+            ],
             'types' => 'address',
         ];
     }
