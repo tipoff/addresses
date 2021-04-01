@@ -101,8 +101,11 @@
     const inputState = document.getElementById("state");
     const inputZip = document.getElementById("zip");
     
-    Livewire.on('returnPlaceDetails', () => {
-        
+    Livewire.on('returnPlaceDetails', (addressLine1, zip, city, state) => {
+        inputAddressLine1.value = addressLine1;
+        inputCity.value = city;
+        inputState.value = state;
+        inputZip.value = zip;
     });
 
 </script>
