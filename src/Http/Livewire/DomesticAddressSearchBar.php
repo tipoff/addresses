@@ -17,13 +17,17 @@ class DomesticAddressSearchBar extends Component
 
     public $params;
 
+    private $sessionToken;
+
     public function mount(PlacesApi $placesApi)
     {
         $this->query = '';
         $this->results = [];
         $this->placesApi = $placesApi;
+        $this->sessionToken = (string) Str::uuid();
         // restrict results to 'address' type only in US
         $this->params = [
+            'sessiontoken' => $this->sessionToken,
             'components' => 'country:us',
             'types' => 'address',
         ];
