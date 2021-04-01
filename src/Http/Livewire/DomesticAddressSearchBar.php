@@ -7,6 +7,7 @@ namespace Tipoff\Addresses\Http\Livewire;
 use Livewire\Component;
 use SKAgarwal\GoogleApi\PlacesApi;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 class DomesticAddressSearchBar extends Component
 {

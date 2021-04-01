@@ -29,6 +29,7 @@ use Tipoff\Addresses\Policies\TimezonePolicy;
 use Tipoff\Addresses\Policies\ZipPolicy;
 use Tipoff\Support\TipoffPackage;
 use Tipoff\Support\TipoffServiceProvider;
+use Livewire\Livewire;
 
 class AddressesServiceProvider extends TipoffServiceProvider
 {
