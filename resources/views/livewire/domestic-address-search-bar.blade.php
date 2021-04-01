@@ -6,15 +6,15 @@
         placeholder="Enter your address"
     >
     <!-- List of results -->
-    <ul
+    <div
         class="absolute z-10"
     >
         @foreach ($results as $result)
-        <li
+        <div
             wire:click="setQuery({{ $result }})"
         >
             {{ $result }}
-        </li>
+        </div>
         @endforeach
-    </ul>
+    </div>
 </div>
