@@ -1,6 +1,6 @@
-<div class="relative">
+<div class="">
     <input
-        class=""
+        class="relative"
         wire:model.debounce.400ms="query"
         type="text"
         placeholder="Enter your address"
