@@ -92,3 +92,17 @@
         </button>
     </form>
 </div>
+
+<script>
+
+    const inputAddressLine1 = document.getElementById("address-line-1");
+    // const inputAddressLine2 = document.getElementById("address-line-2");
+    const inputCity = document.getElementById("city");
+    const inputState = document.getElementById("state");
+    const inputZip = document.getElementById("zip");
+    
+    Livewire.on('returnPlaceDetails', () => {
+        
+    });
+
+</script>

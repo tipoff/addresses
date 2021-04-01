@@ -46,7 +46,35 @@ class DomesticAddressSearchBar extends Component
         $placeDetails = $this->placesApi->placeDetails($placeId, $this->placeDetailsParams);
         // Billing session ends when placeDetails request is made, reset Session Token
         $this->sessionToken = (string) Str::uuid();
-        $this->emit('returnPlaceDetails', $placeDetails);
+        
+        $addressLine1 = '';
+        $zip = '';
+        $city = '';
+        $state = '';
+        $addressComponents = $placeDetails->result->address_components;
+        foreach ($addressComponents as $component) {
+            switch ($component->types[0]) {
+                case 'street_number':
+                    $addressLine1 = $component->long_name;
+                    break;
+                // street name, e.g. Main Street
+                case 'route':
+                    $addressLine1 += ' ' . $component->short_name;
+                    break;
+                case 'postal_code':
+                    $zip = $component->long_name;
+                    break;
+                case 'locality':
+                    $city = $component->long_name;
+                    break;
+                // state
+                case 'administrative_area_level_1':
+                    $state = $component->short_name;
+                    break;
+            }
+        }
+
+        $this->emit('returnPlaceDetails', $addressLine1, $zip, $city, $state);
     }
 
     public function selectResult(Collection $result)
