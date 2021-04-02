@@ -71,8 +71,10 @@ class AddressesServiceProvider extends TipoffServiceProvider
             ->hasConfigFile();
     }
 
-    public function boot()
+    public function bootingPackage()
     {
-        Livewire::component('domestic-address-search-bar', DomesticAddressSearchBar::class);
+        parent::bootingPackage();
+
+        Livewire::component('liewire.domestic-address-search-bar', DomesticAddressSearchBar::class);
     }
 }
