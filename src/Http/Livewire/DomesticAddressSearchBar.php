@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tipoff\Addresses\Http\Livewire;
 
 use Livewire\Component;
-use SKAgarwal\GoogleApi\PlacesApi;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
@@ -23,11 +22,11 @@ class DomesticAddressSearchBar extends Component
 
     private $sessionToken;
 
-    public function mount(PlacesApi $placesApi)
+    public function mount()
     {
         $this->query = '';
         $this->results = [];
-        $this->placesApi = $placesApi;
+        $this->placesApi = app()->make(\SKAgarwal\GoogleApi\PlacesApi::class);
         $this->sessionToken = (string) Str::uuid();
         // restrict results to 'address' type only in US
         $this->autocompleteParams = [
