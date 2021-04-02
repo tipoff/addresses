@@ -25,7 +25,7 @@ class DomesticAddressSearchBar extends Component
     public function mount()
     {
         $this->query = '';
-        $this->results = [];
+        $this->results = null;
         $this->placesApi = app()->make(\SKAgarwal\GoogleApi\PlacesApi::class);
         $this->sessionToken = (string) Str::uuid();
         // restrict results to 'address' type only in US
@@ -51,7 +51,7 @@ class DomesticAddressSearchBar extends Component
         $zip = '';
         $city = '';
         $state = '';
-        $addressComponents = $placeDetails->result->address_components;
+        $addressComponents = $placeDetails->get('result')->get('address_components');
         foreach ($addressComponents as $component) {
             switch ($component->types[0]) {
                 case 'street_number':
@@ -84,7 +84,7 @@ class DomesticAddressSearchBar extends Component
 
     public function selectResult(Collection $result)
     {
-        $placeId = $result->place_id;
+        $placeId = $result->get('place_id');
         $this->getPlaceDetails($placeId);
     }
 
