@@ -62,10 +62,7 @@ class AddressesServiceProvider extends TipoffServiceProvider
                 \Tipoff\Addresses\Nova\Timezone::class,
                 \Tipoff\Addresses\Nova\Zip::class,
             ])
-            ->hasViews([
-                view('addresses::livewire.domestic-address-search-bar'),
-                view('addresses::domestic-address-search-bar-javascript'),
-            ])
+            ->hasViews()
             ->hasDataMigrations()
             ->name('addresses')
             ->hasConfigFile();
@@ -75,6 +72,6 @@ class AddressesServiceProvider extends TipoffServiceProvider
     {
         parent::bootingPackage();
 
-        Livewire::component('liewire.domestic-address-search-bar', DomesticAddressSearchBar::class);
+        Livewire::component('livewire.domestic-address-search-bar', DomesticAddressSearchBar::class);
     }
 }
