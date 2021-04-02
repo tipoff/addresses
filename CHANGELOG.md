@@ -102,3 +102,7 @@ All notable changes to `addresses` will be documented in this file.
 
 - address input
 - phone input
+
+## 2.7.6 - 2021-04-02
+
+- update zip code data migration
