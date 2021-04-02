@@ -62,10 +62,10 @@ class AddressesServiceProvider extends TipoffServiceProvider
                 \Tipoff\Addresses\Nova\Timezone::class,
                 \Tipoff\Addresses\Nova\Zip::class,
             ])
-            ->hasViews()
             ->hasDataMigrations()
             ->name('addresses')
-            ->hasConfigFile();
+            ->hasConfigFile()
+            ->hasViews();
     }
 
     public function bootingPackage()
