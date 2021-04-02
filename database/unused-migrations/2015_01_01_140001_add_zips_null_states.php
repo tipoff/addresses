@@ -13,7 +13,7 @@ class AddZips extends Migration {
     public function up() {
 
         $zipData = [
-	[				[
+	    [
                 'code' => '96939',
                 'state_abbreviation' => 'PW',
                 'region_id' => NULL,
