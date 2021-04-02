@@ -13,7 +13,7 @@
         <div
             wire:click="selectResult({{ $result }})"
         >
-            {{ $result->description }}
+            {{ $result->get('description') }}
         </div>
         @endforeach
     </div>
