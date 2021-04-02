@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tipoff\Addresses\Http\Livewire;
 
-use Livewire\Component;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use Livewire\Component;
 
 class DomesticAddressSearchBar extends Component
 {
@@ -56,20 +56,25 @@ class DomesticAddressSearchBar extends Component
             switch ($component->types[0]) {
                 case 'street_number':
                     $addressLine1 = $component->long_name;
+
                     break;
                 // street name, e.g. Main Street
                 case 'route':
                     $addressLine1 += ' ' . $component->short_name;
+
                     break;
                 case 'postal_code':
                     $zip = $component->long_name;
+
                     break;
                 case 'locality':
                     $city = $component->long_name;
+
                     break;
                 // state
                 case 'administrative_area_level_1':
                     $state = $component->short_name;
+
                     break;
             }
         }
