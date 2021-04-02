@@ -90,6 +90,6 @@ class DomesticAddressSearchBar extends Component
 
     public function render()
     {
-        return view('livewire.domestic-address-search-bar');
+        return view('domestic-address-search-bar');
     }
 }
