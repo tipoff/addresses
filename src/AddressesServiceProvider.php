@@ -64,6 +64,7 @@ class AddressesServiceProvider extends TipoffServiceProvider
             ])
             ->hasViews([
                 view('addresses::livewire.domestic-address-search-bar'),
+                view('addresses::domestic-address-search-bar-javascript'),
             ])
             ->hasDataMigrations()
             ->name('addresses')
