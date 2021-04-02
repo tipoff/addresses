@@ -10,7 +10,7 @@ class CreateZipsTable extends Migration
     {
         Schema::create('zips', function (Blueprint $table) {
             $table->string('code', 5)->unique()->primary(); // Actual ZIP Code. Has to be string because can have leading zeros. Check model to see how it is made Primary Key.
-            $table->foreignIdFor(app('state'));
+            $table->foreignIdFor(app('state'))->nullable();
             $table->foreignIdFor(app('region'))->nullable();
             $table->foreignIdFor(app('timezone'))->nullable();
 
@@ -20,11 +20,13 @@ class CreateZipsTable extends Migration
             $table->float('longitude', 10, 6)->nullable();
             $table->boolean('military')->default(false);
             $table->boolean('ztca')->default(true);
-            $table->foreignIdFor(app('zip'), 'parent_id')->nullable(); // Parent ztca zip code
 
             $table->foreignIdFor(app('user'), 'creator_id')->nullable();
             $table->foreignIdFor(app('user'), 'updater_id')->nullable();
             $table->timestamps();
+        });
+	Schema::table('zips', function (Blueprint $table) {
+            $table->foreign('parent_zcta')->references('code')->on('zips')->nullable(); // Parent zcta zip code
         });
     }
 }

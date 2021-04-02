@@ -48,12 +48,15 @@ class State extends BaseModel
         });
     }
 
-    public static function fromAbbreviation(string $abbreviation): self
+    public static function fromAbbreviation(string $abbreviation): ?self
     {
         /** @var State $result */
-        $result = static::query()->where('abbreviation', '=', $abbreviation)->firstOrFail();
-
-        return $result;
+        try {
+            $result = static::query()->where('abbreviation', '=', $abbreviation)->firstOrFail();
+            return $result;
+        } catch (\Exception $e) {
+            return null;
+        }
     }
 
     public function getTransformer($context = null)
