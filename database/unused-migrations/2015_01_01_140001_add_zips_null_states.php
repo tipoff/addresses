@@ -8,7 +8,7 @@ use Tipoff\Addresses\Models\Zip;
 use Tipoff\Addresses\Models\State;
 use Tipoff\Addresses\Models\Timezone;
 
-class AddZips extends Migration {
+class AddZipsSecond extends Migration {
 
     public function up() {
 
