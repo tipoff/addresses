@@ -20,13 +20,14 @@ class CreateZipsTable extends Migration
             $table->float('longitude', 10, 6)->nullable();
             $table->boolean('military')->default(false);
             $table->boolean('ztca')->default(true);
+	    $table->string('parent_zip_code')->nullable();
 
             $table->foreignIdFor(app('user'), 'creator_id')->nullable();
             $table->foreignIdFor(app('user'), 'updater_id')->nullable();
             $table->timestamps();
         });
 	Schema::table('zips', function (Blueprint $table) {
-            $table->foreign('parent_zcta')->references('code')->on('zips')->nullable(); // Parent zcta zip code
+            $table->foreign('parent_zip_code')->references('code')->on('zips')->nullable(); // Parent zcta zip code
         });
     }
 }
