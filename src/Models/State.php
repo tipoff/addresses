@@ -53,6 +53,7 @@ class State extends BaseModel
         /** @var State $result */
         try {
             $result = static::query()->where('abbreviation', '=', $abbreviation)->firstOrFail();
+
             return $result;
         } catch (\Exception $e) {
             return null;
