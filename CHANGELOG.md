@@ -106,3 +106,7 @@ All notable changes to `addresses` will be documented in this file.
 ## 2.7.6 - 2021-04-02
 
 - update zip code data migration
+
+## 2.7.7 - 2021-04-03
+
+- update city data migrations
