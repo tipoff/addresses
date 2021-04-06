@@ -9,6 +9,7 @@
     <div
         class="absolute z-10"
     >
+        @if (!empty($results))
         @foreach ($results as $result)
         <div
             wire:click="selectResult({{ $result }})"
@@ -16,6 +17,7 @@
             {{ $result->get('description') }}
         </div>
         @endforeach
+        @endif
     </div>
     <form 
         method="POST"
