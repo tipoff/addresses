@@ -95,8 +95,8 @@
     </form>
 </div>
 
+@push ('domestic-address-search-bar')
 <script>
-
     const inputAddressLine1 = document.getElementById("address-line-1");
     const inputAddressLine2 = document.getElementById("address-line-2");
     const inputCity = document.getElementById("city");
@@ -110,5 +110,5 @@
         inputZip.value = zip;
         inputAddressLine2.focus();
     });
-
 </script>
+@endpush
