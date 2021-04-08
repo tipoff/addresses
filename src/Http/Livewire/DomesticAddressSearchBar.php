@@ -14,8 +14,6 @@ class DomesticAddressSearchBar extends Component
 
     public $results;
 
-    private $placesApi;
-
     public $autocompleteParams;
 
     public $placeDetailsParams;
@@ -26,7 +24,6 @@ class DomesticAddressSearchBar extends Component
     {
         $this->query = '';
         $this->results = null;
-        $this->placesApi = app()->make(\SKAgarwal\GoogleApi\PlacesApi::class);
         $this->sessionToken = (string) Str::uuid();
         // restrict results to 'address' type only in US
         $this->autocompleteParams = [
@@ -43,7 +40,7 @@ class DomesticAddressSearchBar extends Component
 
     public function getPlaceDetails(string $placeId)
     {
-        $placeDetails = $this->placesApi->placeDetails($placeId, $this->placeDetailsParams);
+        $placeDetails = app()->make(\SKAgarwal\GoogleApi\PlacesApi::class)->placeDetails($placeId, $this->placeDetailsParams);
         // Billing session ends when placeDetails request is made, reset Session Token
         $this->sessionToken = (string) Str::uuid();
         
@@ -90,7 +87,7 @@ class DomesticAddressSearchBar extends Component
 
     public function updatedQuery()
     {
-        $this->results = $this->placesApi->placeAutocomplete($this->query, $this->autocompleteParams);
+        $this->results = app()->make(\SKAgarwal\GoogleApi\PlacesApi::class)->placeAutocomplete($this->query, $this->autocompleteParams);
     }
 
     public function render()
