@@ -10,8 +10,8 @@ class DomesticAddressCollection extends Collection
      */
     public function addressLine1(): string
     {
-        $streetNumber = $this->first(fn($component) => Arr::get($component, 'types.0') === 'street_number');
-        $street = $this->first(fn($component) => Arr::get($component, 'types.0') === 'route');
+        $streetNumber = $this->first(fn ($component) => Arr::get($component, 'types.0') === 'street_number');
+        $street = $this->first(fn ($component) => Arr::get($component, 'types.0') === 'route');
 
         return trim(($streetNumber['long_name'] ?? '') . ' ' . ($street['short_name'] ?? ''));
     }
@@ -21,7 +21,7 @@ class DomesticAddressCollection extends Collection
      */
     public function postalCode(): string
     {
-        $postalCode = $this->first(fn($component) => Arr::get($component, 'types.0') === 'postal_code');
+        $postalCode = $this->first(fn ($component) => Arr::get($component, 'types.0') === 'postal_code');
 
         return $postalCode['long_name'] ?? '';
     }
@@ -31,7 +31,7 @@ class DomesticAddressCollection extends Collection
      */
     public function city(): string
     {
-        $city = $this->first(fn($component) => Arr::get($component, 'types.0') === 'locality');
+        $city = $this->first(fn ($component) => Arr::get($component, 'types.0') === 'locality');
 
         return $city['long_name'] ?? '';
     }
@@ -41,7 +41,7 @@ class DomesticAddressCollection extends Collection
      */
     public function state(): string
     {
-        $state = $this->first(fn($component) => Arr::get($component, 'types.0') === 'administrative_area_level_1');
+        $state = $this->first(fn ($component) => Arr::get($component, 'types.0') === 'administrative_area_level_1');
 
         return $state['short_name'] ?? '';
     }

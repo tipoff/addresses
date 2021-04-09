@@ -26,14 +26,14 @@ class DomesticAddressSearchBar extends Component
         // Restrict results to 'address' type only in US
         $this->autocompleteParams = [
             'sessiontoken' => $sessionToken,
-            'components'   => 'country:us',
-            'types'        => 'address',
+            'components' => 'country:us',
+            'types' => 'address',
         ];
 
         $this->placeDetailsParams = [
             'sessiontoken' => $sessionToken,
             // can retrieve more fields if needed for data consistency e.g. timezone
-            'fields'       => 'address_component',
+            'fields' => 'address_component',
         ];
     }
 
@@ -44,15 +44,15 @@ class DomesticAddressSearchBar extends Component
 
         return [
             'addressLine1' => $components->addressLine1(),
-            'zip'          => $components->postalCode(),
-            'city'         => $components->city(),
-            'state'        => $components->state(),
+            'zip' => $components->postalCode(),
+            'city' => $components->city(),
+            'state' => $components->state(),
         ];
     }
 
     public function updatedQuery()
     {
-        if (!empty($this->query)) {
+        if (! empty($this->query)) {
             $resultsCollection = app()->make(PlacesApi::class)->placeAutocomplete($this->query, $this->autocompleteParams);
             $this->results = $resultsCollection['predictions'];
         }
