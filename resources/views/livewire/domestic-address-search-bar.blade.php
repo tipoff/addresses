@@ -27,6 +27,7 @@
         wire:model.debounce.400ms="query"
         x-model="selectedResult"
         x-on:click="showResults = true"
+        x-on:click.away="showResults = false"
         class="w-full"
     >
     <!-- List of results -->
