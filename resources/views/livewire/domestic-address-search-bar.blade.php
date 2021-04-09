@@ -1,5 +1,14 @@
 <div
-    x-data="data()"    
+    x-data="{
+        showResults: true,
+        selectResult(placeId) {
+            this.showResults = false;
+            $wire.getPlaceDetails(placeId)
+                .then(result => {
+
+                });
+        },
+    }"    
     class="relative"
 >
     <input
@@ -102,22 +111,20 @@
     </form>
 </div>
 
-@push ('domestic-address-search-bar-script')
 <script>
-    console.log($wire);
     // Alpine JS
-    function data() {
-        return {
-            showResults: true,
-            selectResult(placeId) {
-                this.showResults = false;
-                $wire.getPlaceDetails(placeId)
-                    .then(result => {
+    // function data() {
+    //     return {
+    //         showResults: true,
+    //         selectResult(placeId) {
+    //             this.showResults = false;
+    //             $wire.getPlaceDetails(placeId)
+    //                 .then(result => {
 
-                    });
-            },
-        }
-    }
+    //                 });
+    //         },
+    //     }
+    // }
 
 
     // Vanilla JS
@@ -144,4 +151,3 @@
     //     inputAddressLine2.focus();
     // });
 </script>
-@endpush

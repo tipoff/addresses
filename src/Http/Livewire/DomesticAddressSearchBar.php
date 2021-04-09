@@ -41,6 +41,7 @@ class DomesticAddressSearchBar extends Component
     public function getPlaceDetails(string $placeId)
     {
         $placeDetails = app()->make(\SKAgarwal\GoogleApi\PlacesApi::class)->placeDetails($placeId, $this->placeDetailsParams);
+        dd($placeDetails);
         // Billing session ends when placeDetails request is made, reset Session Token
         $this->sessionToken = (string) Str::uuid();
         
