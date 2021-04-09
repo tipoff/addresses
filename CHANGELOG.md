@@ -97,3 +97,16 @@ All notable changes to `addresses` will be documented in this file.
 ## 2.7.4 - 2021-03-29
 
 - update first city data migration
+
+## 2.7.5 - 2021-03-31
+
+- address input
+- phone input
+
+## 2.7.6 - 2021-04-02
+
+- update zip code data migration
+
+## 2.7.7 - 2021-04-03
+
+- update city data migrations
