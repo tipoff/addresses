@@ -87,8 +87,10 @@ class DomesticAddressSearchBar extends Component
 
     public function updatedQuery()
     {
-        $resultsCollection = app()->make(\SKAgarwal\GoogleApi\PlacesApi::class)->placeAutocomplete($this->query, $this->autocompleteParams);
-        $this->results = $resultsCollection['predictions'];
+        if (!empty ($this->query)) {
+            $resultsCollection = app()->make(\SKAgarwal\GoogleApi\PlacesApi::class)->placeAutocomplete($this->query, $this->autocompleteParams);
+            $this->results = $resultsCollection['predictions'];
+        }
         // $resultsCollection['status'] is handled by SKAgarwal/PlacesApi package
         // https://github.com/SachinAgarwal1337/google-places-api/blob/2f2b474b706e362778c5642ac1524619afda9126/src/PlacesApi.php#L240
     }
