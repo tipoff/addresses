@@ -80,13 +80,13 @@ class DomesticAddressSearchBar extends Component
             'addressLine1' => $addressLine1,
             'zip' => $zip,
             'city' => $city,
-            'state' => $state
+            'state' => $state,
         ];
     }
 
     public function updatedQuery()
     {
-        if (!empty ($this->query)) {
+        if (! empty($this->query)) {
             $resultsCollection = app()->make(\SKAgarwal\GoogleApi\PlacesApi::class)->placeAutocomplete($this->query, $this->autocompleteParams);
             $this->results = $resultsCollection['predictions'];
         }
