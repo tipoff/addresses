@@ -1,19 +1,25 @@
-<div class="relative">
+<div
+    x-data="data()"    
+    class="relative"
+>
     <input
-        class=""
-        wire:model.debounce.400ms="query"
         type="text"
         placeholder="Enter your address"
+        wire:model.debounce.400ms="query"
+        @click="showResults = true"
+        class=""
     >
     <!-- List of results -->
     <div
+        id="results-list"
+        x-show="showResults"
         class="absolute z-10"
     >
         @if (!empty($results))
         @foreach ($results as $result)
         <div
-            wire:click="getPlaceDetails({{ $result['place_id'] }})"
-            class="bg-white"
+            @click="selectResult('{{ $result['place_id'] }}')"
+            class="block w-full text-left bg-white cursor-default hover:bg-gray-50"
         >
             {{ $result['description'] }}
         </div>
@@ -96,20 +102,46 @@
     </form>
 </div>
 
-@push ('domestic-address-search-bar')
+@push ('domestic-address-search-bar-script')
 <script>
-    const inputAddressLine1 = document.getElementById("address-line-1");
-    const inputAddressLine2 = document.getElementById("address-line-2");
-    const inputCity = document.getElementById("city");
-    const inputState = document.getElementById("state");
-    const inputZip = document.getElementById("zip");
+    console.log($wire);
+    // Alpine JS
+    function data() {
+        return {
+            showResults: true,
+            selectResult(placeId) {
+                this.showResults = false;
+                $wire.getPlaceDetails(placeId)
+                    .then(result => {
+
+                    });
+            },
+        }
+    }
+
+
+    // Vanilla JS
+
+    // const resultsList = document.getElementById("results-list");
+    // const inputAddressLine1 = document.getElementById("address-line-1");
+    // const inputAddressLine2 = document.getElementById("address-line-2");
+    // const inputCity = document.getElementById("city");
+    // const inputState = document.getElementById("state");
+    // const inputZip = document.getElementById("zip");
+
+    // Livewire.on('resultSelected', (placeId) => {
+    //     console.log('resultSelected');
+    //     resultsList.classList.add('invisible');
+
+    // });
     
-    Livewire.on('returnPlaceDetails', (addressLine1, zip, city, state) => {
-        inputAddressLine1.value = addressLine1;
-        inputCity.value = city;
-        inputState.value = state;
-        inputZip.value = zip;
-        inputAddressLine2.focus();
-    });
+    // Livewire.on('returnPlaceDetails', (addressLine1, zip, city, state) => {
+    //     console.log('returnPlaceDetails')
+    //     inputAddressLine1.value = addressLine1;
+    //     inputCity.value = city;
+    //     inputState.value = state;
+    //     inputZip.value = zip;
+    //     inputAddressLine2.focus();
+    // });
 </script>
 @endpush
