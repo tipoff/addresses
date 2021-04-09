@@ -6,6 +6,8 @@ namespace Tipoff\Addresses\Http\Livewire;
 
 use Illuminate\Support\Str;
 use Livewire\Component;
+use SKAgarwal\GoogleApi\PlacesApi;
+use Tipoff\Addresses\Collections\DomesticAddressCollection;
 
 class DomesticAddressSearchBar extends Component
 {
@@ -17,77 +19,41 @@ class DomesticAddressSearchBar extends Component
 
     public $placeDetailsParams;
 
-    private $sessionToken;
-
     public function mount()
     {
-        $this->query = '';
-        $this->results = null;
-        $this->sessionToken = (string) Str::uuid();
-        // restrict results to 'address' type only in US
+        $sessionToken = (string)Str::uuid();
+
+        // Restrict results to 'address' type only in US
         $this->autocompleteParams = [
-            'sessiontoken' => $this->sessionToken,
-            'components' => 'country:us',
-            'types' => 'address',
+            'sessiontoken' => $sessionToken,
+            'components'   => 'country:us',
+            'types'        => 'address',
         ];
+
         $this->placeDetailsParams = [
-            'sessiontoken' => $this->sessionToken,
+            'sessiontoken' => $sessionToken,
             // can retrieve more fields if needed for data consistency e.g. timezone
-            'fields' => 'address_component',
+            'fields'       => 'address_component',
         ];
     }
 
     public function getPlaceDetails(string $placeId)
     {
-        $placeDetailsCollection = app()->make(\SKAgarwal\GoogleApi\PlacesApi::class)->placeDetails($placeId, $this->placeDetailsParams);
-        $placeDetails = $placeDetailsCollection['result'];
-        // Billing session ends when placeDetails request is made, reset Session Token
-        $this->sessionToken = (string) Str::uuid();
-        
-        $addressLine1 = '';
-        $zip = '';
-        $city = '';
-        $state = '';
-        $addressComponents = $placeDetails['address_components'];
-        foreach ($addressComponents as $component) {
-            switch ($component['types'][0]) {
-                case 'street_number':
-                    $addressLine1 = $component['long_name'];
-
-                    break;
-                // street name, e.g. Main Street
-                case 'route':
-                    $addressLine1 .= ' ' . $component['short_name'];
-
-                    break;
-                case 'postal_code':
-                    $zip = $component['long_name'];
-
-                    break;
-                case 'locality':
-                    $city = $component['long_name'];
-
-                    break;
-                // state
-                case 'administrative_area_level_1':
-                    $state = $component['short_name'];
-
-                    break;
-            }
-        }
+        $placeDetailsCollection = app()->make(PlacesApi::class)->placeDetails($placeId, $this->placeDetailsParams);
+        $components = new DomesticAddressCollection($placeDetailsCollection['result']['address_components'] ?? []);
 
         return [
-            'addressLine1' => $addressLine1,
-            'zip' => $zip,
-            'city' => $city,
-            'state' => $state,
+            'addressLine1' => $components->addressLine1(),
+            'zip'          => $components->postalCode(),
+            'city'         => $components->city(),
+            'state'        => $components->state(),
         ];
     }
 
     public function updatedQuery()
     {
-        if (! empty($this->query)) {
-            $resultsCollection = app()->make(\SKAgarwal\GoogleApi\PlacesApi::class)->placeAutocomplete($this->query, $this->autocompleteParams);
+        if (!empty($this->query)) {
+            $resultsCollection = app()->make(PlacesApi::class)->placeAutocomplete($this->query, $this->autocompleteParams);
             $this->results = $resultsCollection['predictions'];
         }
         // $resultsCollection['status'] is handled by SKAgarwal/PlacesApi package
