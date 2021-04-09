@@ -56,16 +56,16 @@ class City extends BaseResource
                 4 => '4',
                 5 => '5',
             ])->displayUsingLabels()->sortable(),
-            
+
             // Create more panels with the fields below
 
             Boolean::make('Incorporated')->required()->default(true),
             Boolean::make('Military')->required()->default(true),
             Boolean::make('Township')->required()->default(true),
-            
-            Text::make('Latitude')->nullable(),
-            Text::make('Longitude')->nullable(),
-            
+
+            Number::make('Latitude')->step(0.000001)->nullable(),
+            Number::make('Longitude')->step(0.000001)->nullable(),
+
             Number::make('Population')->nullable(),
             Number::make('Population Proper')->nullable(),
             Number::make('density')->nullable(),

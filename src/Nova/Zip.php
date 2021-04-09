@@ -9,6 +9,7 @@ use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Tipoff\Support\Nova\BaseResource;
@@ -22,7 +23,7 @@ class Zip extends BaseResource
     public static $search = [
         'code',
     ];
-    
+
     public static $group = 'Resources';
 
     public function fieldsForIndex(NovaRequest $request)
@@ -39,8 +40,8 @@ class Zip extends BaseResource
     public function fields(Request $request)
     {
         return array_filter([
-            Text::make('Latitude')->nullable(),
-            Text::make('Latitude')->nullable(),
+            Number::make('Latitude')->step(0.000001)->nullable(),
+            Number::make('Longitude')->step(0.000001)->nullable(),
             nova('state') ? BelongsTo::make('State', 'state', nova('state'))->searchable() : null,
             nova('region') ? BelongsTo::make('Region', 'region', nova('region'))->searchable() : null,
             nova('timezone') ? BelongsTo::make('Timezone', 'timezone', nova('timezone'))->searchable() : null,
