@@ -15,7 +15,7 @@
         type="text"
         placeholder="Enter your address"
         wire:model.debounce.400ms="query"
-        @click="showResults = true"
+        x-on:click="showResults = true"
         class=""
     >
     <!-- List of results -->
@@ -27,7 +27,7 @@
         @if (!empty($results))
         @foreach ($results as $result)
         <div
-            @click="selectResult('{{ $result['place_id'] }}')"
+            x-on:click="selectResult('{{ $result['place_id'] }}')"
             class="block w-full text-left bg-white cursor-default hover:bg-gray-50"
         >
             {{ $result['description'] }}

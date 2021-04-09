@@ -40,8 +40,8 @@ class DomesticAddressSearchBar extends Component
 
     public function getPlaceDetails(string $placeId)
     {
-        $placeDetails = app()->make(\SKAgarwal\GoogleApi\PlacesApi::class)->placeDetails($placeId, $this->placeDetailsParams);
-        dd($placeDetails);
+        $placeDetailsCollection = app()->make(\SKAgarwal\GoogleApi\PlacesApi::class)->placeDetails($placeId, $this->placeDetailsParams);
+        $placeDetails = $placeDetailsCollection['result'];
         // Billing session ends when placeDetails request is made, reset Session Token
         $this->sessionToken = (string) Str::uuid();
         
@@ -49,29 +49,29 @@ class DomesticAddressSearchBar extends Component
         $zip = '';
         $city = '';
         $state = '';
-        $addressComponents = $placeDetails->get('result')->get('address_components');
+        $addressComponents = $placeDetails['address_components'];
         foreach ($addressComponents as $component) {
-            switch ($component->types[0]) {
+            switch ($component['types'][0]) {
                 case 'street_number':
-                    $addressLine1 = $component->long_name;
+                    $addressLine1 = $component['long_name'];
 
                     break;
                 // street name, e.g. Main Street
                 case 'route':
-                    $addressLine1 += ' ' . $component->short_name;
+                    $addressLine1 .= ' ' . $component['short_name'];
 
                     break;
                 case 'postal_code':
-                    $zip = $component->long_name;
+                    $zip = $component['long_name'];
 
                     break;
                 case 'locality':
-                    $city = $component->long_name;
+                    $city = $component['long_name'];
 
                     break;
                 // state
                 case 'administrative_area_level_1':
-                    $state = $component->short_name;
+                    $state = $component['short_name'];
 
                     break;
             }
