@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tipoff\Addresses\Http\Livewire;
 
-use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
