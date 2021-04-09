@@ -77,7 +77,12 @@ class DomesticAddressSearchBar extends Component
             }
         }
 
-        $this->emit('returnPlaceDetails', $addressLine1, $zip, $city, $state);
+        return [
+            'addressLine1' => $addressLine1,
+            'zip' => $zip,
+            'city' => $city,
+            'state' => $state
+        ];
     }
 
     public function updatedQuery()

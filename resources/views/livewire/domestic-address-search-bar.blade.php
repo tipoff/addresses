@@ -1,11 +1,18 @@
 <div
     x-data="{
         showResults: true,
+        addressLine1: null,
+        zip: null,
+        city: null,
+        state: null,
         selectResult(placeId) {
             this.showResults = false;
             $wire.getPlaceDetails(placeId)
                 .then(result => {
-
+                    this.addressLine1 = result.addressLine1;
+                    this.zip = result.zip;
+                    this.city = result.city;
+                    this.state = result.state;
                 });
         },
     }"    
@@ -51,6 +58,7 @@
                     name="address-line-1"
                     type="text"
                     readonly="readonly"
+                    x-model="addressLine1"
                     class="w-full px-2 py-1 bg-yellow-50"
                 >
             </div>
@@ -74,6 +82,7 @@
                     name="city"
                     type="text"
                     readonly="readonly"
+                    x-model="city"
                     class="w-full px-2 py-1 bg-yellow-50"
                 >
             </div>
@@ -86,6 +95,7 @@
                     name="state"
                     type="text"
                     readonly="readonly"
+                    x-model="state"
                     class="w-full px-2 py-1 bg-yellow-50"
                 >
             </div>
@@ -98,6 +108,7 @@
                     name="zip"
                     type="text"
                     readonly="readonly"
+                    x-model="zip"
                     class="w-full px-2 py-1 bg-yellow-50"
                 >
             </div>
