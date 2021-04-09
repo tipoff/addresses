@@ -28,7 +28,7 @@
         x-model="selectedResult"
         x-on:click="showResults = true"
         x-on:click.away="showResults = false"
-        class="w-full"
+        class="w-full px-2 py-1 focus:outline-none"
     >
     <!-- List of results -->
     <div
@@ -40,7 +40,7 @@
         @foreach ($results as $result)
         <div
             x-on:click="selectResult('{{ $result['place_id'] }}', '{{ $result['description'] }}')"
-            class="block w-full text-left bg-white cursor-default hover:bg-gray-50"
+            class="block w-full px-2 py-1 text-left bg-white cursor-default hover:bg-gray-50"
         >
             {{ $result['description'] }}
         </div>
@@ -64,7 +64,7 @@
                     type="text"
                     readonly="readonly"
                     x-model="addressLine1"
-                    class="w-full px-2 py-1 bg-yellow-50"
+                    class="w-full px-2 py-1 bg-yellow-50 focus:outline-none"
                 >
             </div>
             <div class="w-4/12 ml-2">
@@ -76,7 +76,7 @@
                     name="address-line-2"
                     type="text"
                     x-ref="addressLine2"
-                    class="w-full px-2 py-1"
+                    class="w-full px-2 py-1 focus:outline-none"
                 >
             </div>
             <div class="w-2/12 ml-2">
@@ -89,7 +89,7 @@
                     type="text"
                     readonly="readonly"
                     x-model="city"
-                    class="w-full px-2 py-1 bg-yellow-50"
+                    class="w-full px-2 py-1 bg-yellow-50 focus:outline-none"
                 >
             </div>
             <div class="w-1/12 ml-2">
@@ -102,7 +102,7 @@
                     type="text"
                     readonly="readonly"
                     x-model="state"
-                    class="w-full px-2 py-1 bg-yellow-50"
+                    class="w-full px-2 py-1 bg-yellow-50 focus:outline-none"
                 >
             </div>
             <div class="w-1/12 ml-2">
@@ -115,13 +115,13 @@
                     type="text"
                     readonly="readonly"
                     x-model="zip"
-                    class="w-full px-2 py-1 bg-yellow-50"
+                    class="w-full px-2 py-1 bg-yellow-50 focus:outline-none"
                 >
             </div>
         </div>
         <button 
             type="submit"
-            class="mt-2 px-2 py-1 bg-white text-green-500 border-2 border-green-400 rounded-md"
+            class="mt-2 px-2 py-1 bg-white text-green-500 border-2 border-green-400 rounded-md focus:outline-none"
         >
             Submit
         </button>
