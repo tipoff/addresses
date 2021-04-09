@@ -1,18 +1,21 @@
 <div
     x-data="{
         showResults: true,
+        selectedResult: null,
         addressLine1: null,
         zip: null,
         city: null,
         state: null,
-        selectResult(placeId) {
+        selectResult(placeId, description) {
             this.showResults = false;
+            this.selectedResult = description
             $wire.getPlaceDetails(placeId)
                 .then(result => {
                     this.addressLine1 = result.addressLine1;
                     this.zip = result.zip;
                     this.city = result.city;
                     this.state = result.state;
+                    this.$refs.addressLine2.focus();
                 });
         },
     }"    
@@ -22,6 +25,7 @@
         type="text"
         placeholder="Enter your address"
         wire:model.debounce.400ms="query"
+        x-model="selectedResult"
         x-on:click="showResults = true"
         class=""
     >
@@ -34,7 +38,7 @@
         @if (!empty($results))
         @foreach ($results as $result)
         <div
-            x-on:click="selectResult('{{ $result['place_id'] }}')"
+            x-on:click="selectResult('{{ $result['place_id'] }}', '{{ $result['description'] }}')"
             class="block w-full text-left bg-white cursor-default hover:bg-gray-50"
         >
             {{ $result['description'] }}
@@ -70,6 +74,7 @@
                     id="address-line-2"
                     name="address-line-2"
                     type="text"
+                    x-ref="addressLine2"
                     class="w-full px-2 py-1"
                 >
             </div>
