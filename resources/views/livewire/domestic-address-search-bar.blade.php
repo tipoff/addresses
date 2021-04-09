@@ -8,14 +8,14 @@
         state: null,
         selectResult(placeId, description) {
             this.showResults = false;
-            this.selectedResult = description
+            this.selectedResult = description;
+            this.$refs.addressLine2.focus();
             $wire.getPlaceDetails(placeId)
                 .then(result => {
                     this.addressLine1 = result.addressLine1;
                     this.zip = result.zip;
                     this.city = result.city;
                     this.state = result.state;
-                    this.$refs.addressLine2.focus();
                 });
         },
     }"    
