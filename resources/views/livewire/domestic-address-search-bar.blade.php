@@ -12,9 +12,10 @@
         @if (!empty($results))
         @foreach ($results as $result)
         <div
-            wire:click="selectResult({{ $result }})"
+            wire:click="getPlaceDetails({{ $result['place_id'] }})"
+            class="bg-white"
         >
-            {{ $result->get('description') }}
+            {{ $result['description'] }}
         </div>
         @endforeach
         @endif
