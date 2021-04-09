@@ -18,7 +18,7 @@
                     this.state = result.state;
                 });
         },
-    }"    
+    }"
     class="relative"
 >
     <input
@@ -39,6 +39,7 @@
         @if (!empty($results))
         @foreach ($results as $result)
         <div
+            wire:key="'{{ $result['place_id'] }}'"
             x-on:click="selectResult('{{ $result['place_id'] }}', '{{ $result['description'] }}')"
             class="block w-full px-2 py-1 text-left bg-white cursor-default hover:bg-gray-50"
         >
@@ -47,7 +48,7 @@
         @endforeach
         @endif
     </div>
-    <form 
+    <form
         method="POST"
         action=""
         class="w-full"
@@ -119,7 +120,7 @@
                 >
             </div>
         </div>
-        <button 
+        <button
             type="submit"
             class="mt-2 px-2 py-1 bg-white text-green-500 border-2 border-green-400 rounded-md focus:outline-none"
         >
