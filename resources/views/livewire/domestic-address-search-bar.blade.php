@@ -27,13 +27,13 @@
         wire:model.debounce.400ms="query"
         x-model="selectedResult"
         x-on:click="showResults = true"
-        class=""
+        class="w-full"
     >
     <!-- List of results -->
     <div
         id="results-list"
         x-show="showResults"
-        class="absolute z-10"
+        class="absolute z-10 w-full"
     >
         @if (!empty($results))
         @foreach ($results as $result)
