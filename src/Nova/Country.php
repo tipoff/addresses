@@ -15,7 +15,7 @@ class Country extends BaseResource
 {
     public static $model = \Tipoff\Addresses\Models\Country::class;
 
-    public static $title = 'id';
+    public static $title = 'abbreviation';
 
     public static $search = [
         'id',
@@ -29,21 +29,21 @@ class Country extends BaseResource
     {
         return array_filter([
             ID::make()->sortable(),
-            Text::make('Slug')->sortable(),
             Text::make('Title')->sortable(),
             Text::make('Abbreviation')->sortable(),
+            Text::make('Capital')->sortable(),
         ]);
     }
 
     public function fields(Request $request)
     {
         return array_filter([
-            Text::make('Slug'),
             Text::make('Title'),
             Text::make('Abbreviation'),
+            Slug::make('Slug')->from('Abbreviation'),
             Text::make('Capital')->nullable(),
-            /* @todo HasMany::searchable does not exist  */
-            /*nova('state') ? HasMany::make('States', 'states', nova('state'))->searchable() : null,*/
+
+            nova('state') ? HasMany::make('States', 'states', nova('state')) : null,
         ]);
     }
 
