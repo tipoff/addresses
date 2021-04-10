@@ -40,21 +40,21 @@ class Zip extends BaseResource
     public function fields(Request $request)
     {
         return array_filter([
-            Text::make('Code')->required(),
+            Text::make('Code')->rules('required', 'unique:zips,code', 'max:5'), // @todo Only allow numbers as acceptable characters
             nova('state') ? BelongsTo::make('State', 'state', nova('state'))->searchable() : null,
             nova('region') ? BelongsTo::make('Region', 'region', nova('region'))->searchable() : null,
             nova('timezone') ? BelongsTo::make('Timezone', 'timezone', nova('timezone'))->searchable() : null,
             Number::make('Latitude')->step(0.000001)->nullable(),
             Number::make('Longitude')->step(0.000001)->nullable(),
             Boolean::make('Decommissioned')->default(0),
-            /* @todo HasMany::searchable does not exist  */
-            /*nova('domestic_address') ? HasMany::make('Domestic Address', 'domestic address', nova('domestic_address'))->searchable() : null,*/
+
             nova('city') ? BelongsToMany::make('Cities', 'cities', nova('city'))
                 ->fields(function () {
                     return [
                         Text::make('Primary')->default(false),
                     ];
                 }) : null,
+            nova('domestic_address') ? HasMany::make('Domestic Address', 'domestic address', nova('domestic_address')) : null,
         ]);
     }
 
