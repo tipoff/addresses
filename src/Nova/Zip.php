@@ -40,7 +40,7 @@ class Zip extends BaseResource
     public function fields(Request $request)
     {
         return array_filter([
-            Text::make('Code')->rules('required', 'unique:zips,code', 'max:5'), // @todo Only allow numbers as acceptable characters
+            Text::make('Code')->rules('unique:zips,code', 'max:5')->required(), // @todo Only allow numbers as acceptable characters
             nova('state') ? BelongsTo::make('State', 'state', nova('state'))->searchable() : null,
             nova('region') ? BelongsTo::make('Region', 'region', nova('region'))->searchable() : null,
             nova('timezone') ? BelongsTo::make('Timezone', 'timezone', nova('timezone'))->searchable() : null,
