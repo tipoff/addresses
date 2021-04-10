@@ -110,3 +110,11 @@ All notable changes to `addresses` will be documented in this file.
 ## 2.7.7 - 2021-04-03
 
 - update city data migrations
+
+## 2.8.0 - 2021-04-09
+
+- bump support dependencies
+
+## 2.8.1 - 2021-04-09
+
+- update latitude & longitude in nova
