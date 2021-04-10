@@ -16,10 +16,11 @@ class Region extends BaseResource
 {
     public static $model = \Tipoff\Addresses\Models\Region::class;
 
-    public static $title = 'id';
+    public static $title = 'name';
 
     public static $search = [
-        'id', 'name',
+        'id',
+        'name',
     ];
     
     public static $group = 'Resources';
