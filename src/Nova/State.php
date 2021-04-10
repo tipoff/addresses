@@ -17,7 +17,7 @@ class State extends BaseResource
 {
     public static $model = \Tipoff\Addresses\Models\State::class;
 
-    public static $title = 'id';
+    public static $title = 'abbreviation';
 
     public static $search = [
         'id',

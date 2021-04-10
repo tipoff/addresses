@@ -7,6 +7,7 @@ namespace Tipoff\Addresses\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Tipoff\Support\Nova\BaseResource;
@@ -15,10 +16,11 @@ class Region extends BaseResource
 {
     public static $model = \Tipoff\Addresses\Models\Region::class;
 
-    public static $title = 'id';
+    public static $title = 'name';
 
     public static $search = [
-        'id', 'name',
+        'id',
+        'name',
     ];
     
     public static $group = 'Resources';
@@ -27,7 +29,6 @@ class Region extends BaseResource
     {
         return array_filter([
             ID::make()->sortable(),
-            Text::make('Slug')->sortable(),
             Text::make('Name')->sortable(),
         ]);
     }
@@ -35,9 +36,10 @@ class Region extends BaseResource
     public function fields(Request $request)
     {
         return array_filter([
-            Text::make('Slug'),
             Text::make('Name'),
-            nova('zip') ? HasMany::make('Zips', 'zips', nova('zip'))->searchable() : null,
+            Slug::make('Slug')->from('Name'),
+
+            nova('zip') ? HasMany::make('Zips', 'zips', nova('zip')) : null,
         ]);
     }
 
