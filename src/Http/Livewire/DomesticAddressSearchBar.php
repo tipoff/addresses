@@ -4,42 +4,64 @@ declare(strict_types=1);
 
 namespace Tipoff\Addresses\Http\Livewire;
 
+use Illuminate\Support\Str;
 use Livewire\Component;
 use SKAgarwal\GoogleApi\PlacesApi;
+use Tipoff\Addresses\Collections\DomesticAddressCollection;
 
 class DomesticAddressSearchBar extends Component
 {
     public $query;
 
-    public $contacts;
+    public $results;
 
-    public $placesApi;
+    public $autocompleteParams;
 
-    public $params;
+    public $placeDetailsParams;
 
-    public function mount(PlacesApi $placesApi)
+    public function mount()
     {
-        $this->query = '';
-        $this->contacts = [];
-        $this->placesApi = $placesApi;
-        // restrict contacts to 'address' type only
-        $this->params = [
+        $sessionToken = (string)Str::uuid();
+
+        // Restrict results to 'address' type only in US
+        $this->autocompleteParams = [
+            'sessiontoken' => $sessionToken,
+            'components' => 'country:us',
             'types' => 'address',
+        ];
+
+        $this->placeDetailsParams = [
+            'sessiontoken' => $sessionToken,
+            // can retrieve more fields if needed for data consistency e.g. timezone
+            'fields' => 'address_component',
         ];
     }
 
-    public function setQuery(string $query)
+    public function getPlaceDetails(string $placeId)
     {
-        $this->query = $query;
+        $placeDetailsCollection = app()->make(PlacesApi::class)->placeDetails($placeId, $this->placeDetailsParams);
+        $components = new DomesticAddressCollection($placeDetailsCollection['result']['address_components'] ?? []);
+
+        return [
+            'addressLine1' => $components->addressLine1(),
+            'zip' => $components->postalCode(),
+            'city' => $components->city(),
+            'state' => $components->state(),
+        ];
     }
 
     public function updatedQuery()
     {
-        $this->contacts = $this->placesApi->placeAutocomplete($this->query, $this->params);
+        if (! empty($this->query)) {
+            $resultsCollection = app()->make(PlacesApi::class)->placeAutocomplete($this->query, $this->autocompleteParams);
+            $this->results = $resultsCollection['predictions'];
+        }
+        // $resultsCollection['status'] is handled by SKAgarwal/PlacesApi package
+        // https://github.com/SachinAgarwal1337/google-places-api/blob/2f2b474b706e362778c5642ac1524619afda9126/src/PlacesApi.php#L240
     }
 
     public function render()
     {
-        return view('livewire.domestic-address-search-bar');
+        return view('addresses::livewire.domestic-address-search-bar');
     }
 }
