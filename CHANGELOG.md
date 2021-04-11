@@ -122,3 +122,7 @@ All notable changes to `addresses` will be documented in this file.
 ## 2.8.2 - 2021-04-09
 
 - update nova resources
+
+## 2.8.3 - 2021-04-11
+
+- addresses livewire component
