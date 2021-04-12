@@ -1,5 +1,5 @@
 <div class="flex justify-between w-full mt-4 text-gray-700">
-    <div class="w-4/12">
+    <div class="w-9/12">
         <label class="ml-2 text-xs text-gray-500 font-semibold tracking-widest">
             Address 1
         </label>
@@ -13,7 +13,7 @@
             required
         >
     </div>
-    <div class="w-4/12 ml-2">
+    <div class="w-3/12 ml-2">
         <label class="ml-2 text-xs text-gray-500 font-semibold tracking-widest">
             Address 2
         </label>
@@ -25,45 +25,31 @@
             class="w-full px-2 py-1 focus:outline-none"
         >
     </div>
-    <div class="w-2/12 ml-2">
-        <label class="ml-2 text-xs text-gray-500 font-semibold tracking-widest">
-            City
-        </label>
+    <div class="">
         <input
             id="city"
             name="city"
-            type="text"
-            readonly="readonly"
+            type="hidden"
             wire:model="city"
-            class="w-full px-2 py-1 bg-yellow-50 focus:outline-none"
             required
         >
     </div>
-    <div class="w-1/12 ml-2">
-        <label class="ml-2 text-xs text-gray-500 font-semibold tracking-widest">
-            State
-        </label>
+    <div class="">
         <input
             id="state"
             name="state"
-            type="text"
-            readonly="readonly"
+            type="hidden"
             wire:model="state"
-            class="w-full px-2 py-1 bg-yellow-50 focus:outline-none"
             required
         >
     </div>
-    <div class="w-1/12 ml-2">
-        <label class="ml-2 text-xs text-gray-500 font-semibold tracking-widest">
-            Zip
-        </label>
+    <div class="">
         <input
             id="zip"
             name="zip"
-            type="text"
+            type="hidden"
             readonly="readonly"
             wire:model="zip"
-            class="w-full px-2 py-1 bg-yellow-50 focus:outline-none"
             required
         >
     </div>
