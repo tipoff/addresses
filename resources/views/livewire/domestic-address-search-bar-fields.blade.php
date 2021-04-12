@@ -1,7 +1,7 @@
 <div
     x-data="{}"
     @focus-address-line-2.window="$refs.addressLine2.focus()"
-    class="flex justify-between w-full mt-4 text-gray-700"
+    class="flex justify-between w-full mt-4 text-gray-700 border rounded-md overflow-hidden"
 >
     <div class="w-9/12">
         <label class="ml-2 text-xs text-gray-500 font-semibold tracking-widest">
@@ -13,7 +13,7 @@
             type="text"
             readonly="readonly"
             wire:model="addressLine1"
-            class="w-full px-2 py-1 bg-yellow-50 focus:outline-none"
+            class="w-full px-2 py-1 focus:outline-none"
             required
         >
     </div>
