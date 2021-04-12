@@ -42,6 +42,10 @@ class DomesticAddressSearchBar extends Component
         $placeDetailsCollection = app()->make(PlacesApi::class)->placeDetails($placeId, $this->placeDetailsParams);
         $components = new DomesticAddressCollection($placeDetailsCollection['result']['address_components'] ?? []);
 
+        $newSessionToken = (string)Str::uuid();
+        $this->autocompleteParams['sessiontoken'] = $newSessionToken;
+        $this->placeDetailsParams['sessiontoken'] = $newSessionToken;
+
         return [
             'addressLine1' => $components->addressLine1(),
             'zip' => $components->postalCode(),
