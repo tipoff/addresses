@@ -13,7 +13,7 @@ class DomesticAddressCollection extends Collection
         $streetNumber = $this->first(fn ($component) => Arr::get($component, 'types.0') === 'street_number');
         $street = $this->first(fn ($component) => Arr::get($component, 'types.0') === 'route');
 
-        return trim(($streetNumber['long_name'] ?? '') . ' ' . ($street['short_name'] ?? ''));
+        return trim(($streetNumber['long_name'] ?? '') . ' ' . ($street['long_name'] ?? ''));
     }
 
     /**
