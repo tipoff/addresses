@@ -126,3 +126,7 @@ All notable changes to `addresses` will be documented in this file.
 ## 2.8.3 - 2021-04-11
 
 - addresses livewire component
+
+## 2.8.4 - 2021-04-12
+
+- speed up data migrations
