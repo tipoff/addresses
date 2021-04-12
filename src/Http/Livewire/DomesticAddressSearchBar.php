@@ -46,12 +46,12 @@ class DomesticAddressSearchBar extends Component
         $this->autocompleteParams['sessiontoken'] = $newSessionToken;
         $this->placeDetailsParams['sessiontoken'] = $newSessionToken;
 
-        return [
+        $this->emit('populateFields', [
             'addressLine1' => $components->addressLine1(),
             'zip' => $components->postalCode(),
             'city' => $components->city(),
             'state' => $components->state(),
-        ];
+        ]);
     }
 
     public function updatedQuery()

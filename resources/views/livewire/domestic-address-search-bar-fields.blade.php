@@ -8,8 +8,9 @@
             name="address-line-1"
             type="text"
             readonly="readonly"
-            x-model="addressLine1"
+            wire:model="addressLine1"
             class="w-full px-2 py-1 bg-yellow-50 focus:outline-none"
+            required
         >
     </div>
     <div class="w-4/12 ml-2">
@@ -33,8 +34,9 @@
             name="city"
             type="text"
             readonly="readonly"
-            x-model="city"
+            wire:model="city"
             class="w-full px-2 py-1 bg-yellow-50 focus:outline-none"
+            required
         >
     </div>
     <div class="w-1/12 ml-2">
@@ -46,8 +48,9 @@
             name="state"
             type="text"
             readonly="readonly"
-            x-model="state"
+            wire:model="state"
             class="w-full px-2 py-1 bg-yellow-50 focus:outline-none"
+            required
         >
     </div>
     <div class="w-1/12 ml-2">
@@ -59,8 +62,9 @@
             name="zip"
             type="text"
             readonly="readonly"
-            x-model="zip"
+            wire:model="zip"
             class="w-full px-2 py-1 bg-yellow-50 focus:outline-none"
+            required
         >
     </div>
 </div>
