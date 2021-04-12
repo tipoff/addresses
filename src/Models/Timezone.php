@@ -31,7 +31,7 @@ class Timezone extends BaseModel
         $dateTime = new \DateTime();
         $dateTime->setTimeZone(new \DateTimeZone($php_timezone));
         $timezone = $dateTime->format('T');
-        if ($timezone == 'HDT' || 'HST') {
+        if ($timezone === 'HDT' || $timezone === 'HST') {
             return 'HAST';
         }
 
