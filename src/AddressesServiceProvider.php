@@ -6,6 +6,7 @@ namespace Tipoff\Addresses;
 
 use Livewire\Livewire;
 use Tipoff\Addresses\Http\Livewire\DomesticAddressSearchBar;
+use Tipoff\Addresses\Http\Livewire\DomesticAddressSearchBarFields;
 use Tipoff\Addresses\Models\Address;
 use Tipoff\Addresses\Models\City;
 use Tipoff\Addresses\Models\Country;
