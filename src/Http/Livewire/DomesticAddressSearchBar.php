@@ -46,6 +46,7 @@ class DomesticAddressSearchBar extends Component
         $this->autocompleteParams['sessiontoken'] = $newSessionToken;
         $this->placeDetailsParams['sessiontoken'] = $newSessionToken;
 
+        $this->dispatchBrowserEvent('focus-address-line-2');
         $this->emit('populateFields', [
             'addressLine1' => $components->addressLine1(),
             'zip' => $components->postalCode(),

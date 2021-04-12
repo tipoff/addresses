@@ -1,4 +1,8 @@
-<div class="flex justify-between w-full mt-4 text-gray-700">
+<div
+    x-data="{}"
+    @focus-address-line-2.window="$refs.addressLine2.focus()"
+    class="flex justify-between w-full mt-4 text-gray-700"
+>
     <div class="w-9/12">
         <label class="ml-2 text-xs text-gray-500 font-semibold tracking-widest">
             Address 1
