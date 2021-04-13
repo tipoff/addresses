@@ -6,6 +6,7 @@ namespace Tipoff\Addresses;
 
 use Livewire\Livewire;
 use Tipoff\Addresses\Http\Livewire\DomesticAddressSearchBar;
+use Tipoff\Addresses\Http\Livewire\DomesticAddressSearchBarFields;
 use Tipoff\Addresses\Models\Address;
 use Tipoff\Addresses\Models\City;
 use Tipoff\Addresses\Models\Country;
@@ -73,5 +74,6 @@ class AddressesServiceProvider extends TipoffServiceProvider
         parent::bootingPackage();
 
         Livewire::component('addresses::domestic-address-search-bar', DomesticAddressSearchBar::class);
+        Livewire::component('addresses::domestic-address-search-bar-fields', DomesticAddressSearchBarFields::class);
     }
 }

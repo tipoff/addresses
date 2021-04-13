@@ -42,12 +42,17 @@ class DomesticAddressSearchBar extends Component
         $placeDetailsCollection = app()->make(PlacesApi::class)->placeDetails($placeId, $this->placeDetailsParams);
         $components = new DomesticAddressCollection($placeDetailsCollection['result']['address_components'] ?? []);
 
-        return [
+        $newSessionToken = (string)Str::uuid();
+        $this->autocompleteParams['sessiontoken'] = $newSessionToken;
+        $this->placeDetailsParams['sessiontoken'] = $newSessionToken;
+
+        $this->dispatchBrowserEvent('focus-address-line-2');
+        $this->emit('populateFields', [
             'addressLine1' => $components->addressLine1(),
             'zip' => $components->postalCode(),
             'city' => $components->city(),
             'state' => $components->state(),
-        ];
+        ]);
     }
 
     public function updatedQuery()
