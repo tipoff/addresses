@@ -7,7 +7,7 @@
     x-bind:class="{ 'ring-2 ring-blue-300' : addressFocused }"
 >
     <div class="w-9/12">
-        <label class="ml-2 text-xs text-gray-500 font-semibold tracking-widest">
+        <label class="ml-2 text-xs text-gray-400 font-semibold tracking-widest">
             Address 1
         </label>
         <input
@@ -23,7 +23,7 @@
         >
     </div>
     <div class="w-3/12 ml-2">
-        <label class="ml-2 text-xs text-gray-500 font-semibold tracking-widest">
+        <label class="ml-2 text-xs text-gray-400 font-semibold tracking-widest">
             Address 2
         </label>
         <input
