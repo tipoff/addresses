@@ -1,7 +1,7 @@
 <div
     x-data="{}"
     @focus-address-line-2.window="$refs.addressLine2.focus()"
-    class="flex justify-between w-full mt-4 text-gray-700 border rounded-md overflow-hidden"
+    class="flex justify-between w-full mt-4 text-gray-700 ring-1 ring-gray-300 rounded-md overflow-hidden"
 >
     <div class="w-9/12">
         <label class="ml-2 text-xs text-gray-500 font-semibold tracking-widest">

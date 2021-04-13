@@ -16,10 +16,10 @@
         x-model="selectedResult"
         x-on:click="showResults = true"
         x-on:click.away="showResults = false"
-        class="w-full px-2 py-1 focus:outline-none"
+        class="w-full px-2 py-1 focus:outline-none text-gray-700 ring-1 ring-gray-300 rounded-md overflow-hidden focus:ring-2 focus:ring-blue-300"
     >
     @error('query') 
-    <span class="text-xs text-red-500">{{ $message }}</span>
+    <span class="ml-2 text-xs text-red-500">{{ $message }}</span>
     @enderror
     <!-- List of results -->
     <div
