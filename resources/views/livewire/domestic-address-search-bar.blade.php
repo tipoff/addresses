@@ -25,7 +25,7 @@
     <div
         id="results-list"
         x-show="showResults"
-        class="absolute z-10 w-full"
+        class="absolute top-9 z-10 w-full"
     >
         @if (!empty($results))
         @foreach ($results as $result)
