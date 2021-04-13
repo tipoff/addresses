@@ -19,6 +19,14 @@ class DomesticAddressSearchBar extends Component
 
     public $placeDetailsParams;
 
+    protected $rules = [
+        'query' => ['regex:/^\d/'],
+    ];
+
+    protected $messages = [
+        'query.regex' => 'Please enter a street number.',
+    ];
+
     public function mount()
     {
         $sessionToken = (string)Str::uuid();
@@ -58,6 +66,7 @@ class DomesticAddressSearchBar extends Component
     public function updatedQuery()
     {
         if (! empty($this->query)) {
+            $this->validate();
             $resultsCollection = app()->make(PlacesApi::class)->placeAutocomplete($this->query, $this->autocompleteParams);
             $this->results = $resultsCollection['predictions'];
         }
