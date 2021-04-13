@@ -130,3 +130,7 @@ All notable changes to `addresses` will be documented in this file.
 ## 2.8.4 - 2021-04-12
 
 - speed up data migrations
+
+## 2.8.5 - 2021-04-12
+
+- addresses autocomplete bar
