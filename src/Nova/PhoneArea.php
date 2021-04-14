@@ -30,8 +30,9 @@ class PhoneArea extends BaseResource
             Text::make('State', 'state.id', function () {
                 return $this->state->title;
             })->sortable(),
-            Text::make('Note','note')->displayUsing(function($id) {
+            Text::make('Note', 'note')->displayUsing(function ($id) {
                 $part = strip_tags(substr($id, 0, 100));
+
                 return $part . " ...";
             }),
         ]);
