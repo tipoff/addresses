@@ -18,7 +18,7 @@ class Address extends BaseResource
     public static $title = 'id';
 
     public static $search = [
-        'id', 'first_name', 'last_name', 'type','care_of', 'company', 'extended_zip', 'phone',
+        'id', 'first_name', 'last_name', 'type','care_of', 'company', 'extended_zip',
     ];
     
     public static $group = 'Resources';
