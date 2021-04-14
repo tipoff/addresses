@@ -31,7 +31,7 @@ class PhoneArea extends BaseModel
 
     public function state()
     {
-        return $this->belongsTo(app('state'), 'state_id', 'phone_area_code');
+        return $this->belongsTo(app('state'), 'state_id');
     }
 
     public function phones()
