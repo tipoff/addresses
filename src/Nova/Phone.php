@@ -26,12 +26,17 @@ class Phone extends BaseResource
     {
         return array_filter([
             Text::make('Country Calling Code', 'country_callingcode.id', function () {
-                return $this->country_callingcode->code;
+                return $this->countryCallingcode->code;
+            })->sortable(),
+            Text::make('Country', 'country', function () {
+                return $this->countryCallingcode->country->abbreviation;
             })->sortable(),
             Text::make('Full Number')->sortable(),
 
             Text::make('Phone Area', 'phone_area.code', function () {
-                return $this->phone_area->code;
+                if(!empty($this->phoneArea->code)){
+                    return $this->phoneArea->code;
+                }
             })->sortable(),
             Text::make('Exchange Code')->sortable(),
             Text::make('Line Number')->sortable(),
