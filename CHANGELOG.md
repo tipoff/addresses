@@ -134,3 +134,7 @@ All notable changes to `addresses` will be documented in this file.
 ## 2.8.5 - 2021-04-12
 
 - addresses autocomplete bar
+
+## 2.8.6 - 2021-04-13
+
+- update address component
