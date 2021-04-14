@@ -73,4 +73,9 @@ class Address extends BaseModel
     {
         return $this->morphTo();
     }
+
+    public function phone()
+    {
+        return $this->belongsTo(app('phone'));
+    }
 }

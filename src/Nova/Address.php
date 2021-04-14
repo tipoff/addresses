@@ -27,6 +27,19 @@ class Address extends BaseResource
     {
         return array_filter([
             ID::make()->sortable(),
+            Text::make('Type')->sortable(),
+            Text::make('First Name')->sortable(),
+            Text::make('Last Name')->sortable(),
+            Text::make('Care Of')->sortable(),
+            Text::make('Company')->sortable(),
+            Text::make('Extended Zip')->sortable(),
+
+            /*Text::make('State', 'state.id', function () {
+                return $this->state->title;
+            })->sortable(),
+            Text::make('Timezone', 'timezone.id', function () {
+                return $this->timezone->title;
+            })->sortable(),*/
         ]);
     }
 
