@@ -13,7 +13,6 @@ use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasCreator;
 use Tipoff\Support\Traits\HasPackageFactory;
 use Tipoff\Support\Traits\HasUpdater;
-use Tipoff\Addresses\Models\Phone;
 
 /**
  * @property int id
@@ -48,8 +47,7 @@ class Address extends BaseModel
         parent::boot();
 
         static::saving(function (Address $address) {
-            if(!empty($address->phone)){
-
+            if (! empty($address->phone)) {
                 $full_number = $address->phone;
                 unset($address->phone);
                 $phone = Phone::firstOrCreate(['full_number'=>$full_number, 'country_callingcode_id'=>1]);
