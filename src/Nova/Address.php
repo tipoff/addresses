@@ -35,7 +35,7 @@ class Address extends BaseResource
             Text::make('Company')->sortable(),
             Text::make('Extended Zip')->sortable(),
             Text::make('Phone', 'phone.id', function () {
-                if(!empty($this->phone->full_number)){
+                if (! empty($this->phone->full_number)) {
                     return $this->phone->full_number;
                 }
             })->sortable(),
