@@ -34,7 +34,7 @@ class Phone extends BaseResource
             Text::make('Full Number')->sortable(),
 
             Text::make('Phone Area', 'phone_area.code', function () {
-                if(!empty($this->phoneArea->code)){
+                if (! empty($this->phoneArea->code)) {
                     return $this->phoneArea->code;
                 }
             })->sortable(),
