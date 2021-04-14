@@ -1,10 +1,13 @@
 <div
-    x-data="{}"
+    x-data="{
+        addressFocused: false
+    }"
     @focus-address-line-2.window="$refs.addressLine2.focus()"
-    class="flex justify-between w-full mt-4 text-gray-700 border rounded-md overflow-hidden"
+    class="flex justify-between w-full mt-4 text-gray-700 ring-1 ring-gray-300 rounded-md overflow-hidden"
+    x-bind:class="{ 'ring-2 ring-blue-300' : addressFocused }"
 >
     <div class="w-9/12">
-        <label class="ml-2 text-xs text-gray-500 font-semibold tracking-widest">
+        <label class="ml-2 text-xs text-gray-400 font-semibold tracking-widest">
             Address 1
         </label>
         <input
@@ -13,12 +16,14 @@
             type="text"
             readonly="readonly"
             wire:model="addressLine1"
+            x-on:focus="addressFocused = true"
+            x-on:blur="addressFocused = false"
             class="w-full px-2 py-1 focus:outline-none"
             required
         >
     </div>
     <div class="w-3/12 ml-2">
-        <label class="ml-2 text-xs text-gray-500 font-semibold tracking-widest">
+        <label class="ml-2 text-xs text-gray-400 font-semibold tracking-widest">
             Address 2
         </label>
         <input
@@ -26,6 +31,8 @@
             name="address-line-2"
             type="text"
             x-ref="addressLine2"
+            x-on:focus="addressFocused = true"
+            x-on:blur="addressFocused = false"
             class="w-full px-2 py-1 focus:outline-none"
         >
     </div>

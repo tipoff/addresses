@@ -16,13 +16,16 @@
         x-model="selectedResult"
         x-on:click="showResults = true"
         x-on:click.away="showResults = false"
-        class="w-full px-2 py-1 focus:outline-none"
+        class="w-full px-2 py-1 focus:outline-none text-gray-700 ring-1 ring-gray-300 rounded-md overflow-hidden focus:ring-2 focus:ring-blue-300"
     >
+    @error('query') 
+    <span class="ml-2 text-xs text-red-500">{{ $message }}</span>
+    @enderror
     <!-- List of results -->
     <div
         id="results-list"
         x-show="showResults"
-        class="absolute z-10 w-full"
+        class="absolute top-9 z-10 w-full"
     >
         @if (!empty($results))
         @foreach ($results as $result)
