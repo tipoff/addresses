@@ -10,6 +10,7 @@ use Laravel\Nova\Fields\MorphTo;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Tipoff\Support\Nova\BaseResource;
+use Laravel\Nova\Fields\BelongsTo;
 
 class Address extends BaseResource
 {
@@ -33,30 +34,31 @@ class Address extends BaseResource
             Text::make('Care Of')->sortable(),
             Text::make('Company')->sortable(),
             Text::make('Extended Zip')->sortable(),
-
-            /*Text::make('State', 'state.id', function () {
-                return $this->state->title;
+            Text::make('Phone', 'phone.id', function () {
+                return $this->phone->full_number;
             })->sortable(),
-            Text::make('Timezone', 'timezone.id', function () {
-                return $this->timezone->title;
-            })->sortable(),*/
+            Text::make('Address', 'addressable.id', function () {
+                return $this->addressable->address_line_1." ".$this->addressable->address_line_2;
+            })->sortable(),
         ]);
     }
 
     public function fields(Request $request)
     {
         return array_filter([
+            nova('domestic_address') ? BelongsTo::make('Domestic Addresses', 'domesticAddress', nova('domestic_address'))->required() : null,
             Text::make('Type'),
             Text::make('First Name')->nullable(),
             Text::make('Last Name')->nullable(),
             Text::make('Care Of')->nullable(),
             Text::make('Company')->nullable(),
             Text::make('Extended Zip')->nullable(),
-            Text::make('Phone')->nullable(),
-            nova('domestic_address') && nova('foreign_address') ? MorphTo::make('Addressable')->types([
+            Text::make('Phone', 'phone.id', function () {
+                return $this->phone->full_number;
+            })->nullable(),
+            MorphTo::make('Addressable')->types([
                 nova('domestic_address'),
-                nova('foreign_address'),
-            ]) : null,
+            ]),
         ]);
     }
     
