@@ -52,10 +52,7 @@ class Address extends BaseModel
 
                 $full_number = $address->phone;
                 unset($address->phone);
-                $phone = new Phone;
-                $phone->full_number = $full_number;
-                $phone->country_callingcode_id = 1;
-                $phone->save();
+                $phone = Phone::firstOrCreate(['full_number'=>$full_number, 'country_callingcode_id'=>1]);
                 $address->phone_id = $phone->id;       
             }
             Assert::lazy()
