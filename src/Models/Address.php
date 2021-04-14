@@ -13,6 +13,7 @@ use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasCreator;
 use Tipoff\Support\Traits\HasPackageFactory;
 use Tipoff\Support\Traits\HasUpdater;
+use Tipoff\Addresses\Models\Country;
 
 /**
  * @property int id
@@ -50,7 +51,7 @@ class Address extends BaseModel
             if (! empty($address->phone)) {
                 $full_number = $address->phone;
                 unset($address->phone);
-                $phone = Phone::firstOrCreate(['full_number' => $full_number, 'country_callingcode_id' => 1]);
+                $phone = Phone::firstOrCreate(['full_number' => $full_number, 'country_callingcode_id' => Country::fromAbbreviation('USA')->getId()]);
                 $address->phone_id = $phone->id;
             }
             Assert::lazy()
