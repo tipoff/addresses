@@ -13,7 +13,6 @@ use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasCreator;
 use Tipoff\Support\Traits\HasPackageFactory;
 use Tipoff\Support\Traits\HasUpdater;
-use Tipoff\Addresses\Models\Phone;
 
 /**
  * @property int id
@@ -48,15 +47,14 @@ class Address extends BaseModel
         parent::boot();
 
         static::saving(function (Address $address) {
-            if(!empty($address->phone)){
-
+            if (! empty($address->phone)) {
                 $full_number = $address->phone;
                 unset($address->phone);
                 $phone = new Phone;
                 $phone->full_number = $full_number;
                 $phone->country_callingcode_id = 1;
                 $phone->save();
-                $address->phone_id = $phone->id;       
+                $address->phone_id = $phone->id;
             }
             Assert::lazy()
                 ->that($address->domestic_address_id)->notEmpty('An address must have a US domestic postal address.')
