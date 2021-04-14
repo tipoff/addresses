@@ -28,7 +28,7 @@ class City extends BaseResource
 
     public function title()
     {
-        return $this->title."-".$this->state->title;
+        return $this->title.", ".$this->state->title;
     }
 
     public static $group = 'Resources';
