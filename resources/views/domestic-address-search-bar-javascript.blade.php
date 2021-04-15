@@ -81,7 +81,7 @@
 </div>
 
 @push ('scripts')
-<script async src="https://maps.googleapis.com/maps/api/js?key={{ config('google-api.places.key') }}&libraries=places">
+<script src="https://maps.googleapis.com/maps/api/js?key={{ config('google-api.places.key') }}&libraries=places" async defer>
     const inputAddressLine1 = document.getElementById("address-line-1");
     const inputAddressLine2 = document.getElementById("address-line-2");
     const inputCity = document.getElementById("city");
