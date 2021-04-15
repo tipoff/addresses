@@ -138,3 +138,7 @@ All notable changes to `addresses` will be documented in this file.
 ## 2.8.6 - 2021-04-13
 
 - update address component
+
+## 2.8.7 - 2021-04-15
+
+- update nova resources
