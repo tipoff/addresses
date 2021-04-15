@@ -129,7 +129,7 @@
                     break;
                 // street name, e.g. Main Street
                 case "route":
-                    addressLine1 += component.short_name;
+                    addressLine1 += component.long_name;
                     break;
                 case "postal_code":
                     zip = `${component.long_name}${zip}`;
