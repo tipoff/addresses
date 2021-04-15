@@ -81,7 +81,7 @@
 </div>
 
 @push ('scripts')
-<script src="https://maps.googleapis.com/maps/api/js?key={{ config('google-api.places.key') }}&libraries=places" async defer>
+<script src="https://maps.googleapis.com/maps/api/js?key={{ config('google-api.places.key') }}&libraries=places&callback=initAutocomplete" async defer>
     const inputAddressLine1 = document.getElementById("address-line-1");
     const inputAddressLine2 = document.getElementById("address-line-2");
     const inputCity = document.getElementById("city");
@@ -103,7 +103,11 @@
             "address",
         ],
     };
-    const autocomplete = new google.maps.places.Autocomplete(inputAutocomplete, options);
+
+    let autocomplete;
+    function initAutocomplete() {
+        autocomplete = new google.maps.places.Autocomplete(inputAutocomplete, options);
+    }    
 
     // event 'place_changed' fires when User selects an address from dropdown list
     autocomplete.addListener("place_changed", addressSelected);
