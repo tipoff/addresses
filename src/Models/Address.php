@@ -50,7 +50,7 @@ class Address extends BaseModel
             if (! empty($address->phone)) {
                 $full_number = $address->phone;
                 unset($address->phone);
-                $phone = Phone::firstOrCreate(['full_number' => $full_number, 'country_callingcode_id' => Country::fromAbbreviation('USA')->getId()]);
+                $phone = Phone::firstOrCreate(['full_number' => $full_number, 'country_callingcode_id' => 1]);
                 $address->phone_id = $phone->id;
             }
             Assert::lazy()
