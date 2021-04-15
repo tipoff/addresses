@@ -14,7 +14,7 @@ class Phone extends BaseResource
 {
     public static $model = \Tipoff\Addresses\Models\Phone::class;
 
-    public static $title = 'id';
+    public static $title = 'full_number';
 
     public static $search = [
         'full_number',
