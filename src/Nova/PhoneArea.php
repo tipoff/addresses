@@ -7,6 +7,7 @@ namespace Tipoff\Addresses\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Tipoff\Support\Nova\BaseResource;
 
@@ -26,10 +27,14 @@ class PhoneArea extends BaseResource
     {
         return array_filter([
             Text::make('Code')->sortable(),
-            Text::make('Note')->sortable(),
             Text::make('State', 'state.id', function () {
                 return $this->state->title;
             })->sortable(),
+            Text::make('Note', 'note')->displayUsing(function ($id) {
+                $part = strip_tags(substr($id, 0, 100));
+
+                return $part . " ...";
+            }),
         ]);
     }
 
@@ -37,7 +42,7 @@ class PhoneArea extends BaseResource
     {
         return array_filter([
             Text::make('Code'),
-            Text::make('Note')->nullable(),
+            TextArea::make('Note')->nullable(),
             nova('state') ? BelongsTo::make('State', 'state', nova('state'))->searchable() : null,
         ]);
     }

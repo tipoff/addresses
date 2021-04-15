@@ -16,12 +16,17 @@ class DomesticAddress extends BaseResource
 {
     public static $model = \Tipoff\Addresses\Models\DomesticAddress::class;
 
-    public static $title = 'id';
-
     public static $search = [
         'id',
         'address_line_1',
     ];
+    
+    public static $title = 'address_line_1';
+
+    public function subtitle()
+    {
+        return "{$this->city->title}, {$this->city->state->abbreviation} {$this->zip_code}";
+    }
     
     public static $group = 'Resources';
 

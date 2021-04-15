@@ -20,11 +20,16 @@ class City extends BaseResource
 {
     public static $model = \Tipoff\Addresses\Models\City::class;
 
-    public static $title = 'id';
+    public static $title = 'title';
 
     public static $search = [
         'id', 'title',
     ];
+
+    public function title()
+    {
+        return $this->title.", ".$this->state->title;
+    }
 
     public static $group = 'Resources';
 
@@ -76,8 +81,8 @@ class City extends BaseResource
                         Text::make('Primary')->default(false),
                     ];
                 }) : null,
-            /* @todo HasMany::searchable does not exist  */
-            /*nova('domestic_address') ? HasMany::make('Domestic Addresses', 'domestic addresses', nova('domestic_address'))->searchable() : null,*/
+
+            nova('domestic_address') ? HasMany::make('Domestic Addresses', 'domesticAddresses', nova('domestic_address')) : null,
         ]);
     }
 

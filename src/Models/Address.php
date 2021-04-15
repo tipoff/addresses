@@ -47,6 +47,12 @@ class Address extends BaseModel
         parent::boot();
 
         static::saving(function (Address $address) {
+            if (! empty($address->phone)) {
+                $full_number = $address->phone;
+                unset($address->phone);
+                $phone = Phone::firstOrCreate(['full_number' => $full_number, 'country_callingcode_id' => 1]);
+                $address->phone_id = $phone->id;
+            }
             Assert::lazy()
                 ->that($address->domestic_address_id)->notEmpty('An address must have a US domestic postal address.')
                 ->verifyNow();
@@ -66,5 +72,10 @@ class Address extends BaseModel
     public function addressable()
     {
         return $this->morphTo();
+    }
+
+    public function phone()
+    {
+        return $this->belongsTo(app('phone'));
     }
 }

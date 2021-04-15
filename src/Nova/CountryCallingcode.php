@@ -14,11 +14,16 @@ class CountryCallingcode extends BaseResource
 {
     public static $model = \Tipoff\Addresses\Models\CountryCallingcode::class;
 
-    public static $title = 'id';
+    public static $title = 'title';
 
     public static $search = [
         'code',
     ];
+
+    public function title()
+    {
+        return $this->country->abbreviation;
+    }
 
     public static $group = 'Resources';
 
