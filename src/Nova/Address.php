@@ -34,8 +34,8 @@ class Address extends BaseResource
             Text::make('Care Of')->sortable(),
             Text::make('Company')->sortable(),
             Text::make('Extended Zip')->sortable(),
-            Text::make('Phone', 'phone.id', function () {
-                if (! empty($this->phone->full_number)) {
+            Text::make('Phone', 'phone', function () {
+                if(! empty($this->phone->full_number)){
                     return $this->phone->full_number;
                 }
             })->sortable(),
@@ -55,7 +55,11 @@ class Address extends BaseResource
             Text::make('Care Of')->nullable(),
             Text::make('Company')->nullable(),
             Text::make('Extended Zip')->nullable(),
-            Text::make('Phone')->nullable(),
+            Text::make('Phone', 'phone', function () {
+                if(! empty($this->phone->full_number)){
+                    return $this->phone->full_number;
+                }
+            })->nullable(),
             MorphTo::make('Addressable')->types([
                 nova('domestic_address'),
             ]),
