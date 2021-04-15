@@ -17,9 +17,9 @@
     "require": {
         "php": "^7.4|^8.0",
         "livewire/livewire": "^2.4.2",
-        "tipoff/authorization": "^2.8.0",
+        "tipoff/authorization": "^2.8.2",
         "tipoff/laravel-google-api": "^2.0.0",
-        "tipoff/support": "^2.0.2"
+        "tipoff/support": "^2.1.0"
     },
     "require-dev": {
         "tipoff/test-support": "^2.0.0"
