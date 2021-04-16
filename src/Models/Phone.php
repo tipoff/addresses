@@ -36,14 +36,14 @@ class Phone extends BaseModel
 
     public function getFormattedNumberAttribute()
     {
-        if(strlen($this->full_number) === 10) {
+        if (strlen($this->full_number) === 10) {
             return preg_replace("/^1?(\d{3})(\d{3})(\d{4})$/", "$1-$2-$3", $this->full_number);
         }
     }
 
     public function getParentheticalFormattedNumbersAttribute()
     {
-        if(strlen($this->full_number) === 10) {
+        if (strlen($this->full_number) === 10) {
             return preg_replace("/^1?(\d{3})(\d{3})(\d{4})$/", "($1) $2-$3", $this->full_number);
         }
     }
