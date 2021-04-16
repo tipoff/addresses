@@ -33,4 +33,18 @@ class Phone extends BaseModel
     {
         return $this->belongsTo(app('phone_area'), 'phone_area_code');
     }
+
+    public function getFormattedNumberAttribute()
+    {
+        if(strlen($this->full_number) === 10) {
+            return preg_replace("/^1?(\d{3})(\d{3})(\d{4})$/", "$1-$2-$3", $this->full_number);
+        }
+    }
+
+    public function getParentheticalFormattedNumbersAttribute()
+    {
+        if(strlen($this->full_number) === 10) {
+            return preg_replace("/^1?(\d{3})(\d{3})(\d{4})$/", "($1) $2-$3", $this->full_number);
+        }
+    }
 }
