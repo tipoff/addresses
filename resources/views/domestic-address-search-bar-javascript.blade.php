@@ -82,6 +82,16 @@
         // entry of subpremise information such as apartment, unit, or floor number.
         document.getElementById("address-line-2").focus();
     }
+
+    function focusField() {
+        document.getElementById("parent-field").classList.add("ring-2");
+        document.getElementById("parent-field").classList.add("ring-blue-300");
+    }
+
+    function blurField() {
+        document.getElementById("parent-field").classList.remove("ring-2");
+        document.getElementById("parent-field").classList.remove("ring-blue-300");
+    }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key={{ config('google-api.places.key') }}&libraries=places&callback=initAutocomplete" async defer type="text/javascript"></script>
 @endpush
