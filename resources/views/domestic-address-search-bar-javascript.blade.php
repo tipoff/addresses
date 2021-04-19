@@ -81,14 +81,12 @@
 </div>
 
 @push ('scripts')
-<script src="https://maps.googleapis.com/maps/api/js?key={{ config('google-api.places.key') }}&libraries=places&callback=initAutocomplete" async defer>
+<script type="text/javascript">
     const inputAddressLine1 = document.getElementById("address-line-1");
     const inputAddressLine2 = document.getElementById("address-line-2");
     const inputCity = document.getElementById("city");
     const inputState = document.getElementById("state");
     const inputZip = document.getElementById("zip");
-    
-    const inputAutocomplete = document.getElementById("autocomplete");
     
     const options = {
         componentRestrictions: { 
@@ -106,11 +104,10 @@
 
     let autocomplete;
     function initAutocomplete() {
-        autocomplete = new google.maps.places.Autocomplete(inputAutocomplete, options);
-    }    
-
-    // event 'place_changed' fires when User selects an address from dropdown list
-    autocomplete.addListener("place_changed", addressSelected);
+        autocomplete = new google.maps.places.Autocomplete(document.getElementById("autocomplete"), options);
+        // event 'place_changed' fires when User selects an address from dropdown list
+        autocomplete.addListener("place_changed", addressSelected);
+    }
 
     function addressSelected() {
         // Get the place details from the autocomplete object.
@@ -166,4 +163,5 @@
         inputAddressLine2.focus();
     }
 </script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{ config('google-api.places.key') }}&libraries=places&callback=initAutocomplete" async defer type="text/javascript"></script>
 @endpush
