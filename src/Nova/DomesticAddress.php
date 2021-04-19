@@ -53,10 +53,14 @@ class DomesticAddress extends BaseResource
         return array_filter([
             GoogleAutocomplete::make('Address')
                 ->countries('US')
-                ->withValues(['street_number.long_name','locality.long_name','postal_code.short_name','administrative_area_level_1.short_name']),
-            AddressMetadata::make(['Address Line 1'])->fromValue('street_number'),
-            AddressMetadata::make(['City'])->fromValue('locality')->sortable(),
-            AddressMetadata::make(['Zip'])->fromValue('postal_code')->sortable(),
+                ->withValues(['street_number.long_name','locality.long_name','postal_code.short_name','administrative_area_level_1.short_name'])->onlyOnForms(),
+            AddressMetadata::make(['Address Line 1'])->fromValue('street_number')->onlyOnForms(),
+            AddressMetadata::make(['City'])->fromValue('locality')->onlyOnForms(),
+            AddressMetadata::make(['Zip'])->fromValue('postal_code')->onlyOnForms(),
+            Text::make('Address Line 1')->exceptOnForms(),
+            Text::make('Address Line 2')->nullable(),
+            nova('city') ? BelongsTo::make('City', 'city', nova('city'))->exceptOnForms(), : null,
+            nova('zip') ? BelongsTo::make('Zip', 'zip', nova('zip'))->exceptOnForms(), : null,
 
             /* @todo MorphOne::searchable does not exist  */
             /*nova('address') ? MorphOne::make('Address', 'address', nova('address'))->searchable() : null,*/
