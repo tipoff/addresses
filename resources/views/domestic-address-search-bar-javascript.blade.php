@@ -82,12 +82,6 @@
 
 @push ('scripts')
 <script type="text/javascript">
-    const inputAddressLine1 = document.getElementById("address-line-1");
-    const inputAddressLine2 = document.getElementById("address-line-2");
-    const inputCity = document.getElementById("city");
-    const inputState = document.getElementById("state");
-    const inputZip = document.getElementById("zip");
-    
     const options = {
         componentRestrictions: { 
             country: "us",
@@ -116,7 +110,6 @@
         let city = "";
         let state = "";
         let zip = "";
-
         // Get each component of the address from the place details,
         // and then fill-in the corresponding field on the form.
         // place.address_components are google.maps.GeocoderAddressComponent objects
@@ -153,14 +146,14 @@
                 //     break;
             }
         }
-        inputAddressLine1.value = addressLine1;
-        inputCity.value = city;
-        inputState.value = state;
-        inputZip.value = zip;
+        document.getElementById("address-line-1").value = addressLine1;
+        document.getElementById("city").value = city;
+        document.getElementById("state").value = state;
+        document.getElementById("zip").value = zip;
         // After filling the form with address components from the Autocomplete
         // prediction, set cursor focus on the second address line to encourage
         // entry of subpremise information such as apartment, unit, or floor number.
-        inputAddressLine2.focus();
+        document.getElementById("address-line-2").focus();
     }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key={{ config('google-api.places.key') }}&libraries=places&callback=initAutocomplete" async defer type="text/javascript"></script>
