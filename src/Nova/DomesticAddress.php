@@ -59,8 +59,8 @@ class DomesticAddress extends BaseResource
             AddressMetadata::make(['Zip'])->fromValue('postal_code')->onlyOnForms(),
             Text::make('Address Line 1')->exceptOnForms(),
             Text::make('Address Line 2')->nullable(),
-            nova('city') ? BelongsTo::make('City', 'city', nova('city'))->exceptOnForms(), : null,
-            nova('zip') ? BelongsTo::make('Zip', 'zip', nova('zip'))->exceptOnForms(), : null,
+            nova('city') ? BelongsTo::make('City', 'city', nova('city'))->exceptOnForms() : null,
+            nova('zip') ? BelongsTo::make('Zip', 'zip', nova('zip'))->exceptOnForms() : null,
 
             /* @todo MorphOne::searchable does not exist  */
             /*nova('address') ? MorphOne::make('Address', 'address', nova('address'))->searchable() : null,*/
