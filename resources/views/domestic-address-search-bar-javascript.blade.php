@@ -2,6 +2,8 @@
     <input
         type="text"
         placeholder="Enter your address"
+        onfocus="showPredictions()"
+        onblur="hidePredictions()"
         oninput="getPredictions(this.value)"
         class="w-full px-2 py-1 focus:outline-none text-gray-700 ring-1 ring-gray-300 rounded-md overflow-hidden focus:ring-2 focus:ring-blue-300"
     >
@@ -54,7 +56,7 @@
         resetSessionToken();
     }
 
-    function showPredictions(predictions, status) {
+    function populatePredictions(predictions, status) {
         // clear results in list
         document.getElementById("results-list").innerHTML = "";
         // show results in list
@@ -73,7 +75,7 @@
 
     function getPredictions(query) {
         autocompleteParams.input = query;
-        autocompleteService.getPlacePredictions(autocompleteParams, showPredictions);
+        autocompleteService.getPlacePredictions(autocompleteParams, populatePredictions);
     }
 
     function populateFields(placeDetails, status) {
@@ -141,6 +143,14 @@
     function blurField() {
         document.getElementById("parent-field").classList.remove("ring-2");
         document.getElementById("parent-field").classList.remove("ring-blue-300");
+    }
+
+    function showPredictions() {
+        document.getElementById("results-list").classList.remove("invisible");
+    }
+
+    function hidePredictions() {
+        document.getElementById("results-list").classList.add("invisible");
     }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key={{ config('google-api.places.key') }}&libraries=places&callback=initAutocomplete" async defer type="text/javascript"></script>
