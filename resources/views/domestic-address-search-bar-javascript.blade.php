@@ -1,5 +1,6 @@
 <div class="w-full">
     <input
+        id="search-bar"
         type="text"
         placeholder="Enter your address"
         onfocus="showPredictions()"
@@ -66,6 +67,7 @@
             result.innerText = prediction.description;
             result.onmousedown = function () {
                 hidePredictions();
+                document.getElementById("search-bar").value = prediction.description;
                 addressSelected(prediction.place_id);
             }
             document.getElementById("results-list").appendChild(result);
