@@ -1,15 +1,23 @@
 <div class="w-full">
     <input
-        id="autocomplete"
         type="text"
         placeholder="Enter your address"
+        oninput="getPredictions(this.value)"
         class="w-full px-2 py-1 focus:outline-none text-gray-700 ring-1 ring-gray-300 rounded-md overflow-hidden focus:ring-2 focus:ring-blue-300"
     >
+    <div id="attributions"></div>
+    <div
+        id="results-list"
+        class="absolute top-9 z-10 w-full"
+    >
+    </div>
 </div>
 
 @push ('scripts')
 <script type="text/javascript">
-    const options = {
+    const autocompleteParams = {
+        input: null,
+        sessionToken: null,
         componentRestrictions: { 
             country: "us",
         },
@@ -22,17 +30,53 @@
             "address",
         ],
     };
+    const placeDetailsParams = {
+        placeId: null,
+        sessionToken: null,
+        fields: [
+            "address_components",
+            // can retrieve more fields if needed for data consistency e.g. timezone
+        ],
+    };
 
-    let autocomplete;
-    function initAutocomplete() {
-        autocomplete = new google.maps.places.Autocomplete(document.getElementById("autocomplete"), options);
-        // event 'place_changed' fires when User selects an address from dropdown list
-        autocomplete.addListener("place_changed", addressSelected);
+    function resetSessionToken() {
+        let sessionToken = new google.maps.places.AutocompleteSessionToken();
+        autocompleteParams.sessionToken = sessionToken;
+        placeDetailsParams.sessionToken = sessionToken;
     }
 
-    function addressSelected() {
-        // Get the place details from the autocomplete object.
-        const place = autocomplete.getPlace();
+    let autocompleteService;
+    let placesService;
+
+    function initAutocomplete() {
+        autocompleteService = new google.maps.places.AutocompleteService();
+        placesService = new google.maps.places.PlacesService(document.getElementById("attributions"));
+        resetSessionToken();
+    }
+
+    function showPredictions(predictions, status) {
+        // clear results in list
+        document.getElementById("results-list").innerHTML = "";
+        // show results in list
+        predictions.forEach(prediction => {
+            const result = document.createElement("div");
+            result.className = "block w-full px-2 py-1 text-left bg-white cursor-default hover:bg-gray-50";
+            result.innerText = prediction.description;
+            result.onclick = function () {
+                document.getElementById("results-list").classList.add("invisible");
+                addressSelected(prediction.place_id);
+            }
+            document.getElementById("results-list").appendChild(result);
+        });
+        // document.getElementById("results-list")
+    }
+
+    function getPredictions(query) {
+        autocompleteParams.input = query;
+        autocompleteService.getPlacePredictions(autocompleteParams, showPredictions);
+    }
+
+    function populateFields(placeDetails, status) {
         let addressLine1 = "";
         let city = "";
         let state = "";
@@ -41,7 +85,7 @@
         // and then fill-in the corresponding field on the form.
         // place.address_components are google.maps.GeocoderAddressComponent objects
         // which are documented at http://goo.gle/3l5i5Mr
-        for (const component of place.address_components) {
+        for (const component of placeDetails.address_components) {
             const componentType = component.types[0];
 
             switch (componentType) {
@@ -81,6 +125,12 @@
         // prediction, set cursor focus on the second address line to encourage
         // entry of subpremise information such as apartment, unit, or floor number.
         document.getElementById("address-line-2").focus();
+    }
+
+    function addressSelected(placeId) {
+        placeDetailsParams.placeId = placeId;
+        placesService.getDetails(placeDetailsParams, populateFields);
+        resetSessionToken();
     }
 
     function focusField() {
