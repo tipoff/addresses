@@ -70,7 +70,6 @@
             }
             document.getElementById("results-list").appendChild(result);
         });
-        // document.getElementById("results-list")
     }
 
     function getPredictions(query) {
