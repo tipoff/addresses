@@ -64,8 +64,8 @@
             const result = document.createElement("div");
             result.className = "block w-full px-2 py-1 text-left bg-white cursor-default hover:bg-gray-50";
             result.innerText = prediction.description;
-            result.onclick = function () {
-                document.getElementById("results-list").classList.add("invisible");
+            result.onmousedown = function () {
+                hidePredictions();
                 addressSelected(prediction.place_id);
             }
             document.getElementById("results-list").appendChild(result);
