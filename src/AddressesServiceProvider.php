@@ -29,6 +29,7 @@ use Tipoff\Addresses\Policies\RegionPolicy;
 use Tipoff\Addresses\Policies\StatePolicy;
 use Tipoff\Addresses\Policies\TimezonePolicy;
 use Tipoff\Addresses\Policies\ZipPolicy;
+use Tipoff\Support\Contracts\Addresses\TimezoneInterface;
 use Tipoff\Support\TipoffPackage;
 use Tipoff\Support\TipoffServiceProvider;
 
@@ -62,6 +63,9 @@ class AddressesServiceProvider extends TipoffServiceProvider
                 \Tipoff\Addresses\Nova\State::class,
                 \Tipoff\Addresses\Nova\Timezone::class,
                 \Tipoff\Addresses\Nova\Zip::class,
+            ])
+            ->hasModelInterfaces([
+                TimezoneInterface::class => Timezone::class,
             ])
             ->hasDataMigrations()
             ->name('addresses')
