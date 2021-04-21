@@ -62,7 +62,7 @@
         // clear results in list
         document.getElementById("results-list").innerHTML = "";
         // show results in list
-        if (status === 'OK') {
+        if (status === "OK") {
             predictions.forEach(prediction => {
                 const result = document.createElement("div");
                 result.className = "block w-full px-2 py-1 text-left bg-white cursor-default hover:bg-gray-50";
