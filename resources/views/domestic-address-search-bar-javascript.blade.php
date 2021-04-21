@@ -62,17 +62,19 @@
         // clear results in list
         document.getElementById("results-list").innerHTML = "";
         // show results in list
-        predictions.forEach(prediction => {
-            const result = document.createElement("div");
-            result.className = "block w-full px-2 py-1 text-left bg-white cursor-default hover:bg-gray-50";
-            result.innerText = prediction.description;
-            result.onmousedown = function () {
-                hidePredictions();
-                document.getElementById("search-bar").value = prediction.description;
-                addressSelected(prediction.place_id);
-            }
-            document.getElementById("results-list").appendChild(result);
-        });
+        if (status === 'OK') {
+            predictions.forEach(prediction => {
+                const result = document.createElement("div");
+                result.className = "block w-full px-2 py-1 text-left bg-white cursor-default hover:bg-gray-50";
+                result.innerText = prediction.description;
+                result.onmousedown = function () {
+                    hidePredictions();
+                    document.getElementById("search-bar").value = prediction.description;
+                    addressSelected(prediction.place_id);
+                }
+                document.getElementById("results-list").appendChild(result);
+            });
+        }
     }
 
     function debounce(func, wait, immediate) {
