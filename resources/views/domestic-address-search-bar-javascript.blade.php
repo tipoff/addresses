@@ -92,6 +92,7 @@
         };
     }
 
+    const debounceDelay = 400;
     const getPredictions = debounce(function (query) {
         let startsWithStreetNumber = /^\d/;
         let errorMsg = "Please enter a street number.";
@@ -104,7 +105,7 @@
             autocompleteParams.input = query;
             autocompleteService.getPlacePredictions(autocompleteParams, populatePredictions);
         }
-    }, 1000, false);
+    }, debounceDelay, false);
 
     function populateFields(placeDetails, status) {
         let addressLine1 = "";
