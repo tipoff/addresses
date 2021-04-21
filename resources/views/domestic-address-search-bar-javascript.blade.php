@@ -1,4 +1,4 @@
-<div class="w-full">
+<div class="relative">
     <input
         id="search-bar"
         type="text"
@@ -9,12 +9,12 @@
         class="w-full px-2 py-1 focus:outline-none text-gray-700 ring-1 ring-gray-300 rounded-md overflow-hidden focus:ring-2 focus:ring-blue-300"
     >
     <span id="error-msg" class="ml-2 text-xs text-red-500"></span>
-    <div id="attributions"></div>
     <div
         id="results-list"
         class="absolute top-9 z-10 w-full"
     >
     </div>
+    <div id="attributions"></div>
 </div>
 
 @push ('scripts')
