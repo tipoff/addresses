@@ -3,11 +3,12 @@
         id="search-bar"
         type="text"
         placeholder="Enter your address"
+        oninput="getPredictions(this.value)"
         onfocus="showPredictions()"
         onblur="hidePredictions()"
-        oninput="getPredictions(this.value)"
         class="w-full px-2 py-1 focus:outline-none text-gray-700 ring-1 ring-gray-300 rounded-md overflow-hidden focus:ring-2 focus:ring-blue-300"
     >
+    <span id="error-msg" class="ml-2 text-xs text-red-500"></span>
     <div id="attributions"></div>
     <div
         id="results-list"
@@ -75,8 +76,15 @@
     }
 
     function getPredictions(query) {
-        autocompleteParams.input = query;
-        autocompleteService.getPlacePredictions(autocompleteParams, populatePredictions);
+        let startsWithStreetNumber = /^\d/;
+        let errorMsg = "Please enter a street number.";
+        if (!startsWithStreetNumber.test(query) ) {
+            document.getElementById("error-msg").innerText = errorMsg;
+        } else {
+            document.getElementById("error-msg").innerText = "";
+            autocompleteParams.input = query;
+            autocompleteService.getPlacePredictions(autocompleteParams, populatePredictions);
+        }
     }
 
     function populateFields(placeDetails, status) {
