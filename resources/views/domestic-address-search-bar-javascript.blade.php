@@ -75,17 +75,34 @@
         });
     }
 
-    function getPredictions(query) {
+    function debounce(func, wait, immediate) {
+        var timeout;
+        return function() {
+            var context = this, args = arguments;
+            var later = function() {
+                timeout = null;
+                if (!immediate) func.apply(context, args);
+            };
+            var callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply(context, args);
+        };
+    }
+
+    const getPredictions = debounce(function (query) {
         let startsWithStreetNumber = /^\d/;
         let errorMsg = "Please enter a street number.";
         if (!startsWithStreetNumber.test(query) ) {
+            hidePredictions();
             document.getElementById("error-msg").innerText = errorMsg;
         } else {
+            showPredictions();
             document.getElementById("error-msg").innerText = "";
             autocompleteParams.input = query;
             autocompleteService.getPlacePredictions(autocompleteParams, populatePredictions);
         }
-    }
+    }, 1000, false);
 
     function populateFields(placeDetails, status) {
         let addressLine1 = "";
