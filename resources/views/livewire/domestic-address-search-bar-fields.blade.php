@@ -3,7 +3,7 @@
         addressFocused: false
     }"
     @focus-address-line-2.window="$refs.addressLine2.focus()"
-    class="flex justify-between w-full mt-4 text-gray-700 ring-1 ring-gray-300 rounded-md overflow-hidden"
+    class="flex justify-between w-full text-gray-700 ring-1 ring-gray-300 rounded-md overflow-hidden"
     x-bind:class="{ 'ring-2 ring-blue-300' : addressFocused }"
 >
     <div class="w-9/12">
