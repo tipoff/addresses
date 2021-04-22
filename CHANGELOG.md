@@ -142,3 +142,8 @@ All notable changes to `addresses` will be documented in this file.
 ## 2.8.7 - 2021-04-15
 
 - update nova resources
+
+## 2.8.8 - 2021-04-20
+
+- update phone nova resource
+- update address autocomplete

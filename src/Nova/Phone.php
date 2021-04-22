@@ -14,7 +14,7 @@ class Phone extends BaseResource
 {
     public static $model = \Tipoff\Addresses\Models\Phone::class;
 
-    public static $title = 'id';
+    public static $title = 'full_number';
 
     public static $search = [
         'full_number',
@@ -31,8 +31,9 @@ class Phone extends BaseResource
             Text::make('Country', 'country', function () {
                 return $this->countryCallingcode->country->abbreviation;
             })->sortable(),
-            Text::make('Full Number')->sortable(),
-
+            Text::make('Full Number', 'full_number', function () {
+                return $this->formatted_number;
+            })->sortable(),
             Text::make('Phone Area', 'phone_area.code', function () {
                 if (! empty($this->phoneArea->code)) {
                     return $this->phoneArea->code;
@@ -47,7 +48,11 @@ class Phone extends BaseResource
     {
         return array_filter([
             nova('country_callingcode') ? BelongsTo::make('Country Calling Code', 'countryCallingcode', nova('country_callingcode'))->searchable() : null,
-            Text::make('Full Number'),
+            Text::make('Full Number', 'full_number', function () {
+                if (! empty($this->formatted_number)) {
+                    return $this->formatted_number;
+                }
+            })->sortable(),
             nova('phone_area') ? BelongsTo::make('Phone Area', 'phoneArea', nova('phone_area'))->searchable() : null,
             Text::make('Exchange Code')->nullable(),
             Text::make('Line Number')->nullable(),
