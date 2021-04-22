@@ -54,4 +54,6 @@ jobs:
           composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
       - name: Execute tests
+        env:
+          ADDRESS_AUTOCOMPLETE_API_KEY: ${{ secrets.AddressAutocomplteApiKey }}
         run: vendor/bin/phpunit
