@@ -147,3 +147,8 @@ All notable changes to `addresses` will be documented in this file.
 
 - update phone nova resource
 - update address autocomplete
+
+## 2.8.9 - 2021-04-22
+
+- timezone interface
+- google service class
