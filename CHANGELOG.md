@@ -152,3 +152,7 @@ All notable changes to `addresses` will be documented in this file.
 
 - timezone interface
 - google service class
+
+## 2.8.10 - 2021-04-23
+
+- google places autocomplete in nova
