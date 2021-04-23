@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tipoff\Addresses\Nova;
 
+use EmilianoTisato\GoogleAutocomplete\AddressMetadata;
+use EmilianoTisato\GoogleAutocomplete\GoogleAutocomplete;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
@@ -20,14 +22,14 @@ class DomesticAddress extends BaseResource
         'id',
         'address_line_1',
     ];
-    
+
     public static $title = 'address_line_1';
 
     public function subtitle()
     {
         return "{$this->city->title}, {$this->city->state->abbreviation} {$this->zip_code}";
     }
-    
+
     public static $group = 'Resources';
 
     public function fieldsForIndex(NovaRequest $request)
@@ -49,11 +51,17 @@ class DomesticAddress extends BaseResource
     public function fields(Request $request)
     {
         return array_filter([
-            Text::make('Address Line 1'),
+            GoogleAutocomplete::make('Address')
+                ->countries('US')
+                ->withValues(['street_number.long_name','locality.long_name','postal_code.short_name','administrative_area_level_1.short_name'])->onlyOnForms(),
+            AddressMetadata::make('Address Line 1')->fromValue('street_number')->onlyOnForms(),
+            AddressMetadata::make('City')->fromValue('locality')->onlyOnForms(),
+            AddressMetadata::make('Zip')->fromValue('postal_code')->onlyOnForms(),
+            Text::make('Address Line 1')->exceptOnForms(),
             Text::make('Address Line 2')->nullable(),
-            nova('city') ? BelongsTo::make('City', 'city', nova('city'))->searchable() : null,
-            nova('zip') ? BelongsTo::make('Zip', 'zip', nova('zip'))->searchable() : null,
-            
+            nova('city') ? BelongsTo::make('City', 'city', nova('city'))->exceptOnForms() : null,
+            nova('zip') ? BelongsTo::make('Zip', 'zip', nova('zip'))->exceptOnForms() : null,
+
             /* @todo MorphOne::searchable does not exist  */
             /*nova('address') ? MorphOne::make('Address', 'address', nova('address'))->searchable() : null,*/
         ]);
