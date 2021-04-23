@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tipoff\Addresses;
 
+use Laravel\Nova\Events\ServingNova;
+use Laravel\Nova\Nova;
 use Livewire\Livewire;
 use Tipoff\Addresses\Http\Livewire\DomesticAddressSearchBar;
 use Tipoff\Addresses\Http\Livewire\DomesticAddressSearchBarFields;
@@ -76,6 +78,11 @@ class AddressesServiceProvider extends TipoffServiceProvider
     public function bootingPackage()
     {
         parent::bootingPackage();
+
+        Nova::serving(function () {
+            Nova::script('domestic-address', __DIR__.'/../dist/js/field.js');
+            Nova::style('domestic-address', __DIR__.'/../dist/css/field.css');
+        });
 
         Livewire::component('addresses::domestic-address-search-bar', DomesticAddressSearchBar::class);
         Livewire::component('addresses::domestic-address-search-bar-fields', DomesticAddressSearchBarFields::class);

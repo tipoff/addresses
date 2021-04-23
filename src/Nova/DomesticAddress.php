@@ -51,6 +51,7 @@ class DomesticAddress extends BaseResource
     public function fields(Request $request)
     {
         return array_filter([
+            \Tipoff\Addresses\Nova\Fields\DomesticAddress::make('Address'),
             GoogleAutocomplete::make('Address')
                 ->countries('US')
                 ->withValues(['street_number.long_name','locality.long_name','postal_code.short_name','administrative_area_level_1.short_name'])->onlyOnForms(),
