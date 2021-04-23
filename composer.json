@@ -17,9 +17,9 @@
     "require": {
         "php": "^7.4|^8.0",
         "emilianotisato/nova-google-autocomplete-field": "^0.8.0",
-        "tipoff/authorization": "^2.8.4",
-        "tipoff/laravel-google-api": "^2.0.0",
-        "tipoff/support": "^2.1.4"
+        "tipoff/authorization": "^2.8.6",
+        "tipoff/laravel-google-api": "^2.1.0",
+        "tipoff/support": "^2.1.5"
     },
     "require-dev": {
         "tipoff/test-support": "^2.0.1"
