@@ -156,3 +156,7 @@ All notable changes to `addresses` will be documented in this file.
 ## 2.8.10 - 2021-04-23
 
 - google places autocomplete in nova
+
+## 2.8.11 - 2021-04-25
+
+- nova field for phone number
