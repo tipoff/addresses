@@ -4,9 +4,13 @@ declare(strict_types=1);
 
 namespace Tipoff\Addresses;
 
+use Illuminate\Support\Facades\Route;
+use Laravel\Nova\Http\Middleware\Authorize;
+use Laravel\Nova\Nova;
 use Livewire\Livewire;
 use Tipoff\Addresses\Http\Livewire\DomesticAddressSearchBar;
 use Tipoff\Addresses\Http\Livewire\DomesticAddressSearchBarFields;
+use Tipoff\Addresses\Http\Livewire\PhoneNumberField;
 use Tipoff\Addresses\Models\Address;
 use Tipoff\Addresses\Models\City;
 use Tipoff\Addresses\Models\Country;
@@ -79,5 +83,33 @@ class AddressesServiceProvider extends TipoffServiceProvider
 
         Livewire::component('addresses::domestic-address-search-bar', DomesticAddressSearchBar::class);
         Livewire::component('addresses::domestic-address-search-bar-fields', DomesticAddressSearchBarFields::class);
+        Livewire::component('addresses::get-phone', PhoneNumberField::class);
+
+        // Load phone field routes.
+        $this->app->booted(function () {
+            $this->phoneFieldRoutes();
+        });
+
+        // Register phone field resources.
+        Nova::serving(function () {
+            Nova::script('phone-number', __DIR__.'/../dist/js/field.js');
+            Nova::style('phone-number', __DIR__.'/../dist/css/field.css');
+        });
+    }
+
+    /**
+     * Register the phone field's routes.
+     *
+     * @return void
+     */
+    protected function phoneFieldRoutes()
+    {
+        if ($this->app->routesAreCached()) {
+            return;
+        }
+
+        Route::middleware(['nova', Authorize::class])
+            ->prefix('nova-vendor/addresses')
+            ->group(__DIR__ . '/../routes/api.php');
     }
 }
