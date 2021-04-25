@@ -17,9 +17,9 @@
     "require": {
         "php": "^7.4|^8.0",
         "emilianotisato/nova-google-autocomplete-field": "^0.8.0",
-        "giggsey/libphonenumber-for-php": "^8.12",
+        "giggsey/libphonenumber-for-php": "^8.12.21",
         "tipoff/authorization": "^2.8.6",
-        "tipoff/laravel-google-api": "^2.1.0",
+        "tipoff/laravel-google-api": "^2.1.1",
         "tipoff/support": "^2.1.5"
     },
     "require-dev": {
