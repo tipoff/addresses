@@ -24,7 +24,11 @@ use Tipoff\Addresses\Traits\DeterminesIfAddPhoneNumberCanBeShown;
 
 class PhoneNumber extends Field implements RelatableField
 {
-    use FormatsRelatableDisplayValues, ResolvesReverseRelation, DeterminesIfCreateRelationCanBeShown, Searchable, DeterminesIfAddPhoneNumberCanBeShown;
+    use FormatsRelatableDisplayValues;
+    use ResolvesReverseRelation;
+    use DeterminesIfCreateRelationCanBeShown;
+    use Searchable;
+    use DeterminesIfAddPhoneNumberCanBeShown;
 
     /**
      * The field's component.
@@ -132,8 +136,9 @@ class PhoneNumber extends Field implements RelatableField
     public function authorize(Request $request)
     {
         return $this->isNotRedundant($request) && call_user_func(
-                [$this->resourceClass, 'authorizedToViewAny'], $request
-            ) && parent::authorize($request);
+            [$this->resourceClass, 'authorizedToViewAny'],
+            $request
+        ) && parent::authorize($request);
     }
 
     /**
@@ -200,7 +205,8 @@ class PhoneNumber extends Field implements RelatableField
     public function getRules(NovaRequest $request)
     {
         $query = $this->buildAssociatableQuery(
-            $request, $request->{$this->attribute.'_trashed'} === 'true'
+            $request,
+            $request->{$this->attribute.'_trashed'} === 'true'
         )->toBase();
 
         return array_merge_recursive(parent::getRules($request), [
@@ -277,9 +283,13 @@ class PhoneNumber extends Field implements RelatableField
         $request->first === 'true'
             ? $query->whereKey($model->newQueryWithoutScopes(), $request->current)
             : $query->search(
-            $request, $model->newQuery(), $request->search,
-            [], [], TrashedStatus::fromBoolean($withTrashed)
-        );
+                $request,
+                $model->newQuery(),
+                $request->search,
+                [],
+                [],
+                TrashedStatus::fromBoolean($withTrashed)
+            );
 
         return $query->tap(function ($query) use ($request, $model) {
             forward_static_call($this->associatableQueryCallable($request, $model), $request, $query, $this);

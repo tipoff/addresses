@@ -16,7 +16,7 @@ class PhoneFieldController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'phone_number' => ['required', 'max:254']
+            'phone_number' => ['required', 'max:254'],
         ]);
 
         return (new SavePhoneNumberAction)->execute($request->phone_number);
