@@ -10,6 +10,7 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\MorphTo;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Tipoff\Addresses\Nova\Fields\PhoneNumber;
 use Tipoff\Support\Nova\BaseResource;
 
 class Address extends BaseResource
@@ -19,9 +20,15 @@ class Address extends BaseResource
     public static $title = 'id';
 
     public static $search = [
-        'id', 'first_name', 'last_name', 'type','care_of', 'company', 'extended_zip',
+        'id',
+        'first_name',
+        'last_name',
+        'type',
+        'care_of',
+        'company',
+        'extended_zip',
     ];
-    
+
     public static $group = 'Resources';
 
     public function fieldsForIndex(NovaRequest $request)
@@ -40,7 +47,7 @@ class Address extends BaseResource
                 }
             })->sortable(),
             Text::make('Address', 'addressable.id', function () {
-                return $this->addressable->address_line_1." ".$this->addressable->address_line_2;
+                return $this->addressable->address_line_1 . " " . $this->addressable->address_line_2;
             })->sortable(),
         ]);
     }
@@ -55,17 +62,16 @@ class Address extends BaseResource
             Text::make('Care Of')->nullable(),
             Text::make('Company')->nullable(),
             Text::make('Extended Zip')->nullable(),
-            Text::make('Phone', 'phone', function () {
-                if (! empty($this->phone->full_number)) {
-                    return $this->phone->full_number;
-                }
-            })->nullable(),
+            PhoneNumber::make('Phone', 'phone', nova('phone'))
+                ->nullable()
+                ->searchable()
+                ->showAddPhoneNumberButton(),
             MorphTo::make('Addressable')->types([
                 nova('domestic_address'),
             ]),
         ]);
     }
-    
+
     protected function dataFields(): array
     {
         return array_merge(
