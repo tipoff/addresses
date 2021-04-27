@@ -182,5 +182,5 @@
         document.getElementById("results-list").classList.add("invisible");
     }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key={{ config('google-api.places.key') }}&libraries=places&callback=initAutocomplete" async defer type="text/javascript"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{ config('google-api.services.places.key') }}&libraries=places&callback=initAutocomplete" async defer type="text/javascript"></script>
 @endpush
