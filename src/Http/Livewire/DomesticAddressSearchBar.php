@@ -6,7 +6,6 @@ namespace Tipoff\Addresses\Http\Livewire;
 
 use Illuminate\Support\Str;
 use Livewire\Component;
-use SKAgarwal\GoogleApi\PlacesApi;
 use Tipoff\Addresses\Collections\DomesticAddressCollection;
 
 class DomesticAddressSearchBar extends Component
@@ -47,7 +46,7 @@ class DomesticAddressSearchBar extends Component
 
     public function getPlaceDetails(string $placeId)
     {
-        $placeDetailsCollection = app()->make(PlacesApi::class)->placeDetails($placeId, $this->placeDetailsParams);
+        $placeDetailsCollection = app()->make(\Tipoff\GoogleApi\GoogleServices::class)->places()->placeDetails($placeId, $this->placeDetailsParams);
         $components = new DomesticAddressCollection($placeDetailsCollection['result']['address_components'] ?? []);
 
         $newSessionToken = (string)Str::uuid();
@@ -67,7 +66,7 @@ class DomesticAddressSearchBar extends Component
     {
         if (! empty($this->query)) {
             $this->validate();
-            $resultsCollection = app()->make(PlacesApi::class)->placeAutocomplete($this->query, $this->autocompleteParams);
+            $resultsCollection = app()->make(\Tipoff\GoogleApi\GoogleServices::class)->places()->placeAutocomplete($this->query, $this->autocompleteParams);
             $this->results = $resultsCollection['predictions'];
         }
         // $resultsCollection['status'] is handled by SKAgarwal/PlacesApi package
