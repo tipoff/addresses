@@ -17,7 +17,7 @@ class CountryCallingcode extends BaseResource
     public static $title = 'title';
 
     public static $search = [
-        'code', 'countries.title'
+        'code', 'countries.title',
     ];
 
     public function title()
@@ -31,6 +31,7 @@ class CountryCallingcode extends BaseResource
     {
         $query->select('country_callingcodes.*', 'countries.title');
         $query->leftJoin('countries', 'country_callingcodes.country_id', '=', 'countries.id');
+
         return $query;
     }
 

@@ -78,7 +78,7 @@ class City extends BaseResource
             nova('zip') ? BelongsToMany::make('Zips', 'zips', nova('zip'))->searchable()
                 ->fields(function () {
                     return [
-                        Boolean::make('Primary')->required()->default(0)
+                        Boolean::make('Primary')->required()->default(0),
                     ];
                 }) : null,
 
