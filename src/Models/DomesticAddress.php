@@ -47,11 +47,8 @@ class DomesticAddress extends BaseModel
      */
     public static function createDomesticAddress(string $line1, ?string $line2, $city, $zip): self
     {
-        $zip = ($zip instanceof Zip) ? $zip : Zip::query()->findOrFail(trim($zip));
-        $city = ($city instanceof City) ? $city : City::query()->byTitle($city)->byZip($zip)->firstOrCreate([
-            'title' => $city,
-            'state_id' => $zip->state_id,
-        ]);
+        $zip = self::resolveZip($zip);
+        $city = self::resolveCity($city, $zip);
 
         /** @var DomesticAddress $domesticAddress */
         $domesticAddress = static::query()->firstOrCreate([
@@ -69,12 +66,41 @@ class DomesticAddress extends BaseModel
         parent::boot();
 
         static::saving(function (DomesticAddress $address) {
+            $address->zip_code = self::resolveZip($address->zip_code)->code;
+            $address->city_id = self::resolveCity($address->city, $address->zip_code)->id;
+
+            unset($address->city);
+
             Assert::lazy()
                 ->that($address->address_line_1)->notEmpty('US domestic addresses must have a street.')
                 ->that($address->city_id)->notEmpty('US domestic addresses must have a city.')
                 ->that($address->zip_code)->notEmpty('US domestic addresses must have zip code.')
                 ->verifyNow();
         });
+    }
+
+    /**
+     * @param $zip
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|Zip|null
+     */
+    public static function resolveZip($zip)
+    {
+        return ($zip instanceof Zip) ? $zip : Zip::query()->findOrFail(trim($zip));
+    }
+
+    /**
+     * @param $city
+     * @param $zip
+     * @return City
+     */
+    public static function resolveCity($city, $zip): City
+    {
+        $zip = self::resolveZip($zip);
+
+        return ($city instanceof City) ? $city : City::query()->byTitle($city)->byZip($zip)->firstOrCreate([
+            'title'    => $city,
+            'state_id' => $zip->state_id,
+        ]);
     }
 
     public function getTransformer($context = null)

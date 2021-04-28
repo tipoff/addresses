@@ -11,8 +11,6 @@
             name="address-line-1"
             type="text"
             readonly="readonly"
-            onfocus="focusField()"
-            onblur="blurField()"
             class="w-full px-2 py-1 focus:outline-none"
             required
         >
@@ -25,8 +23,6 @@
             id="address-line-2"
             name="address-line-2"
             type="text"
-            onfocus="focusField()"
-            onblur="blurField()"
             class="w-full px-2 py-1 focus:outline-none"
         >
     </div>

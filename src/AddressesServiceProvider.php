@@ -94,6 +94,10 @@ class AddressesServiceProvider extends TipoffServiceProvider
         Nova::serving(function () {
             Nova::script('phone-number', __DIR__.'/../dist/js/field.js');
             Nova::style('phone-number', __DIR__.'/../dist/css/field.css');
+
+            Nova::provideToScript([
+                'googleMapApiKey' => config('google-api.services.places.key')
+            ]);
         });
     }
 
