@@ -22,8 +22,10 @@ class Timezone extends BaseResource
 
     public static $search = [
         'id',
+        'name',
+        'title'
     ];
-    
+
     public static $group = 'Resources';
 
     public function fieldsForIndex(NovaRequest $request)

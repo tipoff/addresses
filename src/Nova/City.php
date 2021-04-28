@@ -38,11 +38,11 @@ class City extends BaseResource
         return array_filter([
             ID::make()->sortable(),
             Text::make('Title')->sortable(),
-            Text::make('State', 'state.id', function () {
+            Text::make('State', 'state_id', function () {
                 return $this->state->title;
             })->sortable(),
-            Text::make('Timezone', 'timezone.id', function () {
-                return $this->timezone->title;
+            Text::make('Timezone', 'timezone_id', function () {
+                return $this->timezone->title ?? null;
             })->sortable(),
         ]);
     }
@@ -73,12 +73,12 @@ class City extends BaseResource
 
             Number::make('Population')->nullable(),
             Number::make('Population Proper')->nullable(),
-            Number::make('density')->nullable(),
+            Number::make('Density')->nullable(),
 
-            nova('zip') ? BelongsToMany::make('Zips', 'zips', nova('zip'))
+            nova('zip') ? BelongsToMany::make('Zips', 'zips', nova('zip'))->searchable()
                 ->fields(function () {
                     return [
-                        Text::make('Primary')->default(false),
+                        Boolean::make('Primary')->required()->default(0)
                     ];
                 }) : null,
 

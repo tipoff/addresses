@@ -24,7 +24,7 @@ class State extends BaseResource
         'title',
         'abbreviation',
     ];
-    
+
     public static $group = 'Resources';
 
     public function fieldsForIndex(NovaRequest $request)
@@ -43,10 +43,15 @@ class State extends BaseResource
     public function fields(Request $request)
     {
         return array_filter([
-            Text::make('Slug'),
-            Text::make('Title'),
-            Text::make('Abbreviation'),
-            Text::make('Description')->nullable(),
+            Text::make('Slug')->required()
+                ->creationRules('unique:states,slug')
+                ->updateRules('unique:states,slug,{{resourceId}}'),
+            Text::make('Title')->required()
+                ->creationRules('unique:states,title')
+                ->updateRules('unique:states,title,{{resourceId}}'),
+            Text::make('Abbreviation')->required()
+                ->creationRules('unique:states,abbreviation')
+                ->updateRules('unique:states,abbreviation,{{resourceId}}'),
             Text::make('Capital')->nullable(),
             nova('country') ? BelongsTo::make('Country', 'country', nova('country'))->searchable() : null,
             /* @todo HasMany::searchable does not exist  */

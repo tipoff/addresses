@@ -51,7 +51,7 @@ class Zip extends BaseResource
             nova('city') ? BelongsToMany::make('Cities', 'cities', nova('city'))
                 ->fields(function () {
                     return [
-                        Text::make('Primary')->default(false),
+                        Boolean::make('Primary')->required()->default(0)
                     ];
                 }) : null,
             nova('domestic_address') ? HasMany::make('Domestic Address', 'domestic address', nova('domestic_address')) : null,
