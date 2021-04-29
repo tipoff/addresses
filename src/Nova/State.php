@@ -23,7 +23,7 @@ class State extends BaseResource
         'id',
         'title',
         'abbreviation',
-        'countries.title'
+        'countries.title',
     ];
 
     public static $group = 'Resources';
@@ -33,6 +33,7 @@ class State extends BaseResource
         $query->select('states.*');
         $query->addSelect('countries.title');
         $query->leftJoin('countries', 'states.country_id', '=', 'countries.id');
+
         return $query;
     }
 

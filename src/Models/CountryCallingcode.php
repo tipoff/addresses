@@ -23,7 +23,6 @@ class CountryCallingcode extends BaseModel
             }
             $countryCallingcode->root = "+".substr($countryCallingcode->code, 0, 1);
             $countryCallingcode->suffix = substr($countryCallingcode->code, 1);
-
         });
     }
 

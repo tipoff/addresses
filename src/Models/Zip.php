@@ -59,6 +59,7 @@ class Zip extends BaseModel
     {
         return new ZipTransformer();
     }
+
     public function cities()
     {
         return $this->belongsToMany(app('city'))

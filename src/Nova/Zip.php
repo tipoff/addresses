@@ -21,7 +21,7 @@ class Zip extends BaseResource
     public static $title = 'code';
 
     public static $search = [
-        'code', 'states.title'
+        'code', 'states.title',
     ];
 
     public static $group = 'Resources';
@@ -31,6 +31,7 @@ class Zip extends BaseResource
         $query->select('zips.*');
         $query->addSelect('states.title');
         $query->leftJoin('states', 'zips.state_id', '=', 'states.id');
+
         return $query;
     }
 
