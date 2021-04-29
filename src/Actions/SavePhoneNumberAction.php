@@ -39,6 +39,6 @@ class SavePhoneNumberAction
      */
     private function getAreaCode(string $phoneNumber)
     {
-        return substr($phoneNumber, '0', 3);
+        return substr($phoneNumber, 0, 3);
     }
 }

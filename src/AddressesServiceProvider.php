@@ -108,6 +108,9 @@ class AddressesServiceProvider extends TipoffServiceProvider
      */
     protected function phoneFieldRoutes()
     {
+        /**
+         * @psalm-suppress UndefinedInterfaceMethod
+         */
         if ($this->app->routesAreCached()) {
             return;
         }
