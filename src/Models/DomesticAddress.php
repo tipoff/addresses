@@ -98,7 +98,7 @@ class DomesticAddress extends BaseModel
         $zip = self::resolveZip($zip);
 
         return ($city instanceof City) ? $city : City::query()->byTitle($city)->byZip($zip)->firstOrCreate([
-            'title'    => $city,
+            'title' => $city,
             'state_id' => $zip->state_id,
         ]);
     }

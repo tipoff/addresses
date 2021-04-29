@@ -9,8 +9,8 @@ use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Tipoff\Support\Nova\BaseResource;
 use Tipoff\Addresses\Nova\Fields\Address;
+use Tipoff\Support\Nova\BaseResource;
 
 class DomesticAddress extends BaseResource
 {
