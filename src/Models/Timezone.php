@@ -14,8 +14,6 @@ use Tipoff\Support\Traits\HasUpdater;
 class Timezone extends BaseModel implements TimezoneInterface
 {
     use HasPackageFactory;
-    use HasCreator;
-    use HasUpdater;
 
     public $timestamps = false;
 

@@ -23,9 +23,18 @@ class State extends BaseResource
         'id',
         'title',
         'abbreviation',
+        'countries.title'
     ];
 
     public static $group = 'Resources';
+
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        $query->select('states.*');
+        $query->addSelect('countries.title');
+        $query->leftJoin('countries', 'states.country_id', '=', 'countries.id');
+        return $query;
+    }
 
     public function fieldsForIndex(NovaRequest $request)
     {
@@ -34,7 +43,7 @@ class State extends BaseResource
             Text::make('Slug')->sortable(),
             Text::make('Title')->sortable(),
             Text::make('Abbreviation')->sortable(),
-            Text::make('Country', 'country.id', function () {
+            Text::make('Country', 'country_id', function () {
                 return $this->country->title;
             })->sortable(),
         ]);

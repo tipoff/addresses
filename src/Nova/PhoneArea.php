@@ -27,7 +27,7 @@ class PhoneArea extends BaseResource
     {
         return array_filter([
             Text::make('Code')->sortable(),
-            Text::make('State', 'state.id', function () {
+            Text::make('State', 'state_id', function () {
                 return $this->state->title;
             })->sortable(),
             Text::make('Note', 'note')->displayUsing(function ($id) {
@@ -41,7 +41,7 @@ class PhoneArea extends BaseResource
     public function fields(Request $request)
     {
         return array_filter([
-            Text::make('Code'),
+            Text::make('Code')->required(),
             TextArea::make('Note')->nullable(),
             nova('state') ? BelongsTo::make('State', 'state', nova('state'))->searchable() : null,
         ]);

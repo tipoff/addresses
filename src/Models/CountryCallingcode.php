@@ -21,6 +21,9 @@ class CountryCallingcode extends BaseModel
             if (empty($countryCallingcode->code)) {
                 throw new \Exception('A country calling code must have a code.');
             }
+            $countryCallingcode->root = "+".substr($countryCallingcode->code, 0, 1);
+            $countryCallingcode->suffix = substr($countryCallingcode->code, 1);
+
         });
     }
 

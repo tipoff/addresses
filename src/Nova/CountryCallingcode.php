@@ -29,7 +29,8 @@ class CountryCallingcode extends BaseResource
 
     public static function indexQuery(NovaRequest $request, $query)
     {
-        $query->select('country_callingcodes.*', 'countries.title');
+        $query->select('country_callingcodes.*');
+        $query->addSelect('countries.title');
         $query->leftJoin('countries', 'country_callingcodes.country_id', '=', 'countries.id');
         return $query;
     }
