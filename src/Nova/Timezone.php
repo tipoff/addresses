@@ -23,7 +23,7 @@ class Timezone extends BaseResource
     public static $search = [
         'id',
         'name',
-        'title'
+        'title',
     ];
 
     public static $group = 'Resources';
