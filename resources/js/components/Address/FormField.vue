@@ -97,8 +97,8 @@ export default {
 
             places.setup({
                 googleApiKey: Nova.config.googleMapApiKey,
-                predictionListElementId: 'results-list',
-                placeElementId: 'attributions'
+                predictionListElement: document.getElementById('results-list'),
+                placeElement: document.getElementById('attributions')
             });
 
             this.placesAutocomplete = places;

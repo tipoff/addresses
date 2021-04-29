@@ -26,8 +26,8 @@ const Address = (function () {
 
     let autocompleteService;
     let placesService;
-    let predictionListElementId;
-    let placeElementId;
+    let predictionListElement;
+    let placeElement;
 
     let resetSessionToken = function () {
         let sessionToken = new google.maps.places.AutocompleteSessionToken();
@@ -38,7 +38,7 @@ const Address = (function () {
 
     window.initGoogleMapAutocomplete = function () {
         autocompleteService = new google.maps.places.AutocompleteService();
-        placesService = new google.maps.places.PlacesService(document.getElementById(placeElementId));
+        placesService = new google.maps.places.PlacesService(placeElement);
 
         resetSessionToken();
     };
@@ -124,11 +124,11 @@ const Address = (function () {
     };
 
     let showPredictions = function () {
-        document.getElementById(predictionListElementId).classList.remove('invisible');
+        predictionListElement.classList.remove('invisible');
     };
 
     let hidePredictions = function () {
-        document.getElementById(predictionListElementId).classList.add('invisible');
+        predictionListElement.classList.add('invisible');
     };
 
     let addGoogleMapScript = function (key) {
@@ -143,8 +143,8 @@ const Address = (function () {
 
     let setup = function (settings) {
         // Assign essential element.
-        predictionListElementId = settings.predictionListElementId;
-        placeElementId = settings.placeElementId;
+        predictionListElement = settings.predictionListElement;
+        placeElement = settings.placeElement;
 
         // Add Google Map script.
         addGoogleMapScript(settings.googleApiKey);

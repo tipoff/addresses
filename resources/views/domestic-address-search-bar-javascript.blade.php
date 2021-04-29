@@ -17,8 +17,8 @@
         window.onload = function () {
             Address.setup({
                 googleApiKey: '{{ config('google-api.services.places.key') }}',
-                predictionListElementId: 'results-list',
-                placeElementId: 'attributions'
+                predictionListElement: document.getElementById('results-list'),
+                placeElement: document.getElementById('attributions')
             });
 
             const addressInput = document.getElementById('search-bar');
