@@ -19,6 +19,8 @@ class PhoneFieldController extends Controller
             'phone_number' => ['required', 'max:254'],
         ]);
 
-        return (new SavePhoneNumberAction)->execute($request->phone_number);
+        $phoneNumber = str_replace(' ', '', $request->phone_number);
+
+        return (new SavePhoneNumberAction)->execute($phoneNumber);
     }
 }
