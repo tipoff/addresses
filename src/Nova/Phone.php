@@ -25,14 +25,14 @@ class Phone extends BaseResource
     public function fieldsForIndex(NovaRequest $request)
     {
         return array_filter([
-            Text::make('Country Calling Code', 'country_callingcode.id', function () {
+            Text::make('Country Calling Code', 'country_callingcode_id', function () {
                 return $this->countryCallingcode->code;
             })->sortable(),
             Text::make('Country', 'country', function () {
                 return $this->countryCallingcode->country->abbreviation;
             })->sortable(),
             Text::make('Full Number', 'full_number', function () {
-                return $this->formatted_number;
+                return $this->formatted_number ?? $this->full_number;
             })->sortable(),
             Text::make('Phone Area', 'phone_area.code', function () {
                 if (! empty($this->phoneArea->code)) {
@@ -51,9 +51,11 @@ class Phone extends BaseResource
             Text::make('Full Number', 'full_number', function () {
                 if (! empty($this->formatted_number)) {
                     return $this->formatted_number;
+                } else {
+                    return $this->full_number;
                 }
-            })->sortable(),
-            nova('phone_area') ? BelongsTo::make('Phone Area', 'phoneArea', nova('phone_area'))->searchable() : null,
+            })->required()->sortable(),
+            nova('phone_area') ? BelongsTo::make('Phone Area', 'phoneArea', nova('phone_area'))->searchable()->nullable() : null,
             Text::make('Exchange Code')->nullable(),
             Text::make('Line Number')->nullable(),
         ]);

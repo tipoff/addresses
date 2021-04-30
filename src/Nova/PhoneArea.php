@@ -18,16 +18,25 @@ class PhoneArea extends BaseResource
     public static $title = 'code';
 
     public static $search = [
-        'code',
+        'code', 'states.title',
     ];
 
     public static $group = 'Resources';
+
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        $query->select('phone_areas.*');
+        $query->addSelect('states.title');
+        $query->leftJoin('states', 'phone_areas.state_id', '=', 'states.id');
+
+        return $query;
+    }
 
     public function fieldsForIndex(NovaRequest $request)
     {
         return array_filter([
             Text::make('Code')->sortable(),
-            Text::make('State', 'state.id', function () {
+            Text::make('State', 'state_id', function () {
                 return $this->state->title;
             })->sortable(),
             Text::make('Note', 'note')->displayUsing(function ($id) {
@@ -41,7 +50,7 @@ class PhoneArea extends BaseResource
     public function fields(Request $request)
     {
         return array_filter([
-            Text::make('Code'),
+            Text::make('Code')->required(),
             TextArea::make('Note')->nullable(),
             nova('state') ? BelongsTo::make('State', 'state', nova('state'))->searchable() : null,
         ]);
