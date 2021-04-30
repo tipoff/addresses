@@ -23,9 +23,19 @@ class State extends BaseResource
         'id',
         'title',
         'abbreviation',
+        'countries.title',
     ];
-    
+
     public static $group = 'Resources';
+
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        $query->select('states.*');
+        $query->addSelect('countries.title');
+        $query->leftJoin('countries', 'states.country_id', '=', 'countries.id');
+
+        return $query;
+    }
 
     public function fieldsForIndex(NovaRequest $request)
     {
@@ -34,7 +44,7 @@ class State extends BaseResource
             Text::make('Slug')->sortable(),
             Text::make('Title')->sortable(),
             Text::make('Abbreviation')->sortable(),
-            Text::make('Country', 'country.id', function () {
+            Text::make('Country', 'country_id', function () {
                 return $this->country->title;
             })->sortable(),
         ]);
@@ -43,10 +53,15 @@ class State extends BaseResource
     public function fields(Request $request)
     {
         return array_filter([
-            Text::make('Slug'),
-            Text::make('Title'),
-            Text::make('Abbreviation'),
-            Text::make('Description')->nullable(),
+            Text::make('Slug')->required()
+                ->creationRules('unique:states,slug')
+                ->updateRules('unique:states,slug,{{resourceId}}'),
+            Text::make('Title')->required()
+                ->creationRules('unique:states,title')
+                ->updateRules('unique:states,title,{{resourceId}}'),
+            Text::make('Abbreviation')->rules('required', 'max:2')
+                ->creationRules('unique:states,abbreviation')
+                ->updateRules('unique:states,abbreviation,{{resourceId}}'),
             Text::make('Capital')->nullable(),
             nova('country') ? BelongsTo::make('Country', 'country', nova('country'))->searchable() : null,
             /* @todo HasMany::searchable does not exist  */

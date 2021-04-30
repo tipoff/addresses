@@ -21,17 +21,25 @@ class Zip extends BaseResource
     public static $title = 'code';
 
     public static $search = [
-        'code',
+        'code', 'states.title',
     ];
 
     public static $group = 'Resources';
+
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        $query->select('zips.*');
+        $query->addSelect('states.title');
+        $query->leftJoin('states', 'zips.state_id', '=', 'states.id');
+
+        return $query;
+    }
 
     public function fieldsForIndex(NovaRequest $request)
     {
         return array_filter([
             Text::make('Code')->sortable(),
-            Boolean::make('Decommissioned')->default(0)->sortable(),
-            Text::make('State', 'state.id', function () {
+            Text::make('State', 'state_id', function () {
                 return $this->state->title;
             })->sortable(),
         ]);
@@ -40,21 +48,28 @@ class Zip extends BaseResource
     public function fields(Request $request)
     {
         return array_filter([
-            Text::make('Code')->rules('max:5')->required(), // @todo Only allow numbers as acceptable characters. 'unique:zips,code'
+            Number::make('Code')
+                ->rules('max:5')
+                ->required()
+                ->creationRules('unique:zips,code')
+                ->updateRules('unique:zips,code,{{resourceId}}'), // @todo Only allow numbers as acceptable characters. 'unique:zips,code'
             nova('state') ? BelongsTo::make('State', 'state', nova('state'))->searchable() : null,
             nova('region') ? BelongsTo::make('Region', 'region', nova('region'))->searchable() : null,
             nova('timezone') ? BelongsTo::make('Timezone', 'timezone', nova('timezone'))->searchable() : null,
             Number::make('Latitude')->step(0.000001)->nullable(),
             Number::make('Longitude')->step(0.000001)->nullable(),
-            Boolean::make('Decommissioned')->default(0),
+            Boolean::make('Military')->default(0),
+            Boolean::make('ZTCA')->default(1),
+
+            nova('zip') ? BelongsTo::make('Parent Zip Code', 'parent', nova('zip'))->searchable()->nullable() : null,
 
             nova('city') ? BelongsToMany::make('Cities', 'cities', nova('city'))
                 ->fields(function () {
                     return [
-                        Text::make('Primary')->default(false),
+                        Boolean::make('Primary')->required()->default(0),
                     ];
-                }) : null,
-            nova('domestic_address') ? HasMany::make('Domestic Address', 'domestic address', nova('domestic_address')) : null,
+                })->searchable() : null,
+            nova('domestic_address') ? HasMany::make('Domestic Address', 'domesticAddresses', nova('domestic_address')) : null,
         ]);
     }
 

@@ -60,11 +60,6 @@ class Zip extends BaseModel
         return new ZipTransformer();
     }
 
-    public function state()
-    {
-        return $this->belongsTo(app('state'));
-    }
-
     public function cities()
     {
         return $this->belongsToMany(app('city'))
@@ -72,18 +67,28 @@ class Zip extends BaseModel
             ->withTimestamps();
     }
 
+    public function domesticAddresses()
+    {
+        return $this->hasMany(app('domestic_address'));
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(app('zip'), 'parent_zip_code');
+    }
+
     public function region()
     {
         return $this->belongsTo(app('region'));
     }
 
+    public function state()
+    {
+        return $this->belongsTo(app('state'));
+    }
+
     public function timezone()
     {
         return $this->belongsTo(app('timezone'));
-    }
-
-    public function domesticAddresses()
-    {
-        return $this->hasMany(app('domestic_address'));
     }
 }

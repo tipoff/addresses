@@ -7,12 +7,12 @@ trait DeterminesIfAddPhoneNumberCanBeShown
     /**
      * The callback used to determine if the create relation button should be shown.
      *
-     * @var bool|\Laravel\Nova\Fields\Closure
+     * @var bool|\Closure
      */
     public $showAddPhoneNumberButtonCallback;
 
     /**
-     * @param Closure|bool $callback
+     * @param \Closure|bool $callback
      * @return $this
      */
     public function showAddPhoneNumberButton($callback = true)

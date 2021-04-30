@@ -4,14 +4,12 @@ declare(strict_types=1);
 
 namespace Tipoff\Addresses\Nova;
 
-use EmilianoTisato\GoogleAutocomplete\AddressMetadata;
-use EmilianoTisato\GoogleAutocomplete\GoogleAutocomplete;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\MorphOne;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Tipoff\Addresses\Nova\Fields\Address;
 use Tipoff\Support\Nova\BaseResource;
 
 class DomesticAddress extends BaseResource
@@ -36,33 +34,34 @@ class DomesticAddress extends BaseResource
     {
         return array_filter([
             ID::make()->sortable(),
-            Text::make('Address Line 1', function () {
-                return $this->address_line_1;
-            }),
-            Text::make('City', 'city.id', function () {
-                return $this->city->title;
-            })->sortable(),
-            Text::make('Zip', 'zip.code', function () {
-                return $this->zip->code;
-            })->sortable(),
+
+            Text::make('Address Line 1')->sortable(),
+
+            nova('city') ? BelongsTo::make('City', 'city', nova('city'))->sortable() : null,
+
+            nova('zip') ? BelongsTo::make('Zip', 'zip', nova('zip'))->sortable() : null,
         ]);
     }
 
     public function fields(Request $request)
     {
         return array_filter([
-            GoogleAutocomplete::make('Address')
-                ->countries('US')
-                ->withValues(['street_number.long_name','locality.long_name','postal_code.short_name','administrative_area_level_1.short_name'])->onlyOnForms(),
-            AddressMetadata::make('Address Line 1')->fromValue('street_number')->onlyOnForms(),
-            AddressMetadata::make('City')->fromValue('locality')->onlyOnForms(),
-            AddressMetadata::make('Zip')->fromValue('postal_code')->onlyOnForms(),
-            Text::make('Address Line 1')->exceptOnForms(),
-            Text::make('Address Line 2')->nullable(),
-            nova('city') ? BelongsTo::make('City', 'city', nova('city'))->exceptOnForms() : null,
-            nova('zip') ? BelongsTo::make('Zip', 'zip', nova('zip'))->exceptOnForms() : null,
+            Address::make('Address', 'address_line_1')
+                ->postalCode('zip_code'),
 
-            /* @todo MorphOne::searchable does not exist  */
+            Text::make('Address Line 1')->onlyOnDetail(),
+
+            Text::make('Address Line 2')->nullable(),
+
+            Text::make('City')->required()->onlyOnForms(),
+
+            Text::make('Zip', 'zip_code')->required()->onlyOnForms(),
+
+            nova('city') ? BelongsTo::make('City', 'city', nova('city'))->searchable()->exceptOnForms() : null,
+
+            nova('zip') ? BelongsTo::make('Zip', 'zip', nova('zip'))->searchable()->exceptOnForms() : null,
+
+            /* @todo MorphOne::searchable does not exist */
             /*nova('address') ? MorphOne::make('Address', 'address', nova('address'))->searchable() : null,*/
         ]);
     }
