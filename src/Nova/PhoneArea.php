@@ -18,7 +18,7 @@ class PhoneArea extends BaseResource
     public static $title = 'code';
 
     public static $search = [
-        'code', 'states.title'
+        'code', 'states.title',
     ];
 
     public static $group = 'Resources';
