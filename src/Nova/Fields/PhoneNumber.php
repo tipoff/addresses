@@ -188,11 +188,14 @@ class PhoneNumber extends Field implements RelatableField
     /**
      * Define the callback that should be used to resolve the field's value.
      *
-     * @param  callable  $displayCallback
+     * @param callable $displayCallback
      * @return $this
      */
     public function displayUsing(callable $displayCallback)
     {
+        /**
+         * @psalm-suppress InvalidArgument
+         */
         return $this->display($displayCallback);
     }
 
@@ -246,7 +249,7 @@ class PhoneNumber extends Field implements RelatableField
      * @param  string  $requestAttribute
      * @param  object  $model
      * @param  string  $attribute
-     * @return mixed
+     * @return void
      */
     protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)
     {
@@ -292,6 +295,9 @@ class PhoneNumber extends Field implements RelatableField
             );
 
         return $query->tap(function ($query) use ($request, $model) {
+            /**
+             * @psalm-suppress UnusedFunctionCall
+             */
             forward_static_call($this->associatableQueryCallable($request, $model), $request, $query, $this);
         });
     }
@@ -315,7 +321,7 @@ class PhoneNumber extends Field implements RelatableField
      *
      * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @param  \Illuminate\Database\Eloquent\Model  $model
-     * @return string
+     * @return string|null
      */
     protected function associatableQueryMethod(NovaRequest $request, $model)
     {
