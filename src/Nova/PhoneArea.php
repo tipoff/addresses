@@ -18,10 +18,19 @@ class PhoneArea extends BaseResource
     public static $title = 'code';
 
     public static $search = [
-        'code',
+        'code', 'states.title'
     ];
 
     public static $group = 'Resources';
+
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        $query->select('phone_areas.*');
+        $query->addSelect('states.title');
+        $query->leftJoin('states', 'phone_areas.state_id', '=', 'states.id');
+
+        return $query;
+    }
 
     public function fieldsForIndex(NovaRequest $request)
     {

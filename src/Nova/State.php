@@ -59,7 +59,7 @@ class State extends BaseResource
             Text::make('Title')->required()
                 ->creationRules('unique:states,title')
                 ->updateRules('unique:states,title,{{resourceId}}'),
-            Text::make('Abbreviation')->required()
+            Text::make('Abbreviation')->rules('required', 'max:2')
                 ->creationRules('unique:states,abbreviation')
                 ->updateRules('unique:states,abbreviation,{{resourceId}}'),
             Text::make('Capital')->nullable(),

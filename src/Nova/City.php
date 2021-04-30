@@ -50,8 +50,8 @@ class City extends BaseResource
     public function fields(Request $request)
     {
         return array_filter([
-            Text::make('Title'),
-            Text::make('Slug'),
+            Text::make('Title')->required(),
+            Text::make('Slug')->required(),
             nova('state') ? BelongsTo::make('State', 'state', nova('state'))->searchable() : null,
             nova('timezone') ? BelongsTo::make('Timezone', 'timezone', nova('timezone'))->searchable() : null,
             Select::make('Importance')->options([
