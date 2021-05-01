@@ -25,7 +25,7 @@ class Phone extends BaseResource
     public static $with = [
         'phoneArea',
         'countryCallingcode',
-        'countryCallingcode.country'
+        'countryCallingcode.country',
     ];
 
     public function fieldsForIndex(NovaRequest $request)
