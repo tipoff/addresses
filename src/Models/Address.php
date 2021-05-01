@@ -50,7 +50,7 @@ class Address extends BaseModel
             if (! empty($address->phone)) {
                 $full_number = $address->phone;
                 unset($address->phone);
-                if(is_object($full_number)){
+                if (is_object($full_number)) {
                     $full_number = $full_number->full_number;
                 }
                 $phone = Phone::firstOrCreate(['full_number' => $full_number, 'country_callingcode_id' => 1]);
