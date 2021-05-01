@@ -48,11 +48,8 @@ class Address extends BaseModel
 
         static::saving(function (Address $address) {
             if (! empty($address->phone)) {
-                $full_number = $address->phone;
+                $full_number = $address->phone->full_number;
                 unset($address->phone);
-                if(is_object($full_number)){
-                    $full_number = $full_number->full_number;
-                }
                 $phone = Phone::firstOrCreate(['full_number' => $full_number, 'country_callingcode_id' => 1]);
                 $address->phone_id = $phone->id;
             }
