@@ -53,6 +53,7 @@ class CountryCallingcode extends BaseResource
             nova('country') ? BelongsTo::make('Country', 'country', nova('country'))->searchable() : null,
             Text::make('Code')
                 ->required()
+                ->rules('max:6')
                 ->creationRules("unique:country_callingcodes,code,NULL,id,country_id,$request->country")
                 ->updateRules("unique:country_callingcodes,code,{{resourceId}},id,country_id,$request->country"),
             Text::make('Display')->nullable(),
