@@ -53,14 +53,10 @@ class Phone extends BaseResource
         return array_filter([
             nova('country_callingcode') ? BelongsTo::make('Country Calling Code', 'countryCallingcode', nova('country_callingcode'))->searchable() : null,
             Text::make('Full Number', 'full_number', function () {
-                if (! empty($this->formatted_number)) {
-                    return $this->formatted_number;
-                } else {
-                    return $this->full_number;
-                }
+                return $this->formatted_number ?? $this->full_number;
             })->required()->sortable(),
             nova('phone_area') ? BelongsTo::make('Phone Area', 'phoneArea', nova('phone_area'))->searchable()->nullable() : null,
-            Text::make('Exchange Code')->nullable(),
+            Text::make('Exchange Code')->rules('nullable', 'max:3'),
             Text::make('Line Number')->nullable(),
         ]);
     }
