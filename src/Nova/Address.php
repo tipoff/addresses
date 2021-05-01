@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tipoff\Addresses\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\MorphTo;
 use Laravel\Nova\Fields\Text;
@@ -41,21 +40,16 @@ class Address extends BaseResource
             Text::make('Care Of')->sortable(),
             Text::make('Company')->sortable(),
             Text::make('Extended Zip')->sortable(),
-            Text::make('Phone', 'phone', function () {
-                if (! empty($this->phone->full_number)) {
-                    return $this->phone->full_number;
-                }
-            })->sortable(),
-            Text::make('Address', 'addressable.id', function () {
-                return $this->addressable->address_line_1 . " " . $this->addressable->address_line_2;
-            })->sortable(),
+            PhoneNumber::make('Phone', 'phone', nova('phone'))->sortable(),
+            MorphTo::make('Addressable')->types([
+                DomesticAddress::class,
+            ])->sortable(),
         ]);
     }
 
     public function fields(Request $request)
     {
         return array_filter([
-            nova('domestic_address') ? BelongsTo::make('Domestic Addresses', 'domesticAddress', nova('domestic_address'))->required() : null,
             Text::make('Type'),
             Text::make('First Name')->nullable(),
             Text::make('Last Name')->nullable(),
@@ -67,7 +61,7 @@ class Address extends BaseResource
                 ->searchable()
                 ->showAddPhoneNumberButton(),
             MorphTo::make('Addressable')->types([
-                nova('domestic_address'),
+                DomesticAddress::class,
             ]),
         ]);
     }

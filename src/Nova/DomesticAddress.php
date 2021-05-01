@@ -7,6 +7,7 @@ namespace Tipoff\Addresses\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\MorphOne;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Tipoff\Addresses\Nova\Fields\Address;
@@ -61,8 +62,7 @@ class DomesticAddress extends BaseResource
 
             nova('zip') ? BelongsTo::make('Zip', 'zip', nova('zip'))->searchable()->exceptOnForms() : null,
 
-            /* @todo MorphOne::searchable does not exist */
-            /*nova('address') ? MorphOne::make('Address', 'address', nova('address'))->searchable() : null,*/
+            nova('address') ? MorphOne::make('Address', 'address', nova('address')) : null,
         ]);
     }
 

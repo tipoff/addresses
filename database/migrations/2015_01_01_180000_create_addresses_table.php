@@ -12,7 +12,6 @@ class CreateAddressesTable extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(app('domestic_address'))->index();
             $table->morphs('addressable');
             $table->string('type');     // Shipping, Billing enums
             $table->string('first_name')->nullable();
