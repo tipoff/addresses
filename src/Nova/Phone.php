@@ -22,6 +22,12 @@ class Phone extends BaseResource
 
     public static $group = 'Resources';
 
+    public static $with = [
+        'phoneArea',
+        'countryCallingcode',
+        'countryCallingcode.country'
+    ];
+
     public function fieldsForIndex(NovaRequest $request)
     {
         return array_filter([
@@ -35,9 +41,7 @@ class Phone extends BaseResource
                 return $this->formatted_number ?? $this->full_number;
             })->sortable(),
             Text::make('Phone Area', 'phone_area.code', function () {
-                if (! empty($this->phoneArea->code)) {
-                    return $this->phoneArea->code;
-                }
+                return $this->phoneArea->code ?? null;
             })->sortable(),
             Text::make('Exchange Code')->sortable(),
             Text::make('Line Number')->sortable(),
