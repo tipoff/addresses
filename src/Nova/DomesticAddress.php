@@ -56,7 +56,7 @@ class DomesticAddress extends BaseResource
 
             Text::make('City')->required()->onlyOnForms()->hideWhenUpdating(),
 
-            Text::make('City', 'city', function() {
+            Text::make('City', 'city', function () {
                 return $this->city->title;
             })->required()->onlyOnForms()->hideWhenCreating(),
 
