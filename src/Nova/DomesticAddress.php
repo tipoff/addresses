@@ -54,7 +54,11 @@ class DomesticAddress extends BaseResource
 
             Text::make('Address Line 2')->nullable(),
 
-            Text::make('City')->required()->onlyOnForms(),
+            Text::make('City')->required()->onlyOnForms()->hideWhenUpdating(),
+
+            Text::make('City', 'city', function() {
+                return $this->city->title;
+            })->required()->onlyOnForms()->hideWhenCreating(),
 
             Text::make('Zip', 'zip_code')->required()->onlyOnForms(),
 
