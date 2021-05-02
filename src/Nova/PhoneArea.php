@@ -50,7 +50,7 @@ class PhoneArea extends BaseResource
     public function fields(Request $request)
     {
         return array_filter([
-            Text::make('Code')->required(),
+            Text::make('Code')->rules('required', 'integer', 'digits:5'),
             TextArea::make('Note')->nullable(),
             nova('state') ? BelongsTo::make('State', 'state', nova('state'))->searchable() : null,
         ]);
