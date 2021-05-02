@@ -28,7 +28,7 @@ class City extends BaseResource
 
     public static $with = [
         'state',
-        'timezone'
+        'timezone',
     ];
 
     public function title()
