@@ -20,6 +20,10 @@ class CountryCallingcode extends BaseResource
         'code', 'countries.title',
     ];
 
+    public static $with = [
+        'country'
+    ];
+
     public function title()
     {
         return $this->country->abbreviation;
