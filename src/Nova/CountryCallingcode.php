@@ -21,7 +21,7 @@ class CountryCallingcode extends BaseResource
     ];
 
     public static $with = [
-        'country'
+        'country',
     ];
 
     public function title()
