@@ -46,8 +46,8 @@ class Timezone extends BaseResource
             Text::make('Title')->required()->creationRules('unique:timezones,title'),
             Text::make('Php')->required()->creationRules('unique:timezones,php'),
             Boolean::make('Is daylight saving')->required()->default(1),
-            Number::make('Dst')->min(-9999.99)->max(9999.99)->step(0.01)->nullable(),
-            Number::make('Standard')->min(-9999.99)->max(9999.99)->step(0.01)->nullable(),
+            Number::make('Dst')->rules('numeric', 'min:-99.99', 'max:99.99')->min(-99.99)->max(99.99)->step(0.01)->nullable(),
+            Number::make('Standard')->min(-99.99)->max(99.99)->step(0.01)->nullable(),
 
             /* @todo HasMany::searchable does not exist  */
             /*nova('zip') ? HasMany::make('Zips', 'zips', nova('zip'))->searchable() : null,*/
