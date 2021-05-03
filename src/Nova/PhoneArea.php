@@ -6,6 +6,7 @@ namespace Tipoff\Addresses\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -50,7 +51,7 @@ class PhoneArea extends BaseResource
     public function fields(Request $request)
     {
         return array_filter([
-            Text::make('Code')->required(),
+            Number::make('Code')->rules('required', 'integer', 'digits:5'),
             TextArea::make('Note')->nullable(),
             nova('state') ? BelongsTo::make('State', 'state', nova('state'))->searchable() : null,
         ]);

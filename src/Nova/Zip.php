@@ -21,7 +21,8 @@ class Zip extends BaseResource
     public static $title = 'code';
 
     public static $search = [
-        'code', 'states.title',
+        'code',
+        'states.title',
     ];
 
     public static $group = 'Resources';
@@ -49,10 +50,10 @@ class Zip extends BaseResource
     {
         return array_filter([
             Number::make('Code')
-                ->rules('max:5')
+                ->rules('numeric', 'digits_between:1,5')
                 ->required()
                 ->creationRules('unique:zips,code')
-                ->updateRules('unique:zips,code,{{resourceId}}'), // @todo Only allow numbers as acceptable characters. 'unique:zips,code'
+                ->updateRules('unique:zips,code,{{resourceId}}'),
             nova('state') ? BelongsTo::make('State', 'state', nova('state'))->searchable() : null,
             nova('region') ? BelongsTo::make('Region', 'region', nova('region'))->searchable() : null,
             nova('timezone') ? BelongsTo::make('Timezone', 'timezone', nova('timezone'))->searchable() : null,

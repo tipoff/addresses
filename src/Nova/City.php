@@ -26,6 +26,11 @@ class City extends BaseResource
         'id', 'title',
     ];
 
+    public static $with = [
+        'state',
+        'timezone',
+    ];
+
     public function title()
     {
         return $this->title.", ".$this->state->title;

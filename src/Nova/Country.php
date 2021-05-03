@@ -48,6 +48,7 @@ class Country extends BaseResource
                 ->creationRules('unique:countries,official')
                 ->updateRules('unique:countries,official,{{resourceId}}'),
             Text::make('Abbreviation')->required()
+                ->rules('max:3')
                 ->creationRules('unique:countries,abbreviation')
                 ->updateRules('unique:countries,abbreviation,{{resourceId}}'),
             Slug::make('Slug')->from('Abbreviation')->required()
