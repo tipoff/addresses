@@ -50,6 +50,7 @@ class Address extends BaseResource
     public function fields(Request $request)
     {
         return array_filter([
+            nova('domestic_address') ? BelongsTo::make('Domestic Addresses', 'domesticAddress', nova('domestic_address'))->required() : null,
             Text::make('Type'),
             Text::make('First Name')->nullable(),
             Text::make('Last Name')->nullable(),
