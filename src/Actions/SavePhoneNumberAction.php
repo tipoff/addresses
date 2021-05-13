@@ -28,7 +28,7 @@ class SavePhoneNumberAction
         $countryCallingCode = CountryCallingcode::where('code', $parsedPhoneNumber->getCountryCode())->first();
 
         return optional($countryCallingCode)->phones()->firstOrCreate([
-            'full_number' => $phoneNumber,
+            'full_number' => $countryCallingCode->code . $phoneNumber,
             'phone_area_code' => $this->getAreaCode($parsedPhoneNumber->getNationalNumber()), // This only work for US area code.
         ]);
     }
