@@ -1,10 +1,7 @@
 <div class="container">
-    <form wire:ignore id="phone-number" onsubmit="savePhoneNumber(event)">
-        <p>Enter your phone number:</p>
+    <p>Enter your phone number:</p>
 
-        <input id="phone" type="tel" name="phone"/>
-        <input type="submit" class="btn" value="Submit"/>
-    </form>
+    <input id="phone" type="tel" name="phone"/>
 
     <div id="success-message" style="display:none"></div>
 </div>
@@ -22,18 +19,18 @@
             utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/utils.js',
         });
 
-        function savePhoneNumber(event) {
-            event.preventDefault();
+        // function savePhoneNumber(event) {
+        //     event.preventDefault();
 
-            const phoneNumber = phoneInput.getNumber();
+        //     const phoneNumber = phoneInput.getNumber();
 
-            if (!phoneNumber) {
-                alert('Phone number is empty');
-            }
-            else {
-                @this.call('savePhoneNumber', phoneNumber);
-            }
-        }
+        //     if (!phoneNumber) {
+        //         alert('Phone number is empty');
+        //     }
+        //     else {
+        //         @this.call('savePhoneNumber', phoneNumber);
+        //     }
+        // }
 
         function getIp(callback) {
             fetch('https://ipinfo.io/json?token=0033205e80e0d9', {headers: {'Accept': 'application/json'}})
