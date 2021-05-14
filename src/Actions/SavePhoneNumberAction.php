@@ -2,7 +2,6 @@
 
 use libphonenumber\PhoneNumberUtil;
 use Tipoff\Addresses\Models\CountryCallingcode;
-use Tipoff\Addresses\Models\Phone;
 use Tipoff\Addresses\Models\PhoneArea;
 
 class SavePhoneNumberAction
