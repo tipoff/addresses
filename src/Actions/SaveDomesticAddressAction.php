@@ -19,7 +19,7 @@ class SaveDomesticAddressAction
         return optional($city)->domesticAddresses()->firstOrCreate([
             'address_line_1' => $keys['address-line-1'],
             'address_line_2' => $keys['address-line-2'],
-            'zip_code' => $keys['zip'],
+            'zip_code' => $zip->code,
         ]);
     }
 }
