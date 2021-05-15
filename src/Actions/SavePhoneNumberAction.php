@@ -33,7 +33,7 @@ class SavePhoneNumberAction
 
         return optional($countryCallingcode)->phones()->firstOrCreate([
             'full_number' => $countryCallingcode->code . $phoneNumber,
-            'phone_area_code' => $phoneArea->code, // This only work for US area code.
+            'phone_area_code' => $parsedAreaCode, // This only work for US area code.
         ]);
     }
 
