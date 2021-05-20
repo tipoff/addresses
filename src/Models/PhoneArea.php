@@ -36,6 +36,6 @@ class PhoneArea extends BaseModel
 
     public function phones()
     {
-        return $this->hasMany(app('phone'), 'phone_id', 'phone_area_code');
+        return $this->hasMany(app('phone'), 'phone_area_code', 'code');
     }
 }

@@ -2,6 +2,7 @@
 
 use libphonenumber\PhoneNumberUtil;
 use Tipoff\Addresses\Models\CountryCallingcode;
+use Tipoff\Addresses\Models\PhoneArea;
 
 class SavePhoneNumberAction
 {
@@ -15,21 +16,24 @@ class SavePhoneNumberAction
         $phoneUtil = PhoneNumberUtil::getInstance();
 
         $parsedPhoneNumber = $phoneUtil->parse($phoneNumber, 'US');
-
+        $parsedCountryCallingcode = $parsedPhoneNumber->getCountryCode();
         /**
          * Only save US phone number.
          * https://github.com/tipoff/addresses/issues/73
          */
-        if ($parsedPhoneNumber->getCountryCode() !== 1) {
+        if ($parsedCountryCallingcode !== 1) {
             throw new \Exception('Please enter an US phone number!');
         }
+        $countryCallingcode = CountryCallingcode::where('code', $parsedCountryCallingcode)->first();
+        $parsedAreaCode = $this->getAreaCode($parsedPhoneNumber->getNationalNumber());
+        $phoneArea = PhoneArea::find($parsedAreaCode);
+        if (! $phoneArea) {
+            throw new \Exception('Please enter a valid US area code.');
+        }
 
-        /** @var CountryCallingcode $countryCallingCode */
-        $countryCallingCode = CountryCallingcode::where('code', $parsedPhoneNumber->getCountryCode())->first();
-
-        return optional($countryCallingCode)->phones()->firstOrCreate([
-            'full_number' => $phoneNumber,
-            'phone_area_code' => $this->getAreaCode($parsedPhoneNumber->getNationalNumber()), // This only work for US area code.
+        return optional($countryCallingcode)->phones()->firstOrCreate([
+            'full_number' => $countryCallingcode->code . $phoneNumber,
+            'phone_area_code' => $parsedAreaCode, // This only work for US area code.
         ]);
     }
 
